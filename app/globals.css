@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
+/* Hostinger-inspired purple theme */
+/* CRR/Hostinger-inspired purple theme */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #F3F0FF;
+  --foreground: #232946;
+  --banner-gradient: linear-gradient(90deg, #512DA8 0%, #B39DDB 100%);
+  --banner-gradient-dark: linear-gradient(90deg, #1A237E 0%, #512DA8 100%);
+  --gold: #D4AF37;
+  --gold-light: #FFD700;
+  --platinum: #E5E4E2;
+  --silver: #C0C0C0;
+  --font-heading: 'Space Grotesk', 'Orbitron', sans-serif;
+  --font-body: 'Inter', 'Poppins', sans-serif;
 }
 
 body {
-  background: var(--background);
+  background: #f6f6f7;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  min-height: 100vh;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bubble-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #232946;
+    color: #F3F0FF;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--background-gradient-dark);
+  }
+}
+
+.glass {
+  background: rgba(20, 20, 20, 0.45);
+  border: 1px solid var(--gold);
+  box-shadow: 0 4px 32px 0 rgba(212, 175, 55, 0.10), 0 1.5px 8px 0 rgba(255, 215, 0, 0.10);
+  backdrop-filter: blur(12px) saturate(120%);
+  border-radius: 1.25rem;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.glass:hover {
+  box-shadow: 0 0 24px 4px var(--gold-light), 0 4px 32px 0 rgba(212, 175, 55, 0.18);
+  transform: translateY(-4px) scale(1.025);
+}
+
+.gold-gradient {
+  background: linear-gradient(90deg, #D4AF37 0%, #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.gold-border {
+  border-color: var(--gold) !important;
+}
+
+.gold-divider {
+  border-top: 1px solid var(--gold);
+}
+
+.gold-glow {
+  box-shadow: 0 0 16px 2px #FFD70099;
+}
+
+.silver-glow {
+  box-shadow: 0 0 12px 2px #C0C0C099;
 }
