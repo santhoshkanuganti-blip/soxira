@@ -1,153 +1,229 @@
+import { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import BannerRotator from '@/components/BannerRotator';
+import Services from '@/components/Services';
+import VitaranAI from '@/components/VitaranAI';
+import CTA from '@/components/CTA';
+import ContactForm from '@/components/ContactForm';
+import { siteConfig } from '@/config/site';
 
-"use client";
-import Navbar from '../components/Navbar';
-import Section from '../components/Section';
-import Card from '../components/Card';
-import Button from '../components/Button';
-import { motion } from 'framer-motion';
+export const dynamic = 'force-static';
+
+export const metadata: Metadata = {
+  title: 'AI, Cloud & Data Solutions for Modern Businesses | Soxira AI Solutions',
+  description:
+    'Soxira AI Solutions helps CEOs, SMEs, distributors and enterprises transform with AI, cloud migration, and data engineering.',
+  keywords: [
+    'product development company India',
+    'cloud migration services India',
+    'Snowflake DBT consulting',
+    'AI dashboard development company',
+    'distributor management software India',
+  ],
+};
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteConfig.name,
+  url: `https://${siteConfig.domain}`,
+  logo: `https://${siteConfig.domain}${siteConfig.logo}`,
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: siteConfig.contact.phone,
+      contactType: 'customer support',
+      areaServed: 'IN',
+      availableLanguage: ['English', 'Hindi'],
+    },
+  ],
+  sameAs: [siteConfig.contact.linkedin],
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen font-body relative z-10 bg-[#F3F0FF]">
+    <div className="min-h-screen bg-[#0B0B1A] text-slate-100">
       <Navbar />
-      {/* Hero Section */}
-      <Section className="flex flex-col items-center justify-center min-h-[80vh] text-center relative bg-[radial-gradient(circle_at_60%_40%,_#B39DDB_0%,_#F3F0FF_100%)] rounded-b-3xl shadow-lg overflow-hidden w-full p-0 m-0">
-        <motion.h1
-          className="text-4xl md:text-6xl font-heading font-bold text-[#232946] mb-6 drop-shadow-lg"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Engineering Intelligent Futures with AI Excellence
-        </motion.h1>
-        <p className="max-w-2xl mx-auto text-lg md:text-xl text-[#444] mb-8">
-          Soxira AI Solutions delivers premium IT products, consulting, and enterprise AI services for the world’s most ambitious organizations.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="primary">Get Started</Button>
-          <Button variant="outline">Our Services</Button>
-        </div>
-      </Section>
+      <main className="relative overflow-hidden">
 
-      {/* About Section */}
-      <Section id="about">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 gold-gradient">About Soxira</h2>
-        <p className="max-w-2xl mx-auto text-lg text-silver mb-2">
-          Soxira AI Solutions is a leader in AI-driven IT consulting and enterprise solutions. We empower businesses to innovate, scale, and secure their digital future with cutting-edge technology and 20+ years of expertise.
-        </p>
-      </Section>
+        {/* Hero */}
+        <section className="relative isolate overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(124,58,237,0.22),_transparent_20%),radial-gradient(circle_at_90%_20%,_rgba(14,165,233,0.16),_transparent_25%)]" />
+          <div className="absolute left-1/2 top-8 h-64 w-64 -translate-x-1/2 rounded-full bg-violet-500/10 blur-3xl" />
+          <div className="absolute right-0 top-1/3 h-56 w-56 rounded-full bg-sky-400/10 blur-3xl" />
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+              <div className="space-y-6">
+                <p className="inline-flex rounded-full border border-slate-600/80 bg-slate-900/70 px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-sky-200/90">
+                  Enterprise AI & Cloud
+                </p>
+                <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl xl:text-5xl">
+                  AI, Cloud & Data Solutions for Modern Businesses
+                </h1>
+                <p className="max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+                  Transform operations, accelerate product delivery, and scale distributor networks with a team backed by 20+ years of enterprise experience.
+                </p>
+                <p className="max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+                  Powered by Next.js, Node, Python and CMS-first content architecture for SEO-ready, high-performance digital experiences.
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <a href="/contact" className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg transition hover:scale-[1.02]">
+                    Get Free Consultation
+                  </a>
+                  <a href="#services" className="inline-flex items-center justify-center rounded-full border border-slate-600/70 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-900/80">
+                    Explore Services
+                  </a>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-3xl bg-white/5 p-4 text-sm text-slate-300 ring-1 ring-white/10">
+                    <div className="font-semibold text-white">20+ years</div>
+                    <p className="mt-1 text-slate-400 text-xs">Trusted enterprise and SME transformation.</p>
+                  </div>
+                  <div className="rounded-3xl bg-white/5 p-4 text-sm text-slate-300 ring-1 ring-white/10">
+                    <div className="font-semibold text-white">India-first</div>
+                    <p className="mt-1 text-slate-400 text-xs">Designed for India's CEOs, distributors and tier-2 enterprises.</p>
+                  </div>
+                  <div className="rounded-3xl bg-white/5 p-4 text-sm text-slate-300 ring-1 ring-white/10">
+                    <div className="font-semibold text-white">No backend required</div>
+                    <p className="mt-1 text-slate-400 text-xs">Static-first site with lead capture and mail handling.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-slate-950/75 p-6 shadow-[0_40px_120px_rgba(15,23,42,0.45)] backdrop-blur-xl">
+                  <div className="absolute left-6 top-6 h-12 w-12 rounded-full bg-violet-500/20 blur-2xl" />
+                  <div className="absolute right-6 bottom-8 h-10 w-10 rounded-full bg-sky-400/20 blur-2xl" />
+                  <div className="relative rounded-[2rem] border border-white/10 bg-slate-900/85 p-6 shadow-[0_25px_80px_rgba(0,0,0,0.18)] backdrop-blur-lg">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Modern AI Insights</p>
+                        <h2 className="mt-3 text-2xl font-semibold text-white">Insights built for leadership.</h2>
+                      </div>
+                      <span className="rounded-full bg-slate-800/90 px-3 py-1.5 text-xs uppercase tracking-[0.3em] text-sky-300">Live</span>
+                    </div>
+                    <p className="mt-4 text-sm text-slate-300">Actionable dashboards that help CEOs and managers reduce risk, forecast demand, and grow revenue.</p>
+                    <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                      {['Cloud', 'AI', 'Data', 'Product'].map((item) => (
+                        <div key={item} className="rounded-[1.75rem] border border-white/10 bg-slate-950/75 px-4 py-4 text-center text-slate-200 shadow-[0_10px_45px_rgba(15,23,42,0.22)]">
+                          <p className="text-lg font-semibold text-white">{item}</p>
+                          <p className="mt-1 text-xs text-slate-400">Expertise</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="pointer-events-none absolute -right-8 -bottom-8 h-32 w-32 rounded-full bg-sky-400/20 blur-3xl" />
+                <div className="pointer-events-none absolute left-4 top-10 h-28 w-28 rounded-full bg-violet-500/20 blur-3xl" />
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* Services Section */}
-      <Section id="services">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 gold-gradient text-center">Our Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card>
-            <h3 className="text-2xl font-heading gold-gradient mb-2">IT Products</h3>
-            <p className="text-silver">Premium AI-powered software and platforms tailored for enterprise needs.</p>
-          </Card>
-          <Card>
-            <h3 className="text-2xl font-heading gold-gradient mb-2">IT Consulting</h3>
-            <p className="text-silver">Expert guidance for digital transformation, strategy, and innovation.</p>
-          </Card>
-          <Card>
-            <h3 className="text-2xl font-heading gold-gradient mb-2">IT Services</h3>
-            <p className="text-silver">End-to-end managed IT, support, and enterprise integration.</p>
-          </Card>
-        </div>
-      </Section>
+        {/* Services */}
+        <section id="services" className="px-4 pb-14 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-8 max-w-3xl">
+              <p className="text-xs uppercase tracking-[0.3em] text-sky-300/90">Services for growth</p>
+              <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">Services that make AI, cloud and data transformation fast and secure.</h2>
+            </div>
+            <Services />
+          </div>
+        </section>
 
-      {/* Why Choose Us Section */}
-      <Section>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 gold-gradient text-center">Why Choose Us</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <Card className="flex flex-col items-center text-center py-8">
-            <span className="text-4xl gold-gradient mb-2">🤖</span>
-            <span className="font-heading text-xl mb-1">AI-first Approach</span>
-            <span className="text-silver">We lead with AI innovation in every solution.</span>
-          </Card>
-          <Card className="flex flex-col items-center text-center py-8">
-            <span className="text-4xl gold-gradient mb-2">📈</span>
-            <span className="font-heading text-xl mb-1">Scalable Solutions</span>
-            <span className="text-silver">Our platforms grow with your business.</span>
-          </Card>
-          <Card className="flex flex-col items-center text-center py-8">
-            <span className="text-4xl gold-gradient mb-2">🔒</span>
-            <span className="font-heading text-xl mb-1">Enterprise Security</span>
-            <span className="text-silver">Security and compliance at every layer.</span>
-          </Card>
-          <Card className="flex flex-col items-center text-center py-8">
-            <span className="text-4xl gold-gradient mb-2">🏆</span>
-            <span className="font-heading text-xl mb-1">20+ Years Expertise</span>
-            <span className="text-silver">Decades of proven IT leadership.</span>
-          </Card>
-        </div>
-      </Section>
+        {/* Banner Rotator */}
+        <section className="px-4 pb-14 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="text-2xl font-semibold text-white sm:text-3xl">Trusted product development & distribution solutions</h2>
+            <p className="mt-3 max-w-3xl text-sm text-slate-300 leading-7">Premium SaaS-style product engineering for modern enterprises, including VitaranAI for distributor management.</p>
+            <div className="mt-8">
+              <BannerRotator />
+            </div>
+          </div>
+        </section>
 
-      {/* Industries Section */}
-      <Section id="industries">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 gold-gradient text-center">Industries We Serve</h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-          {['Construction', 'Healthcare', 'Retail', 'Logistics', 'Finance'].map((industry) => (
-            <Card key={industry} className="flex flex-col items-center py-6 hover:gold-glow transition">
-              <span className="font-heading text-xl gold-gradient mb-2">{industry}</span>
-            </Card>
-          ))}
-        </div>
-      </Section>
+        {/* AI Dashboards */}
+        <section className="px-4 pb-14 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+              <div>
+                <h2 className="text-2xl font-semibold text-white sm:text-3xl">AI dashboards & business insights</h2>
+                <p className="mt-3 max-w-2xl text-sm text-slate-300 leading-7">Custom dashboards with predictive analytics, automated reporting and executive scorecards designed for measurable ROI.</p>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {['Forecasting', 'KPI Automation', 'Operational AI', 'Analytics'].map((item) => (
+                  <div key={item} className="rounded-[1.75rem] border border-white/10 bg-slate-950/80 p-6 text-white shadow-xl">
+                    <h3 className="text-base font-semibold text-white">{item}</h3>
+                    <p className="mt-2 text-xs text-slate-300">Enterprise-grade capabilities for fast-moving teams.</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* Featured Solutions Section */}
-      <Section>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 gold-gradient text-center">Featured Solutions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card>
-            <h3 className="text-xl font-heading gold-gradient mb-2">Distribution Management System</h3>
-            <p className="text-silver">AI-driven logistics and supply chain optimization for enterprises.</p>
-          </Card>
-          <Card>
-            <h3 className="text-xl font-heading gold-gradient mb-2">Inventory AI</h3>
-            <p className="text-silver">Smart inventory tracking, forecasting, and automation.</p>
-          </Card>
-          <Card>
-            <h3 className="text-xl font-heading gold-gradient mb-2">Voice Ordering</h3>
-            <p className="text-silver">Futuristic voice-enabled order management for businesses.</p>
-          </Card>
-        </div>
-      </Section>
+        {/* Tech Stack + Why Soxira */}
+        <section className="px-4 pb-14 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-10 lg:grid-cols-2">
+              <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-2xl backdrop-blur-xl">
+                <h2 className="text-2xl font-semibold text-white">Technology stack</h2>
+                <p className="mt-3 text-sm text-slate-300 leading-7">We use the most trusted cloud and data platforms to deliver scalable, secure solutions.</p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {['AWS', 'GCP', 'Azure', 'Snowflake', 'DBT', 'Web Development', 'Mobile Development'].map((tech) => (
+                    <div key={tech} className="rounded-3xl border border-white/10 bg-gradient-to-br from-violet-700/30 to-sky-500/10 px-4 py-3 text-center text-sm font-semibold text-white shadow-lg hover:scale-105 hover:shadow-xl transition-all">
+                      {tech}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-2xl backdrop-blur-xl">
+                <h2 className="text-2xl font-semibold text-white">Why Soxira</h2>
+                <p className="mt-3 text-sm text-slate-300 leading-7">Backed by a team with 20+ years of experience, we deliver enterprise-grade digital strategy, product engineering and AI adoption.</p>
+                <div className="mt-6 grid gap-3">
+                  {[
+                    'Decades of delivery experience',
+                    'Dedicated India and tier-2 enterprise focus',
+                    'Premium SaaS-style interfaces and secure architecture',
+                  ].map((item) => (
+                    <div key={item} className="rounded-3xl bg-slate-900/70 p-4 text-sm text-slate-200 ring-1 ring-white/10">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* Contact Section */}
-      <Section id="contact">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 gold-gradient text-center">Contact Us</h2>
-        <form className="max-w-xl mx-auto p-8 flex flex-col gap-6 border-gold rounded-2xl shadow-2xl"
-          style={{
-            background: 'linear-gradient(135deg, #2E026D 0%, #6C2BD7 60%, #A259FF 100%)',
-            boxShadow: '0 8px 40px 0 rgba(46,2,109,0.22), 0 1.5px 8px 0 rgba(108,43,215,0.13)'
-          }}>
-          <input
-            type="text"
-            placeholder="Name"
-            className="bg-transparent border-b-2 border-silver focus:border-gold outline-none py-2 px-3 text-white placeholder-silver focus:gold-glow transition"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="bg-transparent border-b-2 border-silver focus:border-gold outline-none py-2 px-3 text-white placeholder-silver focus:gold-glow transition"
-            required
-          />
-          <textarea
-            placeholder="Message"
-            className="bg-transparent border-b-2 border-silver focus:border-gold outline-none py-2 px-3 text-white placeholder-silver focus:gold-glow transition min-h-[120px]"
-            required
-          />
-          <Button variant="primary" type="submit" className="w-full mt-2">Send Message</Button>
-        </form>
-      </Section>
+        {/* VitaranAI */}
+        <section className="px-4 pb-14 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <VitaranAI />
+          </div>
+        </section>
 
-      {/* Footer */}
-      <footer className="w-full border-t gold-border py-6 text-center text-silver mt-8">
-        <div className="font-heading text-lg gold-gradient mb-1">Soxira AI Solutions</div>
-        <div className="text-sm">Innovating Intelligence. Delivering Excellence.</div>
-      </footer>
+        {/* CTA */}
+        <section className="px-4 pb-14 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <CTA />
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-8 max-w-2xl">
+              <p className="text-xs uppercase tracking-[0.3em] text-sky-300/90">Contact</p>
+              <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">Get in touch with our AI, cloud and data experts</h2>
+            </div>
+            <ContactForm />
+          </div>
+        </section>
+
+      </main>
+      <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
     </div>
   );
 }

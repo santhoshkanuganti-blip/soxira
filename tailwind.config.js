@@ -1,45 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './app/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './config/**/*.{js,ts}'],
   theme: {
     extend: {
       colors: {
-        black: '#0A0A0A',
-        platinum: '#E5E4E2',
-        silver: '#C0C0C0',
-        gold: {
-          DEFAULT: '#D4AF37',
-          light: '#FFD700',
+        surface: '#111827',
+        surface2: '#0B0B1A',
+        brand: '#7C3AED',
+        brandLight: '#38BDF8',
+        gold: '#D4AF37',
+        slate: {
+          950: '#020617',
         },
-        purpleDark: '#1A237E', // deep indigo
-        purple: '#512DA8',     // main purple
-        purpleLight: '#B39DDB', // light purple
-        purpleBg: '#F3F0FF',   // very light purple
       },
       fontFamily: {
         heading: ['Space Grotesk', 'Orbitron', 'sans-serif'],
         body: ['Inter', 'Poppins', 'sans-serif'],
       },
       boxShadow: {
-        goldGlow: '0 0 16px 2px #FFD70099',
-        silverGlow: '0 0 12px 2px #C0C0C099',
+        glow: '0 24px 80px rgba(59, 130, 246, 0.18)',
       },
-      backgroundImage: {
-        goldGradient: 'linear-gradient(90deg, #D4AF37 0%, #FFD700 100%)',
-        purpleBanner: 'linear-gradient(90deg, #512DA8 0%, #B39DDB 100%)',
-      },
-      borderColor: {
-        gold: '#D4AF37',
-      },
-      divideColor: {
-        gold: '#D4AF37',
-      },
-      opacity: {
-        15: '0.15',
+      borderRadius: {
+        '4xl': '2rem',
       },
     },
   },
