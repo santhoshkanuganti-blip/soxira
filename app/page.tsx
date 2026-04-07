@@ -58,13 +58,13 @@ export default function Home() {
                 <p className="inline-flex rounded-full border border-slate-600/80 bg-slate-900/70 px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-sky-200/90">
                   Enterprise AI & Cloud
                 </p>
-                <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl xl:text-5xl">
+                <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl xl:text-4xl">
                   AI, Cloud & Data Solutions for Modern Businesses
                 </h1>
-                <p className="max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+                <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
                   Transform operations, accelerate product delivery, and scale distributor networks with a team backed by 20+ years of enterprise experience.
                 </p>
-                <p className="max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+                <p className="max-w-2xl text-xs leading-7 text-slate-400 sm:text-sm">
                   Powered by Next.js, Node, Python and CMS-first content architecture for SEO-ready, high-performance digital experiences.
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -98,7 +98,7 @@ export default function Home() {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Modern AI Insights</p>
-                        <h2 className="mt-3 text-2xl font-semibold text-white">Insights built for leadership.</h2>
+                        <h2 className="mt-3 text-xl font-semibold text-white">Insights built for leadership.</h2>
                       </div>
                       <span className="rounded-full bg-slate-800/90 px-3 py-1.5 text-xs uppercase tracking-[0.3em] text-sky-300">Live</span>
                     </div>
@@ -106,7 +106,7 @@ export default function Home() {
                     <div className="mt-6 grid gap-3 sm:grid-cols-2">
                       {['Cloud', 'AI', 'Data', 'Product'].map((item) => (
                         <div key={item} className="rounded-[1.75rem] border border-white/10 bg-slate-950/75 px-4 py-4 text-center text-slate-200 shadow-[0_10px_45px_rgba(15,23,42,0.22)]">
-                          <p className="text-lg font-semibold text-white">{item}</p>
+                          <p className="text-base font-semibold text-white">{item}</p>
                           <p className="mt-1 text-xs text-slate-400">Expertise</p>
                         </div>
                       ))}
@@ -125,7 +125,7 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 max-w-3xl">
               <p className="text-xs uppercase tracking-[0.3em] text-sky-300/90">Services for growth</p>
-              <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">Services that make AI, cloud and data transformation fast and secure.</h2>
+              <h2 className="mt-3 text-xl font-semibold text-white sm:text-2xl">Services that make AI, cloud and data transformation fast and secure.</h2>
             </div>
             <Services />
           </div>
@@ -134,7 +134,7 @@ export default function Home() {
         {/* Banner Rotator */}
         <section className="px-4 pb-14 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <h2 className="text-2xl font-semibold text-white sm:text-3xl">Trusted product development & distribution solutions</h2>
+            <h2 className="text-xl font-semibold text-white sm:text-2xl">Trusted product development & distribution solutions</h2>
             <p className="mt-3 max-w-3xl text-sm text-slate-300 leading-7">Premium SaaS-style product engineering for modern enterprises, including VitaranAI for distributor management.</p>
             <div className="mt-8">
               <BannerRotator />
@@ -147,13 +147,13 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div>
-                <h2 className="text-2xl font-semibold text-white sm:text-3xl">AI dashboards & business insights</h2>
+                <h2 className="text-xl font-semibold text-white sm:text-2xl">AI dashboards & business insights</h2>
                 <p className="mt-3 max-w-2xl text-sm text-slate-300 leading-7">Custom dashboards with predictive analytics, automated reporting and executive scorecards designed for measurable ROI.</p>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 {['Forecasting', 'KPI Automation', 'Operational AI', 'Analytics'].map((item) => (
                   <div key={item} className="rounded-[1.75rem] border border-white/10 bg-slate-950/80 p-6 text-white shadow-xl">
-                    <h3 className="text-base font-semibold text-white">{item}</h3>
+                    <h3 className="text-sm font-semibold text-white">{item}</h3>
                     <p className="mt-2 text-xs text-slate-300">Enterprise-grade capabilities for fast-moving teams.</p>
                   </div>
                 ))}
@@ -167,7 +167,7 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-10 lg:grid-cols-2">
               <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-2xl backdrop-blur-xl">
-                <h2 className="text-2xl font-semibold text-white">Technology stack</h2>
+                <h2 className="text-xl font-semibold text-white">Technology stack</h2>
                 <p className="mt-3 text-sm text-slate-300 leading-7">We use the most trusted cloud and data platforms to deliver scalable, secure solutions.</p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {['AWS', 'GCP', 'Azure', 'Snowflake', 'DBT', 'Web Development', 'Mobile Development'].map((tech) => (
@@ -178,7 +178,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-2xl backdrop-blur-xl">
-                <h2 className="text-2xl font-semibold text-white">Why Soxira</h2>
+                <h2 className="text-xl font-semibold text-white">Why Soxira</h2>
                 <p className="mt-3 text-sm text-slate-300 leading-7">Backed by a team with 20+ years of experience, we deliver enterprise-grade digital strategy, product engineering and AI adoption.</p>
                 <div className="mt-6 grid gap-3">
                   {[
@@ -215,7 +215,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 max-w-2xl">
               <p className="text-xs uppercase tracking-[0.3em] text-sky-300/90">Contact</p>
-              <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">Get in touch with our AI, cloud and data experts</h2>
+              <h2 className="mt-3 text-xl font-semibold text-white sm:text-2xl">Get in touch with our AI, cloud and data experts</h2>
             </div>
             <ContactForm />
           </div>
