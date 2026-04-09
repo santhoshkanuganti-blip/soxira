@@ -32,9 +32,9 @@ export default function ContactPage() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_0.9fr] lg:items-center">
           <div>
             <p className="inline-flex rounded-full bg-slate-900/70 px-4 py-2 text-sm uppercase tracking-[0.3em] text-sky-300/90">Contact</p>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Talk to India's AI, cloud and data experts</h1>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Talk to India&apos;s AI, cloud and data experts</h1>
             <p className="mt-5 text-lg leading-8 text-slate-300">
-              Submit your project requirements and our team will reach out with a tailored consultation plan — no backend needed, powerful lead capture included.
+              Submit your project requirements and our team will reach out with a tailored consultation plan.
             </p>
             <div className="mt-10 space-y-4 rounded-[2rem] border border-white/10 bg-slate-950/75 p-8 shadow-2xl">
               <div>

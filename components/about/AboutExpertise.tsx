@@ -49,23 +49,23 @@ const expertise = [
 
 export function AboutExpertise() {
   return (
-    <section className="py-20 px-4 sm:px-8">
+    <section className="py-8 px-4 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-14 text-center"
+          className="mb-8 text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-400">What We Do</span>
-          <h2 className="mt-4 text-4xl font-bold text-white">Our Expertise</h2>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">
+          <span className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-400">What We Do</span>
+          <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">Our Expertise</h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm text-slate-400 sm:text-base">
             Deep domain expertise across the full technology stack — from AI to cloud to data to mobile.
           </p>
         </motion.div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {expertise.map((item, i) => (
             <motion.div
               key={item.title}
@@ -73,12 +73,12 @@ export function AboutExpertise() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.07 }}
-              whileHover={{ scale: 1.04, boxShadow: `0 0 40px 0 ${item.glow}` }}
-              className={`cursor-pointer rounded-3xl border border-white/10 bg-gradient-to-br ${item.accent} p-8 backdrop-blur-lg shadow-xl transition-all`}
+              whileHover={{ scale: 1.02, boxShadow: `0 0 30px 0 ${item.glow}` }}
+              className={`cursor-pointer rounded-3xl border border-white/10 bg-gradient-to-br ${item.accent} p-5 backdrop-blur-lg shadow-xl transition-all`}
             >
-              <span className="text-4xl">{item.icon}</span>
-              <h3 className="mt-5 text-xl font-semibold text-white">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{item.desc}</p>
+              <span className="text-2xl">{item.icon}</span>
+              <h3 className="mt-3 text-base font-semibold text-white sm:text-lg">{item.title}</h3>
+              <p className="mt-2 text-xs leading-6 text-slate-300 sm:text-sm">{item.desc}</p>
             </motion.div>
           ))}
         </div>

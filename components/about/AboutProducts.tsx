@@ -34,23 +34,23 @@ const products = [
 
 export function AboutProducts() {
   return (
-    <section className="py-20 px-4 sm:px-8">
+    <section className="py-8 px-4 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-14 text-center"
+          className="mb-8 text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-400">Our Products</span>
-          <h2 className="mt-4 text-4xl font-bold text-white">Flagship Products</h2>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">
+          <span className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-400">Our Products</span>
+          <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">Flagship Products</h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm text-slate-400 sm:text-base">
             Purpose-built platforms solving real-world challenges across distribution, healthcare, and fintech.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-3">
           {products.map((p, i) => (
             <motion.div
               key={p.name}
@@ -59,19 +59,19 @@ export function AboutProducts() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               whileHover={{ scale: 1.04 }}
-              className={`group flex flex-col rounded-3xl border border-white/10 bg-gradient-to-br ${p.gradient} p-8 shadow-2xl backdrop-blur-xl transition-all`}
+              className={`group flex flex-col rounded-3xl border border-white/10 bg-gradient-to-br ${p.gradient} p-5 shadow-2xl backdrop-blur-xl transition-all`}
             >
-              <span className="text-5xl">{p.icon}</span>
-              <span className="mt-5 inline-block self-start rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-slate-300">
+              <span className="text-3xl">{p.icon}</span>
+              <span className="mt-3 inline-block self-start rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-slate-300 sm:text-xs">
                 {p.tag}
               </span>
-              <h3 className="mt-3 text-2xl font-bold text-white">{p.name}</h3>
-              <p className="mt-3 flex-1 text-sm leading-6 text-slate-300">{p.desc}</p>
+              <h3 className="mt-2 text-lg font-bold text-white sm:text-xl">{p.name}</h3>
+              <p className="mt-2 flex-1 text-xs leading-6 text-slate-300 sm:text-sm">{p.desc}</p>
               <a
                 href={p.href}
                 target={p.external ? '_blank' : undefined}
                 rel={p.external ? 'noreferrer' : undefined}
-                className="mt-6 inline-block rounded-full bg-gradient-to-r from-violet-500 to-sky-400 px-6 py-3 text-center text-sm font-bold text-white shadow-lg transition hover:scale-105 hover:shadow-violet-500/30"
+                className="mt-4 inline-block rounded-full bg-gradient-to-r from-violet-500 to-sky-400 px-5 py-2.5 text-center text-xs font-bold text-white shadow-lg transition hover:scale-105 hover:shadow-violet-500/30 sm:text-sm"
               >
                 {p.external ? 'Visit Product →' : 'Learn More →'}
               </a>

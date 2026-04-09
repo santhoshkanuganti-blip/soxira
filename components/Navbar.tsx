@@ -19,13 +19,13 @@ const navLinks = [
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0B0B1A]/95 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-4">
+      <nav className="flex w-full items-center gap-4 px-1 py-1 sm:px-2 lg:px-3">
+        <Link href="/" className="flex shrink-0 items-center gap-4">
           <div className="relative h-20 w-[260px] overflow-hidden rounded-[2.5rem] bg-[#05050d] p-3 shadow-[0_22px_90px_rgba(56,189,248,0.2)] ring-1 ring-white/10 sm:w-[320px]">
             <Image src={siteConfig.logo} alt={`${siteConfig.name} logo`} fill className="object-contain" />
           </div>
         </Link>
-        <ul className="hidden items-center gap-4 md:flex">
+        <ul className="ml-auto hidden items-center gap-4 md:flex">
           {navLinks.map((link) => (
             <li key={link.name}>
               <motion.div whileHover={{ y: -1 }}>

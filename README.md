@@ -52,13 +52,59 @@ npm run start
 
 ### Vercel environment variables
 
-This site supports EmailJS lead capture with optional environment variables:
+This site sends contact form submissions from the server and supports two delivery options:
 
-- `NEXT_PUBLIC_EMAILJS_SERVICE_ID`
-- `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`
-- `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`
+1. SMTP (recommended for Hostinger mailboxes such as `info@soxira.com`)
+2. Resend API fallback
 
-If these are not set, the contact form falls back to a `mailto:` flow.
+Required for all setups:
+
+- `CONTACT_FROM_EMAIL` (example: `Soxira Contact <info@soxira.com>`)
+- `CONTACT_NOTIFICATION_RECIPIENTS` (optional comma-separated list, defaults to info inboxes)
+
+SMTP option:
+
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_SECURE` (`true` for SSL/465, typically)
+- `SMTP_USER`
+- `SMTP_PASS`
+
+Resend option (used when SMTP is not configured):
+
+- `RESEND_API_KEY`
+
+A ready-to-use template is available in `.env.example`.
+
+### Hostinger Production Setup
+
+If your website and mailbox are on Hostinger (`soxira.com`, `info@soxira.com`), use SMTP.
+
+1. Copy `.env.example` to `.env.local` for local development.
+2. Set `SMTP_PASS` to your real mailbox password for `info@soxira.com`.
+3. Keep this password only in environment variables, never in Git.
+4. In production hosting, add the same variables in your hosting environment settings:
+	- `CONTACT_FROM_EMAIL`
+	- `CONTACT_NOTIFICATION_RECIPIENTS`
+	- `SMTP_HOST`
+	- `SMTP_PORT`
+	- `SMTP_SECURE`
+	- `SMTP_USER`
+	- `SMTP_PASS`
+
+Recommended SMTP values for Hostinger:
+
+- `SMTP_HOST=smtp.hostinger.com`
+- `SMTP_PORT=465`
+- `SMTP_SECURE=true`
+- `SMTP_USER=info@soxira.com`
+
+Production-grade checklist:
+
+1. Use a strong mailbox password and rotate it periodically.
+2. Enable SPF, DKIM, and DMARC for `soxira.com` DNS.
+3. Keep `CONTACT_NOTIFICATION_RECIPIENTS` restricted to internal inboxes.
+4. Monitor logs for `429` responses (rate-limit) and repeated failures.
 
 ### Google Search Console & Analytics
 

@@ -7,6 +7,7 @@ export const siteConfig = {
   ads: ['/ads/banner-1.svg', '/ads/banner-2.svg', '/ads/banner-3.svg'],
   contact: {
     email: 'info@soxira.com',
+    leadRecipients: ['info@soxira.com', 'info@soxirasolutions.com'],
     phone: '+91 99495 18844',
     address: 'Hyderabad, Telangana 500019, India',
     linkedin: 'https://www.linkedin.com/company/soxira-ai-solutions',

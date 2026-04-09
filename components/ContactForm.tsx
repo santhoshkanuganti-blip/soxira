@@ -1,46 +1,48 @@
 'use client';
 
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
-import { siteConfig } from '@/config/site';
 import Button from '@/components/Button';
 
-const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [formData, setFormData] = useState({ name: '', email: '', requirement: '' });
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('Please fill in all fields before sending.');
+  const [formData, setFormData] = useState({ name: '', email: '', requirement: '', website: '' });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!formData.name || !formData.email || !formData.requirement) {
+      setErrorMessage('Please fill in all fields before sending.');
       setStatus('error');
       return;
     }
+
     setStatus('loading');
 
-    if (SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY) {
-      try {
-        await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.requirement,
-        }, PUBLIC_KEY);
-        setStatus('success');
-        setFormData({ name: '', email: '', requirement: '' });
-        return;
-      } catch (error) {
-        console.error('EmailJS send error', error);
-      }
-    }
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const mailto = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
-      'Consultation Request from ' + formData.name
-    )}&body=${encodeURIComponent(formData.requirement + '\n\n' + formData.email)}`;
-    window.location.href = mailto;
-    setStatus('success');
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        setErrorMessage(payload.message || 'Unable to send right now. Please try again in a moment.');
+        setStatus('error');
+        return;
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', requirement: '', website: '' });
+    } catch (error) {
+      console.error('Contact form submit error', error);
+      setErrorMessage('Unable to send right now. Please try again in a moment.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -79,14 +81,27 @@ export default function ContactForm() {
           required
         />
       </label>
+      <input
+        type="text"
+        value={formData.website}
+        onChange={(event) => setFormData((prev) => ({ ...prev, website: event.target.value }))}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <Button type="submit" variant="primary" className="w-full sm:w-auto">
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={status === 'loading'}
+          className="w-full !rounded-2xl !bg-gradient-to-r !from-violet-600 !to-fuchsia-500 !px-6 !py-3 !font-semibold !text-white hover:!from-violet-500 hover:!to-fuchsia-400 disabled:opacity-70 sm:w-auto"
+        >
           {status === 'loading' ? 'Sending...' : 'Send Request'}
         </Button>
-        <p className="text-sm text-slate-400">No database needed. EmailJS / mailto fallback handles lead capture.</p>
       </div>
       {status === 'success' && <p className="rounded-2xl bg-emerald-500/15 p-4 text-sm text-emerald-200">Message sent successfully. We will respond within 24 hours.</p>}
-      {status === 'error' && <p className="rounded-2xl bg-rose-500/15 p-4 text-sm text-rose-200">Please fill in all fields before sending.</p>}
+      {status === 'error' && <p className="rounded-2xl bg-rose-500/15 p-4 text-sm text-rose-200">{errorMessage}</p>}
     </form>
   );
 }
