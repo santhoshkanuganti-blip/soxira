@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("EDITOR")
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Leadership {
+  id           String   @id @default(cuid())
+  name         String
+  designation  String
+  bio          String
+  expertise    Json     @default("[]")
+  quote        String?
+  imageUrl     String?
+  linkedinUrl  String?
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Promotion {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  ctaText     String?
+  ctaUrl      String?
+  bannerUrl   String?
+  startDate   DateTime?
+  endDate     DateTime?
+  active      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  tagline      String?
+  description  String?
+  features     Json     @default("[]")
+  benefits     Json     @default("[]")
+  industryTags Json     @default("[]")
+  imageUrl     String?
+  videoUrl     String?
+  ctaText      String?
+  ctaUrl       String?
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Blog {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  content     String
+  excerpt     String?
+  category    String?
+  tags        Json      @default("[]")
+  imageUrl    String?
+  featured    Boolean   @default(false)
+  status      String    @default("draft")
+  publishedAt DateTime?
+  seoTitle    String?
+  seoDesc     String?
+  author      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model CaseStudy {
+  id           String   @id @default(cuid())
+  industry     String
+  customerName String?
+  challenge    String?
+  solution     String?
+  benefits     Json     @default("[]")
+  metrics      Json?
+  testimonial  String?
+  images       Json     @default("[]")
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Testimonial {
+  id           String   @id @default(cuid())
+  customerName String
+  designation  String?
+  company      String?
+  photo        String?
+  review       String
+  rating       Int      @default(5)
+  industry     String?
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  publicId  String   @unique
+  secureUrl String
+  width     Int?
+  height    Int?
+  mediaType String   @default("image")
+  category  String?
+  name      String?
+  createdAt DateTime @default(now())
+}
+
+model ContactLead {
+  id        String   @id @default(cuid())
+  name      String
+  company   String?
+  email     String
+  phone     String?
+  industry  String?
+  message   String?
+  contacted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WebsiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}

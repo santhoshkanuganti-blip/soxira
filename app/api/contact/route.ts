@@ -1,4 +1,5 @@
 import { siteConfig } from '@/config/site';
+import { db } from '@/lib/db';
 
 type ContactPayload = {
   name: string;
@@ -220,6 +221,9 @@ export async function POST(request: Request) {
     const name = payload.name.trim();
     const email = payload.email.trim();
     const requirement = payload.requirement.trim();
+
+    // Save lead to database (non-blocking)
+    db.contactLead.create({ data: { name, email, message: requirement } }).catch(() => {});
 
     const subject = `New consultation request from ${name}`;
 
