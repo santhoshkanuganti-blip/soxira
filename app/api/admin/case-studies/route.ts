@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const { error } = await requireAdmin(request);
   if (error) return error;
   const items = await db.caseStudy.findMany({ orderBy: { createdAt: 'desc' } });
-  return NextResponse.json(items.map((cs) => ({ ...cs, benefits: cs.benefits as string[], metrics: cs.metrics, images: cs.images as string[] })));
+  return NextResponse.json(items.map((cs: (typeof items)[number]) => ({ ...cs, benefits: cs.benefits as string[], metrics: cs.metrics, images: cs.images as string[] })));
 }
 
 export async function POST(request: NextRequest) {

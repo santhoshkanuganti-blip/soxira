@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const { error } = await requireAdmin(request);
   if (error) return error;
   const items = await db.blog.findMany({ orderBy: { createdAt: 'desc' } });
-  return NextResponse.json(items.map((b) => ({ ...b, tags: b.tags as string[] })));
+  return NextResponse.json(items.map((b: (typeof items)[number]) => ({ ...b, tags: b.tags as string[] })));
 }
 
 export async function POST(request: NextRequest) {

@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const { error } = await requireAdmin(request);
   if (error) return error;
   const leaders = await db.leadership.findMany({ orderBy: { displayOrder: 'asc' } });
-  return NextResponse.json(leaders.map((l) => ({ ...l, expertise: l.expertise as string[] })));
+  return NextResponse.json(leaders.map((l: (typeof leaders)[number]) => ({ ...l, expertise: l.expertise as string[] })));
 }
 
 export async function POST(request: NextRequest) {
