@@ -1,6 +1,15 @@
 import { db } from '@/lib/db';
 import Link from 'next/link';
 
+type RecentLead = {
+  id: string;
+  name: string;
+  email: string;
+  company: string | null;
+  industry: string | null;
+  createdAt: Date;
+};
+
 async function getDashboardStats() {
   try {
     const [leaders, promotions, products, blogs, caseStudies, testimonials, leads] = await Promise.all([
@@ -15,7 +24,7 @@ async function getDashboardStats() {
     const recentLeads = await db.contactLead.findMany({ orderBy: { createdAt: 'desc' }, take: 5 });
     return { leaders, promotions, products, blogs, caseStudies, testimonials, leads, recentLeads };
   } catch {
-    return { leaders: 0, promotions: 0, products: 0, blogs: 0, caseStudies: 0, testimonials: 0, leads: 0, recentLeads: [] };
+    return { leaders: 0, promotions: 0, products: 0, blogs: 0, caseStudies: 0, testimonials: 0, leads: 0, recentLeads: [] as RecentLead[] };
   }
 }
 
