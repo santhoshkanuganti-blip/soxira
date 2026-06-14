@@ -21,7 +21,7 @@ async function getDashboardStats() {
       db.testimonial.count({ where: { active: true } }),
       db.contactLead.count(),
     ]);
-    const recentLeads = await db.contactLead.findMany({ orderBy: { createdAt: 'desc' }, take: 5 });
+    const recentLeads: RecentLead[] = await db.contactLead.findMany({ orderBy: { createdAt: 'desc' }, take: 5 });
     return { leaders, promotions, products, blogs, caseStudies, testimonials, leads, recentLeads };
   } catch {
     return { leaders: 0, promotions: 0, products: 0, blogs: 0, caseStudies: 0, testimonials: 0, leads: 0, recentLeads: [] as RecentLead[] };
