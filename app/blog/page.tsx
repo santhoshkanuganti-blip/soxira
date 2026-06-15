@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import BlogAccent from '@/components/blog/BlogAccent';
 import { db } from '@/lib/db';
 
 export const revalidate = 3600;
@@ -24,6 +25,7 @@ const categoryColors: Record<string, string> = {
   'Data Engineering': 'bg-teal-500/20 text-teal-300 ring-teal-500/20',
   VitaranAI: 'bg-fuchsia-500/20 text-fuchsia-300 ring-fuchsia-500/20',
 };
+
 
 function formatDate(date: Date | null | undefined): string {
   if (!date) return '';
@@ -90,16 +92,14 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
               {featuredPost && (
                 <Link href={`/blog/${featuredPost.slug}`} className="group mb-10 block">
                   <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80 backdrop-blur-xl transition hover:border-violet-500/30">
-                    <div className="relative h-64 overflow-hidden md:h-80">
-                      {featuredPost.imageUrl ? (
-                        <Image src={featuredPost.imageUrl} alt={featuredPost.title} fill className="object-cover opacity-80 transition group-hover:scale-105" />
-                      ) : (
-                        <div className="flex h-full items-center justify-center bg-gradient-to-br from-violet-700/40 to-sky-600/20">
-                          <span className="text-8xl opacity-20">✍️</span>
-                        </div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                    </div>
+                    {featuredPost.imageUrl ? (
+                      <div className="relative h-64 overflow-hidden md:h-72">
+                        <Image src={featuredPost.imageUrl} alt={featuredPost.title} fill sizes="100vw" className="object-cover opacity-80 transition group-hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                      </div>
+                    ) : (
+                      <BlogAccent category={featuredPost.category} />
+                    )}
                     <div className="p-8">
                       <div className="flex flex-wrap gap-2 mb-3">
                         {featuredPost.featured && <span className="rounded-full bg-yellow-500/20 px-2.5 py-0.5 text-xs font-medium text-yellow-300">Featured</span>}
@@ -127,16 +127,14 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                   {otherPosts.map((post) => (
                     <Link key={post.id} href={`/blog/${post.slug}`} className="group block">
                       <div className="h-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/80 backdrop-blur-xl transition hover:border-violet-500/30">
-                        <div className="relative h-40 overflow-hidden">
-                          {post.imageUrl ? (
-                            <Image src={post.imageUrl} alt={post.title} fill className="object-cover opacity-80 transition group-hover:scale-105" />
-                          ) : (
-                            <div className="flex h-full items-center justify-center bg-gradient-to-br from-violet-700/30 to-sky-600/20">
-                              <span className="text-5xl opacity-20">✍️</span>
-                            </div>
-                          )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
-                        </div>
+                        {post.imageUrl ? (
+                          <div className="relative h-40 overflow-hidden">
+                            <Image src={post.imageUrl} alt={post.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover opacity-80 transition group-hover:scale-105" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
+                          </div>
+                        ) : (
+                          <BlogAccent category={post.category} />
+                        )}
                         <div className="p-5">
                           {post.category && (
                             <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-medium ring-1 ${categoryColors[post.category] ?? 'bg-white/10 text-slate-400 ring-white/10'}`}>

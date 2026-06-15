@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${headingFont.variable} ${orbitronFont.variable} ${bodyFont.variable} ${poppinsFont.variable} h-full antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${headingFont.variable} ${orbitronFont.variable} ${bodyFont.variable} ${poppinsFont.variable} h-full antialiased`}>
       <body className="font-body min-h-screen bg-[#0B0B1A] text-slate-100 overflow-x-hidden">
         <div className="bubble-bg" aria-hidden="true">
           <svg width="100%" height="100%" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 h-full w-full">

@@ -86,7 +86,6 @@ const ENGAGEMENT_MODELS = [
 
 const WHY_SOXIRA = [
   { stat: '25+', label: 'Years Oracle experience' },
-  { stat: '50+', label: 'Oracle modules delivered' },
   { stat: '100%', label: 'India-focused delivery' },
   { stat: 'BFSI + Mfg', label: 'Industry specialization' },
 ];
@@ -138,7 +137,7 @@ export default function OraclePage() {
             </div>
 
             {/* Stats */}
-            <div className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mx-auto mt-12 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
               {WHY_SOXIRA.map(({ stat, label }) => (
                 <div key={label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
                   <p className="text-xl font-bold text-white">{stat}</p>

@@ -7,7 +7,25 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { siteConfig } from '@/config/site';
 
-const SOLUTIONS = [
+type SolutionItem  = { label: string; href: string };
+type SolutionGroup = { parent: SolutionItem; children: SolutionItem[] };
+type SolutionCol   = {
+  heading: string;
+  gradient: string;
+  items?: SolutionItem[];
+  groups?: SolutionGroup[];
+  whySoxira?: boolean;
+};
+
+const WHY_SOXIRA_ITEMS = [
+  '20+ Years Enterprise Experience',
+  'Oracle ERP & Fusion Expertise',
+  'AI + Oracle Integrations',
+  'Cloud & Data Engineering',
+  'Distribution & Manufacturing Expertise',
+];
+
+const SOLUTIONS: SolutionCol[] = [
   {
     heading: 'AI & GenAI',
     gradient: 'from-violet-400 to-purple-300',
@@ -21,14 +39,33 @@ const SOLUTIONS = [
   {
     heading: 'Enterprise Applications',
     gradient: 'from-sky-400 to-blue-300',
-    items: [
-      { label: 'Oracle ERP', href: '/oracle-implementation-services' },
-      { label: 'Oracle Fusion Cloud', href: '/oracle-implementation-services' },
-      { label: 'Oracle SCM', href: '/oracle-implementation-services' },
-      { label: 'Oracle Financials', href: '/oracle-implementation-services' },
-      { label: 'Oracle Integration Cloud (OIC)', href: '/oracle-implementation-services' },
-      { label: 'Oracle HCM', href: '/oracle-implementation-services' },
+    groups: [
+      {
+        parent: { label: 'Oracle ERP', href: '/oracle-erp' },
+        children: [
+          { label: 'Oracle SCM', href: '/oracle-erp/scm' },
+          { label: 'Oracle Finance', href: '/oracle-erp/finance' },
+          { label: 'Oracle HCM', href: '/oracle-erp/hcm' },
+        ],
+      },
+      {
+        parent: { label: 'Oracle Fusion Cloud', href: '/oracle-fusion-cloud' },
+        children: [
+          { label: 'Oracle SCM Cloud', href: '/oracle-fusion-cloud/scm' },
+          { label: 'Oracle Financials Cloud', href: '/oracle-fusion-cloud/financials' },
+          { label: 'Oracle HCM Cloud', href: '/oracle-fusion-cloud/hcm' },
+        ],
+      },
+      {
+        parent: { label: 'Oracle Integration Cloud (OIC)', href: '/oracle-integration-cloud' },
+        children: [
+          { label: 'ERP Integrations', href: '/oracle-integration-cloud' },
+          { label: 'Fusion Integrations', href: '/oracle-integration-cloud' },
+          { label: 'API & Middleware', href: '/oracle-integration-cloud' },
+        ],
+      },
     ],
+    whySoxira: true,
   },
   {
     heading: 'Data & Cloud',
@@ -124,7 +161,7 @@ export default function Navbar() {
         <Link href="/" className="flex shrink-0 items-center">
           <div className="relative h-16 w-[180px] overflow-hidden rounded-[2.5rem] bg-[#05050d] p-3
             shadow-[0_22px_90px_rgba(56,189,248,0.18)] ring-1 ring-white/10 sm:w-[220px]">
-            <Image src={siteConfig.logo} alt={siteConfig.name} fill className="object-contain" />
+            <Image src={siteConfig.logo} alt={siteConfig.name} fill sizes="220px" priority className="object-contain" />
           </div>
         </Link>
 
@@ -222,20 +259,67 @@ export default function Navbar() {
                     <p className={`mb-3.5 bg-gradient-to-r ${col.gradient} bg-clip-text text-[11px] font-bold uppercase tracking-widest text-transparent`}>
                       {col.heading}
                     </p>
-                    <ul className="space-y-0.5">
-                      {col.items.map((item) => (
-                        <li key={item.label}>
-                          <Link
-                            href={item.href}
-                            onClick={() => setSolutionsOpen(false)}
-                            className="group flex items-center gap-2 rounded-lg px-2 py-1.5 text-[13px] leading-5 text-slate-400 transition hover:bg-white/[0.04] hover:text-white"
-                          >
-                            <span className="h-[3px] w-[3px] shrink-0 rounded-full bg-slate-600 transition-colors group-hover:bg-violet-400" />
-                            {item.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+
+                    {col.groups ? (
+                      /* ── Hierarchical column (Enterprise Applications) ── */
+                      <div className="space-y-4">
+                        {col.groups.map((group) => (
+                          <div key={group.parent.label}>
+                            <Link
+                              href={group.parent.href}
+                              onClick={() => setSolutionsOpen(false)}
+                              className="block text-[13px] font-semibold text-white transition hover:text-violet-300"
+                            >
+                              {group.parent.label}
+                            </Link>
+                            <ul className="mt-1.5 space-y-1">
+                              {group.children.map((child) => (
+                                <li key={child.label}>
+                                  <Link
+                                    href={child.href}
+                                    onClick={() => setSolutionsOpen(false)}
+                                    className="flex items-center gap-1.5 rounded-lg pl-2 py-0.5 text-[12px] text-slate-400 transition hover:text-violet-300"
+                                  >
+                                    <span className="text-[10px] text-slate-600">↳</span>
+                                    {child.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+
+                        {col.whySoxira && (
+                          <div className="mt-5 border-t border-white/[0.06] pt-4">
+                            <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-slate-500">Why Soxira?</p>
+                            {WHY_SOXIRA_ITEMS.map((item) => (
+                              <div key={item} className="flex items-center gap-2 py-0.5">
+                                <svg className="h-3 w-3 shrink-0 text-emerald-400" viewBox="0 0 16 16" fill="none">
+                                  <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span className="text-[11px] text-slate-400">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      /* ── Flat column ── */
+                      <ul className="space-y-0.5">
+                        {col.items?.map((item) => (
+                          <li key={item.label}>
+                            <Link
+                              href={item.href}
+                              onClick={() => setSolutionsOpen(false)}
+                              className="group flex items-center gap-2 rounded-lg px-2 py-1.5 text-[13px] leading-5 text-slate-400 transition hover:bg-white/[0.04] hover:text-white"
+                            >
+                              <span className="h-[3px] w-[3px] shrink-0 rounded-full bg-slate-600 transition-colors group-hover:bg-violet-400" />
+                              {item.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 ))}
               </div>
@@ -301,19 +385,49 @@ export default function Navbar() {
                               <p className={`mb-2 bg-gradient-to-r ${col.gradient} bg-clip-text text-[10px] font-bold uppercase tracking-widest text-transparent`}>
                                 {col.heading}
                               </p>
-                              <ul className="space-y-1.5">
-                                {col.items.map((item) => (
-                                  <li key={item.label}>
-                                    <Link
-                                      href={item.href}
-                                      onClick={closeBoth}
-                                      className="block text-[12px] text-slate-500 transition hover:text-slate-200"
-                                    >
-                                      {item.label}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
+
+                              {col.groups ? (
+                                /* Hierarchical groups in mobile */
+                                <div className="space-y-2">
+                                  {col.groups.map((group) => (
+                                    <div key={group.parent.label}>
+                                      <Link
+                                        href={group.parent.href}
+                                        onClick={closeBoth}
+                                        className="block text-[11px] font-semibold text-slate-300"
+                                      >
+                                        {group.parent.label}
+                                      </Link>
+                                      {group.children.map((child) => (
+                                        <Link
+                                          key={child.label}
+                                          href={child.href}
+                                          onClick={closeBoth}
+                                          className="mt-0.5 flex items-center gap-1 pl-2 text-[10px] text-slate-500 transition hover:text-slate-300"
+                                        >
+                                          <span className="text-[9px]">↳</span>
+                                          {child.label}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  ))}
+                                </div>
+                              ) : (
+                                /* Flat items in mobile */
+                                <ul className="space-y-1.5">
+                                  {col.items?.map((item) => (
+                                    <li key={item.label}>
+                                      <Link
+                                        href={item.href}
+                                        onClick={closeBoth}
+                                        className="block text-[12px] text-slate-500 transition hover:text-slate-200"
+                                      >
+                                        {item.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
                             </div>
                           ))}
                         </div>
