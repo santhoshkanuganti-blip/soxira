@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Oracle Integration Cloud (OIC) Services | Soxira AI Solutions',
+  alternates: { canonical: `https://${siteConfig.domain}/oracle-integration-cloud` },
   description: 'Oracle Integration Cloud (OIC) implementation — connecting Oracle and third-party applications with pre-built adapters, API management and process orchestration.',
   keywords: ['Oracle Integration Cloud India', 'Oracle OIC implementation', 'Oracle OIC consulting Hyderabad', 'Oracle API integration India', 'Oracle middleware services'],
   openGraph: {

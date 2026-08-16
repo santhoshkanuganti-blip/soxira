@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Oracle Fusion Cloud Implementation Services | Soxira AI Solutions',
+  alternates: { canonical: `https://${siteConfig.domain}/oracle-fusion-cloud` },
   description: 'Full-lifecycle Oracle Fusion Cloud implementations — from discovery and design to go-live and hypercare. Oracle Fusion Cloud ERP, SCM, Financials and HCM.',
   keywords: ['Oracle Fusion Cloud implementation India', 'Oracle Cloud ERP India', 'Oracle Fusion consulting Hyderabad', 'Oracle Cloud migration India', 'Oracle Fusion Cloud partner'],
   openGraph: {
@@ -61,6 +62,7 @@ export default function OracleFusionCloudPage() {
           { label: 'Oracle HCM Cloud', href: '/oracle-fusion-cloud/hcm' },
           { label: 'Oracle Integration Cloud', href: '/oracle-integration-cloud' },
           { label: 'Oracle ERP', href: '/oracle-erp' },
+          { label: 'Oracle Fusion Cloud vs SAP S/4HANA', href: '/compare/oracle-fusion-cloud-vs-sap-s4hana' },
         ],
       }}
     />

@@ -10,8 +10,6 @@ type IndustryData = {
   subtitle: string;
   badge: string;
   hero: string;
-  accent: string;
-  glow: string;
   seoTitle: string;
   seoDesc: string;
   keywords: string[];
@@ -20,16 +18,15 @@ type IndustryData = {
   benefits: string[];
   vitaranRelevance: string;
   caseStudyTeaser: string;
+  deepDives?: { label: string; href: string }[];
 };
 
 const INDUSTRIES: Record<string, IndustryData> = {
   msmes: {
-    title: 'AI Solutions for Indian MSMEs',
+    title: 'AI Solutions for Small & Medium Businesses',
     subtitle: 'Empowering Small & Medium Businesses with Enterprise-Grade AI',
-    badge: 'MSMEs',
-    hero: 'India\'s 63 million MSMEs form the backbone of the economy. Soxira brings enterprise-grade AI, Oracle, and Cloud technology to small and medium businesses — at SME-friendly scale and cost.',
-    accent: 'violet',
-    glow: 'rgba(124,58,237,0.3)',
+    badge: 'Small & Medium Businesses',
+    hero: 'Small and medium businesses form the backbone of the economy — 63 million of them in India alone. Soxira brings enterprise-grade AI, Oracle, and Cloud technology to this segment — at accessible scale and cost.',
     seoTitle: 'AI Solutions for Indian MSMEs | Soxira AI Solutions',
     seoDesc: 'AI-powered digital transformation for Indian MSMEs. Automate procurement, inventory, sales, and analytics with VitaranAI and Soxira AI Solutions.',
     keywords: ['AI for MSMEs', 'digital transformation small business India', 'MSME software India', 'VitaranAI MSME'],
@@ -62,8 +59,6 @@ const INDUSTRIES: Record<string, IndustryData> = {
     subtitle: 'VitaranAI — The Operating System for Indian Distribution Networks',
     badge: 'Distributors',
     hero: 'Distribution businesses run on speed, accuracy, and relationships. VitaranAI gives distributors complete control over procurement, inventory, sales, route optimization, and vendor management — powered by AI.',
-    accent: 'sky',
-    glow: 'rgba(14,165,233,0.3)',
     seoTitle: 'AI Distributor Management Software India | VitaranAI | Soxira',
     seoDesc: 'VitaranAI — AI-powered distributor management software for Indian businesses. Automate inventory, orders, routes, and vendor management.',
     keywords: ['distributor management software India', 'VitaranAI', 'AI inventory management', 'distribution automation India'],
@@ -96,8 +91,6 @@ const INDUSTRIES: Record<string, IndustryData> = {
     subtitle: 'Smart Manufacturing with AI-Driven Supply Chain and Operations Intelligence',
     badge: 'Manufacturing',
     hero: 'Manufacturing competitiveness depends on production efficiency, supply chain agility, and quality control. Soxira brings AI, Oracle SCM, and Cloud platforms to help manufacturers modernize operations and compete globally.',
-    accent: 'emerald',
-    glow: 'rgba(16,185,129,0.3)',
     seoTitle: 'AI Solutions for Manufacturing Industry India | Soxira AI',
     seoDesc: 'AI-powered manufacturing solutions for Indian manufacturers. Supply chain optimization, demand forecasting, Oracle SCM, and production intelligence from Soxira AI Solutions.',
     keywords: ['AI for manufacturing India', 'Oracle SCM manufacturing', 'supply chain AI', 'manufacturing automation India'],
@@ -123,6 +116,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
     vitaranRelevance: 'VitaranAI supports manufacturing businesses with procurement automation, vendor management, inventory tracking, and analytics — ideal for MSME manufacturers.',
     caseStudyTeaser: 'A cement manufacturer in Andhra Pradesh reduced procurement cycle time by 60% and achieved 28% revenue growth with Soxira\'s AI supply chain platform.',
+    deepDives: [{ label: 'Oracle SCM for Manufacturing', href: '/solutions/oracle-scm-for-manufacturing' }],
   },
 
   finance: {
@@ -130,8 +124,6 @@ const INDUSTRIES: Record<string, IndustryData> = {
     subtitle: 'AI-Powered Credit, Risk, and Operations Intelligence for Financial Institutions',
     badge: 'Finance',
     hero: 'Indian financial institutions face mounting pressure to accelerate credit decisions, reduce NPAs, and improve customer experience. Soxira delivers AI-powered solutions for NBFCs, banks, and lending organizations.',
-    accent: 'yellow',
-    glow: 'rgba(234,179,8,0.25)',
     seoTitle: 'AI Solutions for Finance & NBFCs India | Soxira AI Solutions',
     seoDesc: 'AI-powered credit decisioning, risk management, and operations intelligence for Indian NBFCs, banks, and financial institutions. Soxira AI Solutions.',
     keywords: ['AI for NBFCs India', 'AI credit decisioning', 'BFSI AI solutions India', 'fintech AI India'],
@@ -157,6 +149,10 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
     vitaranRelevance: 'For finance-sector businesses with distribution and field operations, VitaranAI provides collections tracking, payment management, and field agent intelligence.',
     caseStudyTeaser: 'A lending NBFC reduced credit approval time by 80% and improved collection efficiency by 40% with Soxira\'s AI credit intelligence platform.',
+    deepDives: [
+      { label: 'Oracle Financials Cloud for Finance & NBFCs', href: '/solutions/oracle-financials-for-finance' },
+      { label: 'AI Dashboards for Finance & NBFCs', href: '/solutions/ai-dashboards-for-finance' },
+    ],
   },
 
   insurance: {
@@ -164,8 +160,6 @@ const INDUSTRIES: Record<string, IndustryData> = {
     subtitle: 'AI-Driven Underwriting, Claims Automation, and Customer Intelligence',
     badge: 'Insurance',
     hero: 'The insurance industry is transforming with AI. Soxira helps insurers automate underwriting, accelerate claims processing, detect fraud, and deliver superior customer experiences through intelligent technology.',
-    accent: 'pink',
-    glow: 'rgba(236,72,153,0.25)',
     seoTitle: 'AI Solutions for Insurance Companies India | Soxira AI Solutions',
     seoDesc: 'AI-powered underwriting automation, claims processing, and fraud detection for Indian insurance companies. Soxira AI Solutions.',
     keywords: ['AI for insurance India', 'insurance automation', 'claims AI', 'underwriting automation India'],
@@ -191,6 +185,10 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
     vitaranRelevance: 'Insurance distributors and agents benefit from VitaranAI\'s policy tracking, premium collection management, and customer relationship intelligence.',
     caseStudyTeaser: 'A general insurance company reduced claims TAT by 55% and improved fraud detection accuracy by 35% with Soxira\'s AI claims intelligence platform.',
+    deepDives: [
+      { label: 'Cloud Migration for Insurance', href: '/solutions/cloud-migration-for-insurance' },
+      { label: 'Data Engineering for Insurance', href: '/solutions/data-engineering-for-insurance' },
+    ],
   },
 
   healthcare: {
@@ -198,8 +196,6 @@ const INDUSTRIES: Record<string, IndustryData> = {
     subtitle: 'AI-Powered Supply Chain, Drug Inventory, and Compliance Automation',
     badge: 'Healthcare',
     hero: 'Healthcare organizations face unique challenges around drug inventory, cold chain compliance, regulatory requirements, and supply chain complexity. Soxira delivers AI-powered solutions that bring intelligence and compliance together.',
-    accent: 'teal',
-    glow: 'rgba(20,184,166,0.25)',
     seoTitle: 'AI Solutions for Healthcare Industry India | Soxira AI Solutions',
     seoDesc: 'AI-powered healthcare supply chain, drug inventory management, and compliance automation for hospitals and medical distributors in India. Soxira AI Solutions.',
     keywords: ['AI for healthcare India', 'drug inventory management AI', 'healthcare supply chain India', 'hospital AI solutions'],
@@ -225,6 +221,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
     vitaranRelevance: 'VitaranAI\'s specialized healthcare module handles drug inventory with FIFO management, expiry tracking, batch management, and regulatory compliance built-in.',
     caseStudyTeaser: 'A pharmaceutical distributor in Hyderabad achieved zero expiry waste and 100% CDSCO compliance, reducing inventory costs by 30% with VitaranAI.',
+    deepDives: [{ label: 'Cloud Migration for Healthcare & Pharma Distribution', href: '/solutions/cloud-migration-for-healthcare' }],
   },
 };
 
@@ -241,6 +238,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: industry.seoTitle,
     description: industry.seoDesc,
     keywords: industry.keywords,
+    alternates: { canonical: `https://${siteConfig.domain}/industries/${slug}` },
     openGraph: {
       title: industry.seoTitle,
       description: industry.seoDesc,
@@ -251,21 +249,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-const accentClasses: Record<string, { badge: string; heading: string; bullet: string; btn: string; border: string }> = {
-  violet: { badge: 'text-violet-400 bg-violet-500/10 border-violet-500/30', heading: 'from-violet-400 to-purple-300', bullet: 'bg-violet-400', btn: 'from-violet-600 to-violet-500', border: 'border-violet-500/20' },
-  sky:    { badge: 'text-sky-400 bg-sky-500/10 border-sky-500/30',          heading: 'from-sky-400 to-blue-300',    bullet: 'bg-sky-400',    btn: 'from-sky-600 to-sky-500',    border: 'border-sky-500/20' },
-  emerald:{ badge: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30', heading: 'from-emerald-400 to-teal-300', bullet: 'bg-emerald-400', btn: 'from-emerald-600 to-emerald-500', border: 'border-emerald-500/20' },
-  yellow: { badge: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30', heading: 'from-yellow-400 to-amber-300', bullet: 'bg-yellow-400', btn: 'from-yellow-600 to-amber-500', border: 'border-yellow-500/20' },
-  pink:   { badge: 'text-pink-400 bg-pink-500/10 border-pink-500/30',       heading: 'from-pink-400 to-rose-300',   bullet: 'bg-pink-400',   btn: 'from-pink-600 to-rose-500',   border: 'border-pink-500/20' },
-  teal:   { badge: 'text-teal-400 bg-teal-500/10 border-teal-500/30',       heading: 'from-teal-400 to-cyan-300',   bullet: 'bg-teal-400',   btn: 'from-teal-600 to-teal-500',   border: 'border-teal-500/20' },
-};
-
 export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const industry = INDUSTRIES[slug];
   if (!industry) notFound();
-
-  const cls = accentClasses[industry.accent] ?? accentClasses.violet;
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -277,27 +264,26 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B1A] text-slate-100">
+    <div className="min-h-screen bg-paper text-ink">
       <Navbar />
 
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_50%_-5%,rgba(124,58,237,0.15),transparent)]" />
+        <section className="relative overflow-hidden px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <p className={`mb-4 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${cls.badge}`}>
+            <p className={`mb-4 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent bg-accent-tint border-line`}>
               {industry.badge}
             </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              <span className={`bg-gradient-to-r ${cls.heading} bg-clip-text text-transparent`}>{industry.title}</span>
+            <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+              <span className="text-accent">{industry.title}</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-400">{industry.subtitle}</p>
-            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-slate-500">{industry.hero}</p>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-ink-muted">{industry.subtitle}</p>
+            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-ink-muted">{industry.hero}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link href="/contact" className={`rounded-full bg-gradient-to-r ${cls.btn} px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110`}>
+              <Link href="/contact" className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110">
                 Request a Demo
               </Link>
-              <Link href="/distributor-management-software" className="rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/[0.08]">
+              <Link href="/distributor-management-software" className="rounded-full border border-line bg-surface-2 px-6 py-3 text-sm font-semibold text-ink transition hover:bg-surface-2">
                 Explore VitaranAI →
               </Link>
             </div>
@@ -308,14 +294,14 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         <section className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Industry Challenges</p>
-              <h2 className="mt-3 text-2xl font-semibold text-white">What Your Industry Faces</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-muted">Industry Challenges</p>
+              <h2 className="mt-3 text-2xl font-semibold text-ink">What Your Industry Faces</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {industry.challenges.map((c) => (
-                <div key={c.title} className={`rounded-2xl border ${cls.border} bg-white/[0.03] p-5`}>
-                  <h3 className="font-semibold text-slate-200">{c.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-500">{c.desc}</p>
+                <div key={c.title} className={`rounded-2xl border border-line bg-surface-2 p-5`}>
+                  <h3 className="font-semibold text-ink">{c.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-ink-muted">{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -326,16 +312,16 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         <section className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Soxira AI Solutions</p>
-              <h2 className="mt-3 text-2xl font-semibold text-white">How We Solve It</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-muted">Soxira AI Solutions</p>
+              <h2 className="mt-3 text-2xl font-semibold text-ink">How We Solve It</h2>
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               {industry.solutions.map((s) => (
-                <div key={s.title} className="flex gap-4 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
-                  <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${cls.bullet}`} />
+                <div key={s.title} className="flex gap-4 rounded-2xl border border-line bg-surface-2 p-6">
+                  <span className={`mt-1 h-2 w-2 shrink-0 rounded-full bg-accent`} />
                   <div>
-                    <h3 className="font-semibold text-slate-200">{s.title}</h3>
-                    <p className="mt-1.5 text-sm leading-6 text-slate-500">{s.desc}</p>
+                    <h3 className="font-semibold text-ink">{s.title}</h3>
+                    <p className="mt-1.5 text-sm leading-6 text-ink-muted">{s.desc}</p>
                   </div>
                 </div>
               ))}
@@ -343,14 +329,34 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
           </div>
         </section>
 
+        {/* Deep dives */}
+        {industry.deepDives && industry.deepDives.length > 0 && (
+          <section className="px-4 pb-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-6xl">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-ink-muted">Go Deeper</p>
+              <div className="flex flex-wrap gap-3">
+                {industry.deepDives.map((dive) => (
+                  <Link
+                    key={dive.href}
+                    href={dive.href}
+                    className={`rounded-xl border border-line bg-surface-2 px-4 py-2.5 text-sm text-ink-muted transition hover:bg-surface-2 hover:text-ink`}
+                  >
+                    {dive.label} →
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* VitaranAI relevance */}
         <section className="px-4 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
-            <div className={`overflow-hidden rounded-3xl border ${cls.border} bg-white/[0.03] p-8 sm:p-10`}>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">VitaranAI Relevance</p>
-              <h2 className="mt-3 text-xl font-semibold text-white">VitaranAI for {industry.badge}</h2>
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-400">{industry.vitaranRelevance}</p>
-              <Link href="/distributor-management-software" className={`mt-6 inline-flex items-center gap-2 text-sm font-semibold bg-gradient-to-r ${cls.heading} bg-clip-text text-transparent`}>
+            <div className={`overflow-hidden rounded-3xl border border-line bg-surface-2 p-8 sm:p-10`}>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-muted">VitaranAI Relevance</p>
+              <h2 className="mt-3 text-xl font-semibold text-ink">VitaranAI for {industry.badge}</h2>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-ink-muted">{industry.vitaranRelevance}</p>
+              <Link href="/distributor-management-software" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:text-accent-bright">
                 Learn more about VitaranAI →
               </Link>
             </div>
@@ -361,14 +367,14 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         <section className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Benefits</p>
-              <h2 className="mt-3 text-2xl font-semibold text-white">What You Gain</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-muted">Benefits</p>
+              <h2 className="mt-3 text-2xl font-semibold text-ink">What You Gain</h2>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {industry.benefits.map((b) => (
-                <div key={b} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-4">
-                  <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${cls.bullet}`} />
-                  <p className="text-sm text-slate-300">{b}</p>
+                <div key={b} className="flex items-start gap-3 rounded-xl border border-line bg-surface-2 px-5 py-4">
+                  <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent`} />
+                  <p className="text-sm text-ink-muted">{b}</p>
                 </div>
               ))}
             </div>
@@ -378,12 +384,12 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         {/* Case study teaser */}
         <section className="px-4 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="rounded-3xl border border-white/[0.07] bg-white/[0.03] p-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Customer Story</p>
-              <blockquote className="mx-auto mt-5 max-w-2xl text-lg font-medium leading-8 text-slate-200">
+            <div className="rounded-3xl border border-line bg-surface-2 p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-muted">Customer Story</p>
+              <blockquote className="mx-auto mt-5 max-w-2xl text-lg font-medium leading-8 text-ink">
                 &ldquo;{industry.caseStudyTeaser}&rdquo;
               </blockquote>
-              <Link href="/#case-studies" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-violet-400 transition hover:text-violet-300">
+              <Link href="/#case-studies" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition hover:text-accent">
                 View all case studies →
               </Link>
             </div>
@@ -393,15 +399,15 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         {/* CTA */}
         <section className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-semibold text-white">Ready to transform your {industry.badge} business?</h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-400">
+            <h2 className="text-2xl font-semibold text-ink">Ready to transform your {industry.badge} business?</h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-ink-muted">
               Talk to our {industry.badge} specialists and discover how Soxira AI can digitize and scale your operations.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link href="/contact" className={`rounded-full bg-gradient-to-r ${cls.btn} px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:brightness-110`}>
+              <Link href="/contact" className="rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:brightness-110">
                 Schedule a Free Consultation
               </Link>
-              <Link href="/#case-studies" className="rounded-full border border-white/15 bg-white/[0.04] px-7 py-3.5 text-sm font-semibold text-slate-200 transition hover:bg-white/[0.08]">
+              <Link href="/#case-studies" className="rounded-full border border-line bg-surface-2 px-7 py-3.5 text-sm font-semibold text-ink transition hover:bg-surface-2">
                 See Case Studies
               </Link>
             </div>

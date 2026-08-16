@@ -27,35 +27,34 @@ function LinkedInIcon() {
 function LeaderCard({ leader, onOpen }: { leader: Leader; onOpen: (l: Leader) => void }) {
   return (
     <motion.div
-      className="group relative cursor-pointer overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80 p-6 backdrop-blur-xl transition-all"
-      whileHover={{ y: -6, boxShadow: '0 0 40px rgba(124,58,237,0.35)' }}
+      className="group relative cursor-pointer overflow-hidden rounded-[2rem] border border-line bg-surface p-6 shadow-[0_16px_40px_rgba(20,25,50,0.06)] transition-all"
+      whileHover={{ y: -6 }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       onClick={() => onOpen(leader)}
     >
-      <div className="absolute inset-0 rounded-[2rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.12),transparent_60%)]" />
       <div className="relative flex flex-col items-center text-center">
-        <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border-2 border-violet-500/40 shadow-[0_0_24px_rgba(124,58,237,0.4)] transition-all group-hover:border-violet-400 group-hover:shadow-[0_0_36px_rgba(124,58,237,0.6)]">
+        <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border-2 border-accent-tint transition-all group-hover:border-accent/40">
           {leader.imageUrl ? (
             <Image src={leader.imageUrl} alt={leader.name} fill className="object-cover" />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-violet-600 to-sky-500 text-2xl font-bold text-white">
+            <div className="flex h-full w-full items-center justify-center bg-accent text-2xl font-bold text-white">
               {leader.name.charAt(0)}
             </div>
           )}
         </div>
-        <h3 className="text-base font-semibold text-white">{leader.name}</h3>
-        <p className="mt-1 text-xs text-violet-300">{leader.designation}</p>
+        <h3 className="text-base font-semibold text-ink">{leader.name}</h3>
+        <p className="mt-1 text-xs text-accent">{leader.designation}</p>
         <div className="mt-4 flex flex-wrap justify-center gap-1.5">
           {leader.expertise.slice(0, 3).map((tag) => (
-            <span key={tag} className="rounded-full bg-violet-500/15 px-2.5 py-0.5 text-[10px] font-medium text-violet-300 ring-1 ring-violet-500/20">
+            <span key={tag} className="rounded-full bg-accent-tint px-2.5 py-0.5 text-[10px] font-medium text-accent ring-1 ring-accent-tint">
               {tag}
             </span>
           ))}
           {leader.expertise.length > 3 && (
-            <span className="rounded-full bg-white/5 px-2.5 py-0.5 text-[10px] text-slate-400 ring-1 ring-white/10">
+            <span className="rounded-full bg-surface-2 px-2.5 py-0.5 text-[10px] text-ink-muted ring-1 ring-line">
               +{leader.expertise.length - 3} more
             </span>
           )}
@@ -67,12 +66,12 @@ function LeaderCard({ leader, onOpen }: { leader: Leader; onOpen: (l: Leader) =>
               target="_blank"
               rel="noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500/15 text-sky-400 ring-1 ring-sky-500/20 transition hover:bg-sky-500 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-tint text-accent ring-1 ring-accent-tint transition hover:bg-accent hover:text-white"
             >
               <LinkedInIcon />
             </a>
           )}
-          <span className="text-xs text-slate-400 underline-offset-2 hover:text-white">View Profile →</span>
+          <span className="text-xs text-ink-muted underline-offset-2 hover:text-ink">View Profile →</span>
         </div>
       </div>
     </motion.div>
@@ -89,9 +88,9 @@ function BioModal({ leader, onClose }: { leader: Leader; onClose: () => void }) 
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
-        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-surface -sm" />
         <motion.div
-          className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[2rem] border border-white/10 bg-[#0B0B1A] p-8 shadow-2xl"
+          className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[2rem] border border-line bg-paper p-8 shadow-2xl"
           initial={{ scale: 0.9, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 20 }}
@@ -99,42 +98,42 @@ function BioModal({ leader, onClose }: { leader: Leader; onClose: () => void }) 
         >
           <button
             onClick={onClose}
-            className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-400 hover:bg-white/20 hover:text-white"
+            className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full bg-surface-2 text-ink-muted hover:bg-line hover:text-ink"
             aria-label="Close"
           >
             ✕
           </button>
           <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-6">
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-violet-500/50 shadow-[0_0_24px_rgba(124,58,237,0.4)]">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-accent-tint">
               {leader.imageUrl ? (
                 <Image src={leader.imageUrl} alt={leader.name} fill className="object-cover" />
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-violet-600 to-sky-500 text-2xl font-bold text-white">
+                <div className="flex h-full w-full items-center justify-center bg-accent text-2xl font-bold text-white">
                   {leader.name.charAt(0)}
                 </div>
               )}
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-white">{leader.name}</h2>
-              <p className="mt-1 text-sm text-violet-300">{leader.designation}</p>
+              <h2 className="text-xl font-semibold text-ink">{leader.name}</h2>
+              <p className="mt-1 text-sm text-accent">{leader.designation}</p>
               {leader.linkedinUrl && (
-                <a href={leader.linkedinUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-xs text-sky-400 hover:text-sky-300">
+                <a href={leader.linkedinUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-xs text-accent hover:text-accent">
                   <LinkedInIcon /> LinkedIn Profile
                 </a>
               )}
             </div>
           </div>
           {leader.quote && (
-            <blockquote className="mt-6 rounded-2xl border-l-4 border-violet-500 bg-violet-500/10 p-4 text-sm italic text-slate-300">
-              "{leader.quote}"
+            <blockquote className="mt-6 rounded-2xl border-l-4 border-line bg-accent-tint p-4 text-sm italic text-ink-muted">
+              &ldquo;{leader.quote}&rdquo;
             </blockquote>
           )}
-          <p className="mt-6 text-sm leading-7 text-slate-300 whitespace-pre-line">{leader.bio}</p>
+          <p className="mt-6 text-sm leading-7 text-ink-muted whitespace-pre-line">{leader.bio}</p>
           <div className="mt-6">
-            <p className="mb-3 text-xs uppercase tracking-[0.2em] text-slate-500">Areas of Expertise</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.2em] text-ink-muted">Areas of Expertise</p>
             <div className="flex flex-wrap gap-2">
               {leader.expertise.map((tag) => (
-                <span key={tag} className="rounded-full bg-violet-500/15 px-3 py-1 text-xs font-medium text-violet-300 ring-1 ring-violet-500/20">
+                <span key={tag} className="rounded-full bg-accent-tint px-3 py-1 text-xs font-medium text-accent ring-1 ring-accent-tint">
                   {tag}
                 </span>
               ))}
@@ -159,9 +158,9 @@ export default function LeadershipSection({ leaders }: { leaders: Leader[] }) {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-violet-300/80">Leadership</p>
-          <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">Meet Our Leadership</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+          <p className="text-xs uppercase tracking-[0.3em] text-accent">Leadership</p>
+          <h2 className="mt-3 text-2xl font-semibold text-ink sm:text-3xl">Meet Our Leadership</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-muted">
             Visionary leaders driving AI-powered digital transformation for Indian businesses.
           </p>
         </motion.div>

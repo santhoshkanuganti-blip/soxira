@@ -46,37 +46,37 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-6 rounded-[2rem] border border-white/10 bg-slate-950/80 p-8 shadow-2xl backdrop-blur-xl">
+    <form onSubmit={handleSubmit} className="grid gap-6 rounded-2xl border border-line bg-surface p-8 shadow-[0_16px_40px_rgba(20,25,50,0.06)]">
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="flex flex-col gap-2 text-sm text-slate-200">
+        <label className="flex flex-col gap-2 text-sm text-ink-muted">
           Name
           <input
             type="text"
             value={formData.name}
             onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
-            className="rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 text-white outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-300/20"
+            className="rounded-lg border border-line bg-paper px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent-tint"
             placeholder="Your name"
             required
           />
         </label>
-        <label className="flex flex-col gap-2 text-sm text-slate-200">
+        <label className="flex flex-col gap-2 text-sm text-ink-muted">
           Email
           <input
             type="email"
             value={formData.email}
             onChange={(event) => setFormData((prev) => ({ ...prev, email: event.target.value }))}
-            className="rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 text-white outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-300/20"
+            className="rounded-lg border border-line bg-paper px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent-tint"
             placeholder="Your email"
             required
           />
         </label>
       </div>
-      <label className="flex flex-col gap-2 text-sm text-slate-200">
+      <label className="flex flex-col gap-2 text-sm text-ink-muted">
         Requirement
         <textarea
           value={formData.requirement}
           onChange={(event) => setFormData((prev) => ({ ...prev, requirement: event.target.value }))}
-          className="min-h-[160px] rounded-3xl border border-white/10 bg-slate-900/80 px-4 py-4 text-white outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-300/20"
+          className="min-h-[160px] rounded-xl border border-line bg-paper px-4 py-4 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent-tint"
           placeholder="Tell us about your project or challenge"
           required
         />
@@ -95,13 +95,13 @@ export default function ContactForm() {
           type="submit"
           variant="primary"
           disabled={status === 'loading'}
-          className="w-full !rounded-2xl !bg-gradient-to-r !from-violet-600 !to-fuchsia-500 !px-6 !py-3 !font-semibold !text-white hover:!from-violet-500 hover:!to-fuchsia-400 disabled:opacity-70 sm:w-auto"
+          className="w-full !rounded-lg disabled:opacity-70 sm:w-auto"
         >
           {status === 'loading' ? 'Sending...' : 'Send Request'}
         </Button>
       </div>
-      {status === 'success' && <p className="rounded-2xl bg-emerald-500/15 p-4 text-sm text-emerald-200">Message sent successfully. We will respond within 24 hours.</p>}
-      {status === 'error' && <p className="rounded-2xl bg-rose-500/15 p-4 text-sm text-rose-200">{errorMessage}</p>}
+      {status === 'success' && <p className="rounded-xl bg-good-tint p-4 text-sm text-good">Message sent successfully. We will respond within 24 hours.</p>}
+      {status === 'error' && <p className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">{errorMessage}</p>}
     </form>
   );
 }

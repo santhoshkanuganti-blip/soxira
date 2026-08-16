@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Oracle ERP Implementation Services | Soxira AI Solutions',
+  alternates: { canonical: `https://${siteConfig.domain}/oracle-erp` },
   description: 'Full-cycle Oracle ERP implementation for Finance, SCM, Manufacturing, and HR. 25+ years of Oracle expertise serving Indian enterprises and multinationals.',
   keywords: ['Oracle ERP implementation India', 'Oracle ERP consulting', 'Oracle ERP Hyderabad', 'Oracle ERP SCM Finance HCM', 'Oracle consulting partner India'],
   openGraph: {

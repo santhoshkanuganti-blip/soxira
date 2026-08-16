@@ -7,10 +7,6 @@ const PILLARS = [
   {
     title: 'AI & GenAI',
     subtitle: 'Intelligence at every layer',
-    gradient: 'from-violet-600/30 via-violet-500/10 to-transparent',
-    border: 'border-violet-500/20 hover:border-violet-400/40',
-    accent: 'text-violet-400',
-    glow: 'rgba(124,58,237,0.2)',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
         <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z" />
@@ -29,10 +25,6 @@ const PILLARS = [
   {
     title: 'Enterprise Applications',
     subtitle: 'Oracle Cloud & ERP expertise',
-    gradient: 'from-sky-600/30 via-sky-500/10 to-transparent',
-    border: 'border-sky-500/20 hover:border-sky-400/40',
-    accent: 'text-sky-400',
-    glow: 'rgba(14,165,233,0.2)',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
         <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -51,10 +43,6 @@ const PILLARS = [
   {
     title: 'Data & Cloud',
     subtitle: 'Modern data infrastructure',
-    gradient: 'from-emerald-600/30 via-emerald-500/10 to-transparent',
-    border: 'border-emerald-500/20 hover:border-emerald-400/40',
-    accent: 'text-emerald-400',
-    glow: 'rgba(16,185,129,0.2)',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
         <ellipse cx="12" cy="5" rx="9" ry="3" />
@@ -74,10 +62,7 @@ const PILLARS = [
 
 export default function SolutionsOverviewSection() {
   return (
-    <section className="relative px-4 py-20 sm:px-6 lg:px-8">
-      {/* Subtle background */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,rgba(14,165,233,0.06),transparent)]" />
-
+    <section className="relative px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           className="mb-14 text-center"
@@ -86,11 +71,11 @@ export default function SolutionsOverviewSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-400/80">What We Do</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl lg:text-4xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">What We Do</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl">
             Three Pillars of Transformation
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-muted">
             From AI strategy to enterprise applications to modern data infrastructure — we cover the full stack of digital transformation.
           </p>
         </motion.div>
@@ -103,30 +88,24 @@ export default function SolutionsOverviewSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`group relative flex flex-col overflow-hidden rounded-2xl border ${pillar.border} bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1`}
-              style={{ boxShadow: 'none' }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 0 50px ${pillar.glow}`; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface p-7 shadow-[0_16px_40px_rgba(20,25,50,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_20px_48px_rgba(20,25,50,0.1)]"
             >
-              {/* Gradient bg */}
-              <div className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${pillar.gradient} opacity-60`} />
-
               <div className="relative">
                 {/* Icon */}
-                <div className={`mb-5 w-fit rounded-xl border border-white/[0.08] bg-white/[0.05] p-3 ${pillar.accent}`}>
+                <div className="mb-5 w-fit rounded-xl border border-line bg-accent-tint p-3 text-accent">
                   {pillar.icon}
                 </div>
 
-                <h3 className="text-lg font-semibold text-white">{pillar.title}</h3>
-                <p className={`mt-0.5 text-xs ${pillar.accent}`}>{pillar.subtitle}</p>
+                <h3 className="text-lg font-semibold text-ink">{pillar.title}</h3>
+                <p className="mt-0.5 text-xs text-accent">{pillar.subtitle}</p>
 
                 <ul className="mt-5 space-y-3.5">
                   {pillar.items.map((it) => (
                     <li key={it.label} className="flex gap-3">
-                      <span className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${pillar.accent} bg-current opacity-70`} />
+                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent opacity-70" />
                       <div>
-                        <p className="text-sm font-medium text-slate-200">{it.label}</p>
-                        <p className="mt-0.5 text-xs leading-5 text-slate-500">{it.desc}</p>
+                        <p className="text-sm font-medium text-ink">{it.label}</p>
+                        <p className="mt-0.5 text-xs leading-5 text-ink-muted">{it.desc}</p>
                       </div>
                     </li>
                   ))}
@@ -134,7 +113,7 @@ export default function SolutionsOverviewSection() {
 
                 <Link
                   href={pillar.cta.href}
-                  className={`mt-7 inline-flex items-center gap-1.5 text-xs font-semibold ${pillar.accent} transition-all group-hover:gap-2.5`}
+                  className="mt-7 inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-all group-hover:gap-2.5"
                 >
                   {pillar.cta.label}
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">

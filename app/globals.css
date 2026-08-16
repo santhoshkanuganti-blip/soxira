@@ -1,14 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+  --color-paper: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F6F5F3;
+  --color-ink: #12131A;
+  --color-ink-muted: #565A66;
+  --color-line: #E3E1DA;
+  --color-line-strong: #C9C6BC;
+  --color-accent: #1B2A6B;
+  --color-accent-bright: #3A55E8;
+  --color-accent-tint: #EAEDFB;
+  --color-good: #3F6A46;
+  --color-good-tint: #E1E9DE;
+}
+
 :root {
-  --background: #0B0B1A;
-  --foreground: #E2E8F0;
-  --surface: rgba(15, 23, 42, 0.82);
-  --surface-strong: rgba(15, 23, 42, 0.95);
-  --brand: #7C3AED;
-  --brand-light: #38BDF8;
-  --gold: #D4AF37;
-  --gold-light: #FFD700;
   --font-heading: 'Space Grotesk', 'Orbitron', sans-serif;
   --font-body: 'Inter', 'Poppins', sans-serif;
 }
@@ -21,44 +28,27 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: var(--font-body);
-  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.13), transparent 24%), radial-gradient(circle at 80% 10%, rgba(124, 58, 237, 0.14), transparent 18%), #0B0B1A;
-  color: var(--foreground);
+  background: var(--color-paper);
+  color: var(--color-ink);
   overflow-x: hidden;
 }
 
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-heading);
+}
+
 ::selection {
-  background: rgba(56, 189, 248, 0.25);
-  color: white;
+  background: var(--color-accent-tint);
+  color: var(--color-ink);
 }
 
-.bubble-bg {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
+.surface-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
 }
 
-.glass {
-  background: rgba(15, 23, 42, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.26);
-  backdrop-filter: blur(18px);
-  border-radius: 1.75rem;
-}
-
-.gold-gradient {
-  background: linear-gradient(90deg, #D4AF37 0%, #FFD700 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gold-border {
-  border-color: #D4AF37 !important;
-}
-
-.gold-glow {
-  box-shadow: 0 0 18px 4px rgba(255, 215, 0, 0.26);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }

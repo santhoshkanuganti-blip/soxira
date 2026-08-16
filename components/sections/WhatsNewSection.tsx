@@ -15,9 +15,9 @@ export type Promotion = {
 };
 
 const gradients = [
-  'from-violet-700 via-purple-600 to-sky-500',
-  'from-sky-700 via-violet-600 to-fuchsia-500',
-  'from-fuchsia-700 via-violet-500 to-sky-400',
+  'from-accent to-accent-bright',
+  'from-accent to-[#0E1747]',
+  'from-accent-bright to-accent',
 ];
 
 export default function WhatsNewSection({ promotions }: { promotions: Promotion[] }) {
@@ -44,11 +44,11 @@ export default function WhatsNewSection({ promotions }: { promotions: Promotion[
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-sky-300/80">Latest</p>
-          <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">What&apos;s New at Soxira</h2>
+          <p className="text-xs uppercase tracking-[0.3em] text-accent">Latest</p>
+          <h2 className="mt-2 text-2xl font-semibold text-ink sm:text-3xl">What&apos;s New at Soxira</h2>
         </motion.div>
 
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl">
+        <div className="relative overflow-hidden rounded-[2rem] border border-line shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
@@ -74,7 +74,7 @@ export default function WhatsNewSection({ promotions }: { promotions: Promotion[
                   {current.title}
                 </motion.h3>
                 <motion.p
-                  className="mt-4 text-lg text-white/90 md:text-xl"
+                  className="mt-4 text-lg text-white/80 md:text-xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -90,7 +90,7 @@ export default function WhatsNewSection({ promotions }: { promotions: Promotion[
                   >
                     <Link
                       href={current.ctaUrl}
-                      className="inline-block rounded-full bg-white/90 px-8 py-3 text-base font-bold text-violet-700 shadow-lg ring-2 ring-white/30 transition hover:scale-105 hover:bg-white"
+                      className="inline-block rounded-full bg-white/90 px-8 py-3 text-base font-bold text-accent shadow-lg ring-2 ring-line transition hover:scale-105 hover:bg-white"
                     >
                       {current.ctaText}
                     </Link>

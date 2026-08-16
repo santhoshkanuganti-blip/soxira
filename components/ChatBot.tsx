@@ -16,7 +16,7 @@ const SUGGESTED_PROMPTS = [
 const KB: { keywords: string[]; text: string }[] = [
   {
     keywords: ['vitaranai', 'distributor', 'distribution', 'inventory', 'order', 'route', 'supply chain'],
-    text: 'VitaranAI is our flagship AI-powered operating system for Indian MSMEs, distributors, and manufacturers. It automates procurement, inventory management, sales tracking, vendor management, route optimization, and analytics — reducing manual effort by up to 70%. Visit VitaranAI.in to explore.',
+    text: 'VitaranAI is our flagship AI-powered operating system for small and medium businesses, distributors, and manufacturers. It automates procurement, inventory management, sales tracking, vendor management, route optimization, and analytics — reducing manual effort by up to 70%. Visit VitaranAI.in to explore.',
   },
   {
     keywords: ['oracle', 'erp', 'fusion', 'scm', 'financials', 'hcm', 'oic', 'integration'],
@@ -48,7 +48,7 @@ const KB: { keywords: string[]; text: string }[] = [
   },
   {
     keywords: ['msme', 'small business', 'sme', 'medium enterprise'],
-    text: 'Soxira specifically designs solutions for Indian MSMEs — affordable, AI-powered platforms that automate operations, digitize procurement, improve inventory visibility, and help small businesses compete with enterprise-grade technology.',
+    text: 'Soxira specifically designs solutions for small and medium businesses — affordable, AI-powered platforms that automate operations, digitize procurement, improve inventory visibility, and help smaller businesses compete with enterprise-grade technology.',
   },
   {
     keywords: ['manufacturing', 'factory', 'production', 'plant'],
@@ -60,7 +60,7 @@ const KB: { keywords: string[]; text: string }[] = [
   },
   {
     keywords: ['about', 'soxira', 'company', 'who', 'founded', 'team'],
-    text: 'Soxira AI Solutions is an AI-first enterprise technology company helping Indian MSMEs, distributors, manufacturers, and BFSI organizations digitize and scale. Founded by Kulkarni Vinuthna (CEO), led by Santhosh K (Chief AI & Product Officer) and Praveen Kumar Gambheera Rao (CTO) — with 70+ combined years of enterprise experience.',
+    text: 'Soxira AI Solutions is an AI-first enterprise technology company helping small and medium businesses, distributors, manufacturers, and BFSI organizations digitize and scale. Founded by Kulkarni Vinuthna (CEO), led by Santhosh K (Chief AI & Product Officer) and Praveen Kumar Gambheera Rao (CTO) — with 70+ combined years of enterprise experience.',
   },
 ];
 
@@ -80,7 +80,7 @@ function TypingIndicator() {
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="h-1.5 w-1.5 rounded-full bg-violet-400"
+          className="h-1.5 w-1.5 rounded-full bg-accent"
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
         />
@@ -140,11 +140,11 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="w-[360px] max-w-[calc(100vw-2.5rem)] overflow-hidden rounded-2xl border border-white/10 bg-[#0D0D22]/97 shadow-[0_32px_100px_rgba(0,0,0,0.6)] backdrop-blur-2xl"
+            className="w-[360px] max-w-[calc(100vw-2.5rem)] overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_32px_80px_rgba(20,25,50,0.18)]"
           >
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-white/[0.06] bg-gradient-to-r from-violet-600/20 to-sky-600/10 px-4 py-3.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-sky-500 shadow-lg shadow-violet-500/30">
+            <div className="flex items-center gap-3 border-b border-line bg-accent-tint px-4 py-3.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z" />
                   <circle cx="7.5" cy="14.5" r="1.5" fill="white" stroke="none" />
@@ -152,16 +152,16 @@ export default function ChatBot() {
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-white">Ask Soxira AI</p>
+                <p className="text-sm font-semibold text-ink">Ask Soxira AI</p>
                 <div className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  <p className="text-[11px] text-slate-400">Online · Typically replies instantly</p>
+                  <span className="h-1.5 w-1.5 rounded-full bg-good" />
+                  <p className="text-[11px] text-ink-muted">Online · Typically replies instantly</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="flex h-7 w-7 items-center justify-center rounded-full text-slate-500 transition hover:bg-white/10 hover:text-white"
+                className="flex h-7 w-7 items-center justify-center rounded-full text-ink-muted transition hover:bg-surface-2 hover:text-ink"
               >
                 ✕
               </button>
@@ -180,8 +180,8 @@ export default function ChatBot() {
                   <div
                     className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-[13px] leading-relaxed whitespace-pre-line ${
                       msg.role === 'user'
-                        ? 'bg-gradient-to-br from-violet-600 to-violet-500 text-white'
-                        : 'bg-white/[0.06] text-slate-300'
+                        ? 'bg-accent text-white'
+                        : 'bg-surface-2 text-ink-muted'
                     }`}
                   >
                     {msg.text}
@@ -192,7 +192,7 @@ export default function ChatBot() {
               {/* Typing indicator */}
               {typing && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
-                  <div className="rounded-2xl bg-white/[0.06]">
+                  <div className="rounded-2xl bg-surface-2">
                     <TypingIndicator />
                   </div>
                 </motion.div>
@@ -202,15 +202,15 @@ export default function ChatBot() {
 
             {/* Suggested prompts (only show if ≤1 message) */}
             {messages.length <= 1 && (
-              <div className="border-t border-white/[0.06] px-4 py-3">
-                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-600">Suggested</p>
+              <div className="border-t border-line px-4 py-3">
+                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-line-strong">Suggested</p>
                 <div className="flex flex-col gap-1.5">
                   {SUGGESTED_PROMPTS.map((p) => (
                     <button
                       key={p}
                       type="button"
                       onClick={() => sendMessage(p)}
-                      className="rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-left text-[12px] text-slate-400 transition hover:border-violet-500/40 hover:bg-white/[0.06] hover:text-slate-200"
+                      className="rounded-xl border border-line bg-surface-2 px-3 py-2 text-left text-[12px] text-ink-muted transition hover:border-accent/40 hover:bg-accent-tint hover:text-ink"
                     >
                       {p}
                     </button>
@@ -220,19 +220,19 @@ export default function ChatBot() {
             )}
 
             {/* Input */}
-            <form onSubmit={handleSubmit} className="border-t border-white/[0.06] p-3">
+            <form onSubmit={handleSubmit} className="border-t border-line p-3">
               <div className="flex gap-2">
                 <input
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask anything…"
-                  className="min-w-0 flex-1 rounded-xl border border-white/[0.08] bg-white/[0.05] px-3.5 py-2.5 text-[13px] text-slate-100 outline-none placeholder:text-slate-600 focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/30"
+                  className="min-w-0 flex-1 rounded-xl border border-line bg-paper px-3.5 py-2.5 text-[13px] text-ink outline-none placeholder:text-line-strong focus:border-accent focus:ring-1 focus:ring-accent-tint"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || typing}
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-sky-500 text-white shadow-lg shadow-violet-500/25 transition hover:brightness-110 disabled:opacity-40"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent text-white transition hover:bg-accent-bright disabled:opacity-40"
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="22" y1="2" x2="11" y2="13" />
@@ -252,7 +252,7 @@ export default function ChatBot() {
         aria-label={open ? 'Close Soxira AI' : 'Open Soxira AI'}
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.95 }}
-        className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-sky-500 shadow-[0_8px_32px_rgba(124,58,237,0.45)] transition-shadow hover:shadow-[0_12px_40px_rgba(124,58,237,0.6)]"
+        className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-accent shadow-[0_8px_28px_rgba(27,42,107,0.35)] transition-shadow hover:bg-accent-bright hover:shadow-[0_12px_36px_rgba(27,42,107,0.45)]"
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (

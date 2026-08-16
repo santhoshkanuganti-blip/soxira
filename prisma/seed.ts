@@ -118,6 +118,25 @@ He plays a key role in advancing VitaranAI and helping organizations modernize o
   });
   console.log('✅ VitaranAI product seeded');
 
+  await db.product.upsert({
+    where: { slug: 'saop' },
+    update: {},
+    create: {
+      name: 'SAOP',
+      slug: 'saop',
+      tagline: 'Soxira AI Orchestration Platform — In Active Development',
+      description: 'SAOP connects your existing business systems, orchestrates workflows across procurement, inventory, sales and production, and lets specialized AI agents monitor, predict and recommend — grounded in your own enterprise data.',
+      features: ['AI Agent Engine', 'Workflow Engine', 'Connector Manager', 'Planning Engine', 'Business Rules', 'Knowledge Base (RAG)', 'Analytics & Dashboards', 'Security & Access Control'],
+      benefits: ['Unifies fragmented systems into one orchestration layer', 'Specialized agents for procurement, inventory, sales, production', 'Every recommendation validated against approvals and compliance', 'Deployable as SaaS Cloud, Dedicated Cloud, or Customer Hosted'],
+      industryTags: ['Manufacturing', 'Distribution', 'Finance', 'Insurance', 'Enterprise Operations'],
+      ctaText: 'Explore SAOP',
+      ctaUrl: '/saop-platform',
+      displayOrder: 2,
+      active: true,
+    },
+  });
+  console.log('✅ SAOP product seeded');
+
   // ── Case Studies ─────────────────────────────────────────────────
   const caseStudies = [
     {

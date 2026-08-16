@@ -18,14 +18,14 @@ export type BlogPost = {
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  AI: 'bg-violet-500/20 text-violet-300',
-  MSMEs: 'bg-sky-500/20 text-sky-300',
-  Distribution: 'bg-orange-500/20 text-orange-300',
-  Manufacturing: 'bg-emerald-500/20 text-emerald-300',
-  Finance: 'bg-yellow-500/20 text-yellow-300',
-  Insurance: 'bg-pink-500/20 text-pink-300',
-  'Data Engineering': 'bg-teal-500/20 text-teal-300',
-  VitaranAI: 'bg-fuchsia-500/20 text-fuchsia-300',
+  AI: 'bg-accent-tint text-accent',
+  MSMEs: 'bg-accent-tint text-accent',
+  Distribution: 'bg-accent-tint text-accent',
+  Manufacturing: 'bg-good-tint text-good',
+  Finance: 'bg-accent-tint text-accent',
+  Insurance: 'bg-accent-tint text-accent',
+  'Data Engineering': 'bg-accent-tint text-accent',
+  VitaranAI: 'bg-accent-tint text-accent',
 };
 
 
@@ -51,12 +51,12 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
           viewport={{ once: true }}
         >
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-sky-300/80">Blog & Insights</p>
-            <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">AI Insights for Indian Businesses</h2>
+            <p className="text-xs uppercase tracking-[0.3em] text-accent">Blog & Insights</p>
+            <h2 className="mt-2 text-2xl font-semibold text-ink sm:text-3xl">AI Insights for Indian Businesses</h2>
           </div>
           <Link
             href="/blog"
-            className="shrink-0 self-start rounded-full border border-white/20 px-5 py-2 text-sm text-white transition hover:bg-white/10"
+            className="shrink-0 self-start rounded-full border border-line px-5 py-2 text-sm text-ink transition hover:bg-surface-2"
           >
             View All Posts →
           </Link>
@@ -67,7 +67,7 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
           {/* ── Featured card (2/3 width) ── */}
           {featured && (
             <motion.article
-              className="group col-span-1 overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80 backdrop-blur-xl transition-all duration-300 hover:border-violet-500/30 hover:-translate-y-1 lg:col-span-2"
+              className="group col-span-1 overflow-hidden rounded-[2rem] border border-line bg-surface transition-all duration-300 hover:border-line hover:-translate-y-1 lg:col-span-2"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -81,7 +81,7 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
                     sizes="(max-width: 1024px) 100vw, 66vw"
                     className="object-cover opacity-80 transition duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
+                  <div className="absolute inset-0 bg-accent-tint" />
                 </div>
               ) : (
                 <BlogAccent category={featured.category} />
@@ -90,26 +90,26 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
               <div className="p-6 sm:p-8">
                 <div className="mb-3 flex flex-wrap gap-2">
                   {featured.featured && (
-                    <span className="rounded-full bg-yellow-500/20 px-2.5 py-0.5 text-xs font-medium text-yellow-300">Featured</span>
+                    <span className="rounded-full bg-accent-tint px-2.5 py-0.5 text-xs font-medium text-accent">Featured</span>
                   )}
                   {featured.category && (
-                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${CATEGORY_COLORS[featured.category] ?? 'bg-white/10 text-slate-300'}`}>
+                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${CATEGORY_COLORS[featured.category] ?? 'bg-surface-2 text-ink-muted'}`}>
                       {featured.category}
                     </span>
                   )}
                 </div>
 
                 <Link href={`/blog/${featured.slug}`}>
-                  <h3 className="text-lg font-semibold text-white transition group-hover:text-violet-300 sm:text-xl">
+                  <h3 className="text-lg font-semibold text-ink transition group-hover:text-accent sm:text-xl">
                     {featured.title}
                   </h3>
                 </Link>
 
                 {featured.excerpt && (
-                  <p className="mt-2.5 text-sm leading-7 text-slate-400 line-clamp-3">{featured.excerpt}</p>
+                  <p className="mt-2.5 text-sm leading-7 text-ink-muted line-clamp-3">{featured.excerpt}</p>
                 )}
 
-                <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-ink-muted">
                   {featured.author && <span>{featured.author}</span>}
                   {featured.publishedAt && (
                     <>
@@ -117,7 +117,7 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
                       <span>{formatDate(featured.publishedAt)}</span>
                     </>
                   )}
-                  <span className="ml-auto text-violet-400 transition group-hover:text-violet-300">Read more →</span>
+                  <span className="ml-auto text-accent transition group-hover:text-accent">Read more →</span>
                 </div>
               </div>
             </motion.article>
@@ -128,7 +128,7 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
             {rest.slice(0, 3).map((post, i) => (
               <motion.article
                 key={post.id}
-                className="group overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 backdrop-blur-xl transition-all duration-300 hover:border-violet-500/30 hover:-translate-y-0.5"
+                className="group overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-300 hover:border-line hover:-translate-y-0.5"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -143,7 +143,7 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
                       sizes="(max-width: 1024px) 100vw, 33vw"
                       className="object-cover opacity-80 transition duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
+                    <div className="absolute inset-0 bg-accent-tint" />
                   </div>
                 ) : (
                   <BlogAccent category={post.category} />
@@ -151,19 +151,19 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
 
                 <div className="p-4">
                   {post.category && (
-                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${CATEGORY_COLORS[post.category] ?? 'bg-white/10 text-slate-400'}`}>
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${CATEGORY_COLORS[post.category] ?? 'bg-surface-2 text-ink-muted'}`}>
                       {post.category}
                     </span>
                   )}
                   <Link href={`/blog/${post.slug}`}>
-                    <h4 className="mt-1.5 text-sm font-semibold text-white transition group-hover:text-violet-300 line-clamp-2">
+                    <h4 className="mt-1.5 text-sm font-semibold text-ink transition group-hover:text-accent line-clamp-2">
                       {post.title}
                     </h4>
                   </Link>
                   {post.excerpt && (
-                    <p className="mt-1 text-[11px] leading-5 text-slate-500 line-clamp-2">{post.excerpt}</p>
+                    <p className="mt-1 text-[11px] leading-5 text-ink-muted line-clamp-2">{post.excerpt}</p>
                   )}
-                  <div className="mt-2.5 flex items-center gap-2 text-[10px] text-slate-600">
+                  <div className="mt-2.5 flex items-center gap-2 text-[10px] text-line-strong">
                     {post.author && <span>{post.author}</span>}
                     {post.publishedAt && <span>{formatDate(post.publishedAt)}</span>}
                   </div>

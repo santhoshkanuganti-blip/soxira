@@ -10,6 +10,10 @@ export const siteConfig = {
     leadRecipients: ['info@soxira.com', 'info@soxirasolutions.com'],
     phone: '+91 99495 18844',
     address: 'Hyderabad, Telangana 500019, India',
+    addressLocality: 'Hyderabad',
+    addressRegion: 'Telangana',
+    postalCode: '500019',
+    addressCountry: 'IN',
     linkedin: 'https://www.linkedin.com/in/soxira-ai-solutions-673769408/',
   },
   services: [

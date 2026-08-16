@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Oracle Financials Cloud Implementation Services | Soxira AI Solutions',
+  alternates: { canonical: `https://${siteConfig.domain}/oracle-fusion-cloud/financials` },
   description: 'Oracle Financials Cloud implementation covering GL, AR, AP, Fixed Assets, Cash Management and financial reporting on Oracle Fusion Cloud.',
   keywords: ['Oracle Financials Cloud India', 'Oracle Cloud Finance implementation', 'Oracle Fusion Financials', 'Oracle Cloud GL AP AR', 'Oracle Financials Cloud Hyderabad'],
   openGraph: {
@@ -61,6 +62,7 @@ export default function OracleFusionFinancialsPage() {
           { label: 'Oracle SCM Cloud', href: '/oracle-fusion-cloud/scm' },
           { label: 'Oracle HCM Cloud', href: '/oracle-fusion-cloud/hcm' },
           { label: 'Oracle Finance (ERP)', href: '/oracle-erp/finance' },
+          { label: 'Oracle Financials for Finance & NBFCs', href: '/solutions/oracle-financials-for-finance' },
         ],
       }}
     />

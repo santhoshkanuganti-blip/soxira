@@ -1,0 +1,661 @@
+<title>Soxira — AI Operations Platform for Indian Distributors &amp; Enterprises</title>
+<meta name="description" content="Design concept v3: modular, photography-forward homepage modeled on Thoughtworks and Teckat." />
+<style>
+  @font-face{ font-family:'Space Grotesk'; font-weight:500; font-style:normal; font-display:swap; src:url('fonts/space-grotesk-latin-500-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Space Grotesk'; font-weight:700; font-style:normal; font-display:swap; src:url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400; font-style:normal; font-display:swap; src:url('fonts/inter-latin-400-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:600; font-style:normal; font-display:swap; src:url('fonts/inter-latin-600-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:700; font-style:normal; font-display:swap; src:url('fonts/inter-latin-700-normal.woff2') format('woff2'); }
+
+  :root{
+    --paper:#FFFFFF; --surface-2:#F4F5F8; --ink:#12131A; --muted:#5B5F6B; --line:#E5E6EC;
+    --accent:#1B2A6B; --accent-bright:#3A55E8; --accent-tint:#EAEDFB;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    --font-display:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0F1016; --surface-2:#171821; --ink:#EDEEF3; --muted:#9A9CAC; --line:#282A36;
+      --accent:#7C90FF; --accent-bright:#93A4FF; --accent-tint:#1B2036;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0F1016; --surface-2:#171821; --ink:#EDEEF3; --muted:#9A9CAC; --line:#282A36;
+    --accent:#7C90FF; --accent-bright:#93A4FF; --accent-tint:#1B2036;
+    color-scheme: dark;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--font); -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+  .balance{ text-wrap:balance; }
+  img,svg{ display:block; max-width:100%; }
+
+  /* ---------- Nav ---------- */
+  header.site{ position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; gap:36px; height:74px; }
+  .wordmark{ font-family:var(--font-display); font-weight:700; font-size:19px; letter-spacing:-.01em; margin-right:auto; display:flex; align-items:center; gap:8px; }
+  .wordmark .dot{ width:8px; height:8px; border-radius:2px; background:var(--accent); }
+  .nav-links{ display:flex; gap:28px; font-size:14.5px; font-weight:600; color:var(--muted); }
+  .nav-links a:hover{ color:var(--ink); }
+  @media (max-width:900px){ .nav-links{ display:none; } }
+  .btn{ font-weight:700; font-size:14px; padding:11px 20px; border-radius:8px; display:inline-flex; align-items:center; gap:6px; }
+  .btn-primary{ background:var(--accent); color:#fff; }
+  .btn-primary:hover{ background:var(--accent-bright); }
+  .btn-ghost{ color:var(--ink); font-weight:600; }
+  .btn-ghost:hover{ color:var(--accent); }
+  .btn-ghost::after{ content:'›'; font-weight:700; }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:72px 0 0; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1fr .95fr; gap:56px; align-items:center; }
+  @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; } }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:var(--accent); margin-bottom:22px; }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .hero h1{ font-family:var(--font-display); font-size:clamp(34px,4.6vw,54px); line-height:1.08; font-weight:700; letter-spacing:-.02em; margin:0 0 22px; }
+  .hero h1 .accent{ color:var(--accent); }
+  .hero .sub{ font-size:17px; color:var(--muted); max-width:46ch; line-height:1.65; margin:0 0 32px; }
+  .hero .cta-row{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-bottom:36px; }
+  .stat-row{ display:flex; gap:34px; padding-top:24px; border-top:1px solid var(--line); }
+  .stat-row .n{ font-family:var(--font-display); font-size:24px; font-weight:700; }
+  .stat-row .l{ font-size:12.5px; color:var(--muted); margin-top:2px; }
+
+  /* geometric hero panel — WebGL gem, Teckat-style faceted form */
+  .hero-art{ position:relative; aspect-ratio:1/1.05; border-radius:20px; overflow:hidden; background:linear-gradient(155deg,var(--accent) 0%,#0E1747 100%); }
+  .hero-art canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; cursor:grab; touch-action:none; }
+  .gem-switch{ position:absolute; top:14px; right:14px; display:flex; gap:4px; background:rgba(10,14,40,.4); border:1px solid rgba(255,255,255,.14); border-radius:100px; padding:4px; backdrop-filter:blur(6px); }
+  .gem-switch button{ font-family:var(--font); font-size:11.5px; font-weight:600; color:rgba(255,255,255,.68); background:transparent; border:none; border-radius:100px; padding:6px 12px; cursor:pointer; }
+  .gem-switch button:hover{ color:#fff; }
+  .gem-switch button.active{ background:#fff; color:var(--accent); }
+  .hero-art .card{ position:absolute; left:20px; right:20px; bottom:20px; background:rgba(255,255,255,.96); color:#12131A; border-radius:12px; padding:16px 18px; box-shadow:0 20px 40px rgba(10,14,40,.25); }
+  .hero-art .card .t{ font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:6px; }
+  .hero-art .card .v{ font-size:22px; font-weight:700; font-family:var(--font-mono); }
+
+  /* ---------- Logo/industry strip ---------- */
+  .strip{ padding:36px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:64px; }
+  .strip .row{ display:flex; flex-wrap:wrap; gap:14px 30px; align-items:center; justify-content:space-between; }
+  .strip .label{ font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; white-space:nowrap; }
+  .strip .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+  .strip .chip{ font-size:13.5px; font-weight:600; padding:8px 16px; border:1px solid var(--line); border-radius:100px; color:var(--muted); }
+
+  /* ---------- Section scaffold ---------- */
+  section.block{ padding:84px 0; }
+  .head-row{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap; }
+  .head-row h2{ font-family:var(--font-display); font-size:clamp(26px,3.2vw,36px); font-weight:700; letter-spacing:-.02em; margin:0; max-width:18ch; }
+  .head-row p{ color:var(--muted); font-size:15px; max-width:40ch; margin:10px 0 0; }
+
+  /* offer cards */
+  .offers{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:820px){ .offers{ grid-template-columns:1fr; } }
+  .offer{ background:var(--surface-2); border:1px solid var(--line); border-radius:16px; padding:32px 28px; transition:transform .18s, box-shadow .18s; }
+  .offer:hover{ transform:translateY(-3px); box-shadow:0 16px 32px rgba(20,25,50,.08); }
+  .offer .icon{ width:44px; height:44px; border-radius:10px; background:var(--accent-tint); display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+  .offer h3{ font-family:var(--font-display); font-size:18px; font-weight:700; margin:0 0 10px; }
+  .offer p{ font-size:14px; color:var(--muted); line-height:1.6; margin:0 0 18px; }
+  .offer a.link{ font-weight:700; font-size:13.5px; color:var(--accent); }
+  .offer a.link::after{ content:' ›'; }
+
+  /* industries grid */
+  .industries{ display:grid; grid-template-columns:repeat(6,1fr); gap:14px; }
+  @media (max-width:860px){ .industries{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:520px){ .industries{ grid-template-columns:repeat(2,1fr); } }
+  .industry{ border:1px solid var(--line); border-radius:12px; padding:22px 14px; text-align:center; font-size:13.5px; font-weight:700; transition:border-color .15s, color .15s; }
+  .industry:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* case study */
+  .exhibit{ background:var(--surface-2); border:1px solid var(--line); border-radius:20px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; }
+  @media (max-width:900px){ .exhibit{ grid-template-columns:1fr; } }
+  .exhibit-copy{ padding:44px 40px; }
+  .exhibit-copy .tag-industry{ display:inline-block; font-size:12px; font-weight:700; color:var(--accent); background:var(--accent-tint); padding:5px 12px; border-radius:100px; margin-bottom:16px; }
+  .exhibit-copy h3{ font-family:var(--font-display); font-size:25px; font-weight:700; letter-spacing:-.01em; margin:0 0 16px; }
+  .exhibit-copy .row{ font-size:14px; color:var(--muted); margin-bottom:14px; line-height:1.6; }
+  .exhibit-copy .row b{ color:var(--ink); display:block; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px; font-weight:700; }
+  .exhibit-copy blockquote{ margin:22px 0 0; padding:16px 18px; background:var(--paper); border-radius:12px; border:1px solid var(--line); font-size:14px; color:var(--ink); font-weight:600; }
+  .exhibit-copy blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:12px; color:var(--muted); font-weight:500; }
+  .exhibit-art{ position:relative; background:linear-gradient(160deg,var(--accent) 0%,#0E1747 100%); padding:40px; display:grid; grid-template-columns:1fr 1fr; gap:16px; align-content:center; }
+  .exhibit-art svg{ position:absolute; inset:0; width:100%; height:100%; opacity:.5; }
+  .exhibit-art .metric{ position:relative; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); border-radius:12px; padding:18px; }
+  .exhibit-art .metric .n{ font-family:var(--font-mono); font-size:28px; font-weight:700; color:#fff; }
+  .exhibit-art .metric .l{ font-size:11.5px; color:rgba(255,255,255,.72); margin-top:6px; }
+
+  /* leadership */
+  .leaders{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:820px){ .leaders{ grid-template-columns:1fr; } }
+  .leader{ text-align:left; }
+  .avatar{ width:60px; height:60px; border-radius:14px; background:var(--accent-tint); color:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:19px; margin-bottom:18px; }
+  .leader h4{ font-family:var(--font-display); font-size:16px; font-weight:700; margin:0 0 3px; }
+  .leader .role{ font-size:12.5px; font-weight:700; color:var(--accent); margin-bottom:12px; }
+  .leader p.q{ font-size:13.5px; color:var(--muted); line-height:1.6; margin:0; }
+
+  /* CTA */
+  .contact-cta{ background:linear-gradient(160deg,var(--accent) 0%,#0E1747 100%); border-radius:24px; padding:64px 56px; position:relative; overflow:hidden; }
+  .contact-cta svg{ position:absolute; inset:0; width:100%; height:100%; opacity:.35; }
+  .contact-cta .inner{ position:relative; display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap; }
+  .contact-cta h2{ font-family:var(--font-display); color:#fff; font-size:clamp(24px,3.2vw,34px); font-weight:700; letter-spacing:-.02em; margin:0 0 10px; max-width:18ch; }
+  .contact-cta p{ color:rgba(255,255,255,.72); font-size:14.5px; margin:0; max-width:40ch; }
+  .contact-cta .btn-primary{ background:#fff; color:var(--accent); }
+
+  footer.site{ padding:52px 0 36px; border-top:1px solid var(--line); margin-top:20px; }
+  .foot-grid{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; font-size:13.5px; color:var(--muted); }
+  .foot-grid .wordmark{ font-family:var(--font-display); font-size:17px; margin-bottom:10px; color:var(--ink); }
+  .foot-col b{ display:block; color:var(--ink); font-size:11px; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; font-weight:700; }
+  .foot-col div{ margin-bottom:6px; }
+  .foot-bottom{ margin-top:40px; padding-top:20px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  .concept-tag{ position:fixed; left:16px; bottom:16px; z-index:30; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); background:var(--paper); border:1px solid var(--line); padding:6px 10px; border-radius:100px; }
+</style>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="wordmark"><span class="dot"></span>Soxira</div>
+    <nav class="nav-links">
+      <a href="#offers">Platform</a>
+      <a href="#industries">Industries</a>
+      <a href="#exhibit">Case Studies</a>
+      <a href="#leadership">Leadership</a>
+    </nav>
+    <a class="btn btn-primary" href="#contact">Book a consultation</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Enterprise AI · Oracle · Distribution</span>
+        <h1 class="balance">Run procurement, inventory and finance on <span class="accent">one intelligent platform</span>.</h1>
+        <p class="sub">Soxira pairs VitaranAI — our AI-native operations platform — with Oracle ERP, Fusion Cloud and data engineering delivery, so Indian distributors and enterprises modernize without a full rebuild.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Request a demo</a>
+          <a class="btn btn-ghost" href="#offers">See the platform</a>
+        </div>
+        <div class="stat-row">
+          <div><div class="n">20+ yrs</div><div class="l">Combined leadership experience</div></div>
+          <div><div class="n">3.5×</div><div class="l">Average client ROI</div></div>
+          <div><div class="n">85%</div><div class="l">Stockout reduction, lead case</div></div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <canvas id="gem" aria-hidden="true"></canvas>
+        <div class="gem-switch" role="group" aria-label="Hero object">
+          <button type="button" data-shape="gem" class="active">Gem</button>
+          <button type="button" data-shape="blocks">Blocks</button>
+          <button type="button" data-shape="torus">Ring</button>
+          <button type="button" data-shape="water">Water</button>
+        </div>
+        <div class="card">
+          <div class="t">VitaranAI · Live platform</div>
+          <div class="v">Order processing: 4hrs → 15min</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div class="wrap row">
+        <span class="label">Operating in</span>
+        <div class="chips">
+          <span class="chip">Cement &amp; Steel</span>
+          <span class="chip">Medical Distribution</span>
+          <span class="chip">Commercial LPG</span>
+          <span class="chip">Manufacturing</span>
+          <span class="chip">Finance &amp; Insurance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="offers">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 class="balance">Three ways we work with you</h2>
+        <p>A product for distributors who need to move fast, and a delivery practice for enterprises running on Oracle.</p>
+      </div>
+      <div class="offers">
+        <div class="offer">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="18" height="18" rx="2" stroke="var(--accent)" stroke-width="1.6"/><path d="M2 9h18M9 9v11" stroke="var(--accent)" stroke-width="1.6"/></svg></div>
+          <h3>VitaranAI</h3>
+          <p>AI-powered procurement, inventory, sales and vendor management for distributors and manufacturers — live at VitaranAI.in.</p>
+          <a class="link" href="#">Explore the platform</a>
+        </div>
+        <div class="offer">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="var(--accent)" stroke-width="1.6"/><path d="M11 2v18M2 11h18" stroke="var(--accent)" stroke-width="1.6"/></svg></div>
+          <h3>Oracle ERP &amp; Fusion Cloud</h3>
+          <p>Implementation, migration and integration across Oracle ERP, Fusion Financials, SCM, HCM and OIC for mid-market and enterprise.</p>
+          <a class="link" href="#">View Oracle services</a>
+        </div>
+        <div class="offer">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 15 9 8 13 12 19 4" stroke="var(--accent)" stroke-width="1.8" fill="none"/><circle cx="19" cy="4" r="1.6" fill="var(--accent)"/></svg></div>
+          <h3>Data &amp; Cloud Engineering</h3>
+          <p>Snowflake and DBT data platforms, AI dashboards and cloud migration — built for organizations scaling past spreadsheets.</p>
+          <a class="link" href="#">See data services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="industries" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 class="balance">Find your industry</h2>
+        <p>Each vertical gets its own delivery playbook, not a generic pitch.</p>
+      </div>
+      <div class="industries">
+        <a class="industry" href="#">MSMEs</a>
+        <a class="industry" href="#">Distributors</a>
+        <a class="industry" href="#">Manufacturing</a>
+        <a class="industry" href="#">Finance</a>
+        <a class="industry" href="#">Insurance</a>
+        <a class="industry" href="#">Healthcare</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="exhibit" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 class="balance">One engagement, shown in full</h2>
+        <p>Rather than a logo wall — the real challenge, solution and numbers.</p>
+      </div>
+      <div class="exhibit">
+        <div class="exhibit-copy">
+          <span class="tag-industry">Cement &amp; Steel · Telangana</span>
+          <h3>From manual order books to real-time visibility across 50+ dealers</h3>
+          <div class="row"><b>Challenge</b>Manual order management and inventory tracking across 50+ dealers caused stockouts, delivery delays and revenue leakage.</div>
+          <div class="row"><b>Solution</b>VitaranAI deployed with real-time inventory tracking, automated order processing and AI-powered demand forecasting across every depot.</div>
+          <blockquote>
+            "What used to take our team four hours of manual work every morning is now automated. Our order accuracy has improved dramatically."
+            <cite>Rajesh Agarwal — Managing Director, Agarwal Cement Distributors</cite>
+          </blockquote>
+        </div>
+        <div class="exhibit-art">
+          <svg viewBox="0 0 300 300" preserveAspectRatio="none">
+            <polygon points="0,0 300,80 300,300 0,220" fill="#ffffff" fill-opacity="0.05"/>
+            <polygon points="0,300 300,180 300,300" fill="#ffffff" fill-opacity="0.06"/>
+          </svg>
+          <div class="metric"><div class="n">85%</div><div class="l">Stockout reduction</div></div>
+          <div class="metric"><div class="n">98%</div><div class="l">Delivery accuracy</div></div>
+          <div class="metric"><div class="n">28%</div><div class="l">Revenue growth, 12mo</div></div>
+          <div class="metric"><div class="n">3.5×</div><div class="l">Return on investment</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="leadership" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 class="balance">Led by operators, not just advisors</h2>
+        <p>Combined enterprise, Oracle and AI product experience leading every engagement.</p>
+      </div>
+      <div class="leaders">
+        <div class="leader">
+          <div class="avatar">KV</div>
+          <h4>Kulkarni Vinuthna</h4>
+          <div class="role">Founder &amp; CEO</div>
+          <p class="q">"To make intelligent technology accessible to every Indian business and enable them to digitize, automate, and scale with confidence."</p>
+        </div>
+        <div class="leader">
+          <div class="avatar">SK</div>
+          <h4>Santhosh K</h4>
+          <div class="role">Chief AI &amp; Product Officer</div>
+          <p class="q">"AI should not be limited to large enterprises. Every Indian business deserves intelligent technology."</p>
+        </div>
+        <div class="leader">
+          <div class="avatar">PK</div>
+          <h4>Praveen Kumar Gambheera Rao</h4>
+          <div class="role">Chief Technology Officer</div>
+          <p class="q">"Technology should simplify complexity and accelerate business growth."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact" style="padding-top:0;">
+    <div class="wrap">
+      <div class="contact-cta">
+        <svg viewBox="0 0 600 260" preserveAspectRatio="none">
+          <polygon points="0,0 600,0 600,90 0,180" fill="#ffffff" fill-opacity="0.05"/>
+          <polygon points="0,260 600,260 600,150" fill="#ffffff" fill-opacity="0.05"/>
+        </svg>
+        <div class="inner">
+          <div>
+            <h2 class="balance">Talk to our transformation team.</h2>
+            <p>Tell us what's manual today — we'll show you what VitaranAI or an Oracle-based rebuild looks like for your operation.</p>
+          </div>
+          <a class="btn btn-primary" href="mailto:info@soxira.com">Request a demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col" style="max-width:260px;">
+        <div class="wordmark">Soxira</div>
+        <div>AI, Oracle and cloud delivery for Indian MSMEs, distributors and enterprises.</div>
+      </div>
+      <div class="foot-col">
+        <b>Contact</b>
+        <div>info@soxira.com</div>
+        <div>+91 99495 18844</div>
+      </div>
+      <div class="foot-col">
+        <b>Office</b>
+        <div>Hyderabad, Telangana 500019</div>
+        <div>India</div>
+      </div>
+      <div class="foot-col">
+        <b>Platform</b>
+        <div>VitaranAI.in ↗</div>
+        <div>LinkedIn ↗</div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Soxira AI Solutions. All rights reserved.</span>
+      <span>Design concept v3 — modeled on Thoughtworks &amp; Teckat, not yet wired to the live site</span>
+    </div>
+  </div>
+</footer>
+
+<span class="concept-tag">Concept v3</span>
+
+<script>
+(function () {
+  'use strict';
+  var canvas = document.getElementById('gem');
+  if (!canvas) return;
+  var gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: false });
+  if (!gl) return; // falls back to the plain CSS gradient panel behind it
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- shared geometry helpers (all three objects reuse the same lit-triangle pipeline) ----
+  function sub(p, q) { return [p[0] - q[0], p[1] - q[1], p[2] - q[2]]; }
+  function cross(p, q) { return [p[1] * q[2] - p[2] * q[1], p[2] * q[0] - p[0] * q[2], p[0] * q[1] - p[1] * q[0]]; }
+  function norm(v) { var l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; }
+  function lerp3(p, q, t) { return [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t, p[2] + (q[2] - p[2]) * t]; }
+  function hash(i) { var s = Math.sin(i * 12.9898) * 43758.5453; return s - Math.floor(s); }
+  function clamp01(x) { return Math.min(1, Math.max(0, x)); }
+
+  var colorTop = [0.34, 0.46, 0.98];    // bright accent
+  var colorBottom = [0.06, 0.10, 0.30]; // deep navy
+  var colorMid = lerp3(colorBottom, colorTop, 0.55);
+
+  var positions, normals, colors, faceCounter;
+  function resetGeom() { positions = []; normals = []; colors = []; faceCounter = 0; }
+  function addFace(p0, p1, p2) {
+    var n = norm(cross(sub(p1, p0), sub(p2, p0)));
+    var jitter = (hash(faceCounter++) - 0.5) * 0.5; // per-facet sparkle variation
+    var c = [clamp01(colorMid[0] + jitter), clamp01(colorMid[1] + jitter * 0.9), clamp01(colorMid[2] + jitter * 0.6)];
+    [p0, p1, p2].forEach(function (p) {
+      positions.push(p[0], p[1], p[2]);
+      normals.push(n[0], n[1], n[2]);
+      colors.push(c[0], c[1], c[2]);
+    });
+  }
+
+  // ---- object A: faceted gem (icosahedron, 20 facets) ----
+  var PHI = (1 + Math.sqrt(5)) / 2;
+  var gemRaw = [
+    [-1, PHI, 0], [1, PHI, 0], [-1, -PHI, 0], [1, -PHI, 0],
+    [0, -1, PHI], [0, 1, PHI], [0, -1, -PHI], [0, 1, -PHI],
+    [PHI, 0, -1], [PHI, 0, 1], [-PHI, 0, -1], [-PHI, 0, 1]
+  ];
+  var gemVerts = gemRaw.map(function (v) { var n = norm(v); return [n[0] * 1.15, n[1] * 1.15, n[2] * 1.15]; });
+  var gemFaces = [
+    [0, 11, 5], [0, 5, 1], [0, 1, 7], [0, 7, 10], [0, 10, 11],
+    [1, 5, 9], [5, 11, 4], [11, 10, 2], [10, 7, 6], [7, 1, 8],
+    [3, 9, 4], [3, 4, 2], [3, 2, 6], [3, 6, 8], [3, 8, 9],
+    [4, 9, 5], [2, 4, 11], [6, 2, 10], [8, 6, 7], [9, 8, 1]
+  ];
+  function buildGem() {
+    resetGeom();
+    gemFaces.forEach(function (tri) { addFace(gemVerts[tri[0]], gemVerts[tri[1]], gemVerts[tri[2]]); });
+  }
+
+  // ---- object B: floating data blocks (a small cube cluster) ----
+  var blockDefs = [
+    { c: [-0.55, 0.35, 0.15], s: 0.62 }, { c: [0.5, 0.5, -0.25], s: 0.5 },
+    { c: [0.15, -0.15, 0.5], s: 0.58 }, { c: [-0.35, -0.55, -0.2], s: 0.46 },
+    { c: [0.55, -0.35, 0.35], s: 0.4 }, { c: [-0.15, 0.65, -0.45], s: 0.36 }
+  ];
+  function cubeTris(c, size) {
+    var s = size / 2;
+    var x0 = c[0] - s, x1 = c[0] + s, y0 = c[1] - s, y1 = c[1] + s, z0 = c[2] - s, z1 = c[2] + s;
+    var a = [x0, y0, z1], b = [x1, y0, z1], g2 = [x1, y1, z1], d = [x0, y1, z1];
+    var e = [x0, y0, z0], f = [x1, y0, z0], g = [x1, y1, z0], h = [x0, y1, z0];
+    return [
+      [a, b, g2], [a, g2, d], [f, e, h], [f, h, g],
+      [b, f, g], [b, g, g2], [e, a, d], [e, d, h],
+      [d, g2, g], [d, g, h], [e, f, b], [e, b, a]
+    ];
+  }
+  function buildBlocks() {
+    resetGeom();
+    blockDefs.forEach(function (bl) { cubeTris(bl.c, bl.s).forEach(function (t) { addFace(t[0], t[1], t[2]); }); });
+  }
+
+  // ---- object C: low-poly ring (torus) ----
+  function buildTorus() {
+    resetGeom();
+    var majorSeg = 12, minorSeg = 7, R = 0.85, r = 0.42;
+    var ring = [];
+    for (var i = 0; i < majorSeg; i++) {
+      var u = (i / majorSeg) * Math.PI * 2, row = [];
+      for (var j = 0; j < minorSeg; j++) {
+        var v = (j / minorSeg) * Math.PI * 2;
+        row.push([(R + r * Math.cos(v)) * Math.cos(u), r * Math.sin(v), (R + r * Math.cos(v)) * Math.sin(u)]);
+      }
+      ring.push(row);
+    }
+    for (var i2 = 0; i2 < majorSeg; i2++) {
+      var ni = (i2 + 1) % majorSeg;
+      for (var j2 = 0; j2 < minorSeg; j2++) {
+        var nj = (j2 + 1) % minorSeg;
+        var p0 = ring[i2][j2], p1 = ring[ni][j2], p2 = ring[ni][nj], p3 = ring[i2][nj];
+        addFace(p0, p1, p2);
+        addFace(p0, p2, p3);
+      }
+    }
+  }
+
+  // ---- object D: low-poly water — a wave-displaced grid, rebuilt every frame ----
+  var WATER_SIZE = 1.15, WATER_SEG = 22;
+  function addWaterFace(p0, p1, p2) {
+    var n = norm(cross(sub(p1, p0), sub(p2, p0)));
+    var avgH = (p0[1] + p1[1] + p2[1]) / 3;
+    var t = clamp01((avgH + 0.32) / 0.64);
+    var c = lerp3(colorBottom, colorTop, t);
+    var foam = clamp01((t - 0.8) / 0.2);
+    c = lerp3(c, [0.85, 0.9, 1.0], foam * 0.65);
+    [p0, p1, p2].forEach(function (p) {
+      positions.push(p[0], p[1], p[2]);
+      normals.push(n[0], n[1], n[2]);
+      colors.push(c[0], c[1], c[2]);
+    });
+  }
+  function waterHeight(x, z, t) {
+    return 0.16 * Math.sin(x * 2.6 + t * 1.3)
+      + 0.13 * Math.sin(z * 2.1 - t * 1.05 + 1.4)
+      + 0.08 * Math.sin((x + z) * 1.7 + t * 0.8)
+      + 0.05 * Math.sin((x - z) * 3.2 - t * 1.6);
+  }
+  function buildWaterFrame(t) {
+    resetGeom();
+    var grid = [];
+    for (var i = 0; i <= WATER_SEG; i++) {
+      var x = -WATER_SIZE + (i / WATER_SEG) * WATER_SIZE * 2, row = [];
+      for (var j = 0; j <= WATER_SEG; j++) {
+        var z = -WATER_SIZE + (j / WATER_SEG) * WATER_SIZE * 2;
+        row.push([x, waterHeight(x, z, t), z]);
+      }
+      grid.push(row);
+    }
+    for (var i2 = 0; i2 < WATER_SEG; i2++) {
+      for (var j2 = 0; j2 < WATER_SEG; j2++) {
+        var p0 = grid[i2][j2], p1 = grid[i2 + 1][j2], p2 = grid[i2 + 1][j2 + 1], p3 = grid[i2][j2 + 1];
+        addWaterFace(p0, p1, p2);
+        addWaterFace(p0, p2, p3);
+      }
+    }
+  }
+
+  var shapes = { gem: buildGem, blocks: buildBlocks, torus: buildTorus }; // 'water' is animated per-frame, handled in frame()
+  var currentShape = 'gem';
+  buildGem();
+  var vertexCount = positions.length / 3;
+
+  function makeBuffer() { return gl.createBuffer(); }
+  var positionBuffer = makeBuffer();
+  var normalBuffer = makeBuffer();
+  var colorBuffer = makeBuffer();
+
+  function uploadGeometry() {
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.DYNAMIC_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.DYNAMIC_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.DYNAMIC_DRAW);
+    vertexCount = positions.length / 3;
+  }
+  uploadGeometry();
+
+  var switchEl = document.querySelector('.gem-switch');
+  if (switchEl) {
+    switchEl.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-shape]');
+      if (!btn) return;
+      var name = btn.getAttribute('data-shape');
+      if (!shapes[name] && name !== 'water') return;
+      currentShape = name;
+      if (shapes[name]) { shapes[name](); uploadGeometry(); }
+      switchEl.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b === btn); });
+    });
+  }
+
+  var vsSource = [
+    'attribute vec3 aPosition;',
+    'attribute vec3 aNormal;',
+    'attribute vec3 aColor;',
+    'uniform mat4 uMVP;',
+    'uniform mat3 uNormalMatrix;',
+    'varying vec3 vColor;',
+    'void main () {',
+    '  vec3 n = normalize(uNormalMatrix * aNormal);',
+    '  float light = 0.16 + 0.95 * max(dot(n, normalize(vec3(0.4, 0.85, 0.5))), 0.0);',
+    '  vColor = aColor * light;',
+    '  gl_Position = uMVP * vec4(aPosition, 1.0);',
+    '}'
+  ].join('\n');
+  var fsSource = [
+    'precision mediump float;',
+    'varying vec3 vColor;',
+    'void main () { gl_FragColor = vec4(vColor, 1.0); }'
+  ].join('\n');
+
+  function compile(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  var program = gl.createProgram();
+  gl.attachShader(program, compile(gl.VERTEX_SHADER, vsSource));
+  gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fsSource));
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  function bindAttr(buffer, name) {
+    var loc = gl.getAttribLocation(program, name);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 3, gl.FLOAT, false, 0, 0);
+  }
+  bindAttr(positionBuffer, 'aPosition');
+  bindAttr(normalBuffer, 'aNormal');
+  bindAttr(colorBuffer, 'aColor');
+
+  var uMVP = gl.getUniformLocation(program, 'uMVP');
+  var uNormalMatrix = gl.getUniformLocation(program, 'uNormalMatrix');
+
+  gl.enable(gl.DEPTH_TEST);
+  gl.clearColor(0, 0, 0, 0);
+
+  // ---- minimal column-major mat4/mat3 helpers (no library) ----
+  function perspective(fovy, aspect, near, far) {
+    var f = 1 / Math.tan(fovy / 2), nf = 1 / (near - far);
+    return new Float32Array([f / aspect, 0, 0, 0, 0, f, 0, 0, 0, 0, (far + near) * nf, -1, 0, 0, 2 * far * near * nf, 0]);
+  }
+  function multiply(m, n) {
+    var out = new Float32Array(16);
+    for (var c = 0; c < 4; c++) for (var r = 0; r < 4; r++) {
+      var sum = 0;
+      for (var k = 0; k < 4; k++) sum += m[k * 4 + r] * n[c * 4 + k];
+      out[c * 4 + r] = sum;
+    }
+    return out;
+  }
+  function rotY(a) { var c = Math.cos(a), s = Math.sin(a); return new Float32Array([c, 0, -s, 0, 0, 1, 0, 0, s, 0, c, 0, 0, 0, 0, 1]); }
+  function rotX(a) { var c = Math.cos(a), s = Math.sin(a); return new Float32Array([1, 0, 0, 0, 0, c, s, 0, 0, -s, c, 0, 0, 0, 0, 1]); }
+  function rotZ(a) { var c = Math.cos(a), s = Math.sin(a); return new Float32Array([c, s, 0, 0, -s, c, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]); }
+  function translate(x, y, z) { return new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1]); }
+  function normalMat3(m) { return new Float32Array([m[0], m[1], m[2], m[4], m[5], m[6], m[8], m[9], m[10]]); }
+
+  var spin = 0, tilt = 0.35, targetTilt = 0.35, t0 = performance.now();
+  var wrap = canvas.parentElement;
+  wrap.addEventListener('pointermove', function (e) {
+    var r = wrap.getBoundingClientRect();
+    targetTilt = 0.12 + ((e.clientY - r.top) / r.height) * 0.55;
+  });
+  wrap.addEventListener('pointerleave', function () { targetTilt = 0.35; });
+
+  function resize() {
+    var r = canvas.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.max(1, Math.round(r.width * dpr));
+    var h = Math.max(1, Math.round(r.height * dpr));
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w; canvas.height = h;
+      gl.viewport(0, 0, w, h);
+    }
+  }
+
+  function frame() {
+    resize();
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+    var time = (performance.now() - t0) / 1000;
+    tilt += (targetTilt - tilt) * 0.06;
+
+    var model;
+    if (currentShape === 'water') {
+      buildWaterFrame(reduceMotion ? 0 : time);
+      uploadGeometry();
+      model = rotX(0.9 + (tilt - 0.35) * 0.35); // steep, looking-across-the-surface angle + gentle pointer parallax
+    } else {
+      if (!reduceMotion) spin += 0.006;
+      var wobbleZ = reduceMotion ? 0 : Math.sin(time * 0.5) * 0.24;
+      var wobbleX = reduceMotion ? 0 : Math.sin(time * 0.33 + 1.1) * 0.14;
+      model = multiply(rotX(tilt + wobbleX), multiply(rotZ(wobbleZ), rotY(spin)));
+    }
+    var view = translate(0, 0, -3.4);
+    var mvp = multiply(perspective(Math.PI / 4, canvas.width / canvas.height, 0.1, 20), multiply(view, model));
+
+    gl.uniformMatrix4fv(uMVP, false, mvp);
+    gl.uniformMatrix3fv(uNormalMatrix, false, normalMat3(model));
+    gl.drawArrays(gl.TRIANGLES, 0, vertexCount);
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>

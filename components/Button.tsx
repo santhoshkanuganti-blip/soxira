@@ -15,16 +15,14 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    'px-7 py-3 rounded-lg font-heading text-lg transition focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2';
+    'px-7 py-3 rounded-lg font-display text-base font-semibold transition focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2';
   const variants = {
-    primary:
-      'bg-gold text-black shadow-goldGlow hover:bg-gold-light hover:shadow-goldGlow',
-    outline:
-      'border-2 border-gold text-gold bg-transparent hover:bg-gold/10 hover:shadow-goldGlow',
+    primary: 'bg-accent text-white hover:bg-accent-bright',
+    outline: 'border-2 border-accent text-accent bg-transparent hover:bg-accent-tint',
   };
   return (
     <motion.button
-      whileHover={{ scale: 1.04, boxShadow: '0 0 16px 2px #FFD70099' }}
+      whileHover={{ scale: 1.02 }}
       className={`${base} ${variants[variant]} ${className}`}
       {...props}
     >

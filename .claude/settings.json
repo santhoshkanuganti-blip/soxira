@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -ohE \"rgba\\\\\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-9.]+\\\\\\)\" app/page.tsx components/Card.tsx components/Navbar.tsx components/sections/WhatsNewSection.tsx)",
+      "Bash(xargs grep -ohE \"rgba\\\\\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-9.]+\\\\\\)\")",
+      "Bash(curl -s --max-time 15 http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" --max-time 15 http://localhost:3000/industries/msmes)",
+      "Bash(curl -s --max-time 15 http://localhost:3000/industries/msmes)",
+      "Bash(curl -s --max-time 15 http://localhost:3000/admin/login)",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -sf -o /tmp/fav_check.ico -w \"status:%{http_code} size:%{size_download}\\\\n\" http://localhost:3000/favicon.ico)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"status:%{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(npx playwright *)",
+      "Bash(curl -sf -o /dev/null -w \"dev server: %{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(node -e \"console.log\\(require.resolve\\('playwright', {paths:['/c/Users/santh/AppData/Local/npm-cache/_npx']}\\)\\)\")",
+      "Read(//d//**)",
+      "Bash(npm run *)",
+      "Bash(npx ts-node *)",
+      "Bash(node -e \"require\\('dotenv'\\).config\\({path:'.env.local'}\\); console.log\\(process.env.DATABASE_URL ? 'loaded' : 'missing'\\)\")",
+      "Bash(npx dotenv *)",
+      "Bash(node -r dotenv/config ./node_modules/.bin/ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts dotenv_config_path=.env.local)",
+      "Bash(node -e ' *)",
+      "Bash(TS_NODE_COMPILER_OPTIONS='{\"module\":\"CommonJS\"}' node -e ' *)",
+      "Bash(curl -s http://localhost:3000/industries/msmes)",
+      "Bash(node -e \"require\\('dotenv'\\).config\\({path:'.env.local'}\\); console.log\\('JWT_SECRET length:', \\(process.env.JWT_SECRET||''\\).length\\)\")",
+      "Bash(curl -s http://localhost:3000/robots.txt)",
+      "Bash(python3)",
+      "PowerShell(Stop-Process -Id 44332 -Force -ErrorAction SilentlyContinue)",
+      "Bash(nohup npm run dev)",
+      "Bash(disown)"
+    ]
+  }
+}

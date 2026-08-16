@@ -278,7 +278,7 @@ function TechCard({ tech }: { tech: Tech }) {
         borderColor: hovered ? tech.color + '55' : 'rgba(255,255,255,0.07)',
         boxShadow: hovered ? `0 0 22px ${tech.glow}` : 'none',
       }}
-      className="flex flex-col items-center gap-3 rounded-2xl border bg-white/[0.03] p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.05]"
+      className="flex flex-col items-center gap-3 rounded-2xl border bg-surface-2 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-surface-2"
     >
       <div
         className="flex h-16 w-16 items-center justify-center rounded-xl transition-all duration-300"
@@ -309,13 +309,13 @@ export default function TechExpertiseSection() {
       <div className="mx-auto max-w-7xl">
 
         <div className="mb-14 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-400/80">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             Technology Expertise
           </p>
-          <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+          <h2 className="mt-3 text-2xl font-semibold text-ink sm:text-3xl">
             Enterprise-Grade Technology Stack
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-muted">
             From AI and GenAI to Oracle Cloud, modern data platforms, and full-stack development — certified across the technologies powering enterprise digital transformation.
           </p>
         </div>
@@ -357,7 +357,7 @@ export default function TechExpertiseSection() {
           {['AWS Partner', 'Azure Partner', 'Google Cloud Partner', 'Oracle Partner', 'Snowflake Partner', 'dbt Partner'].map((badge) => (
             <span
               key={badge}
-              className="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 text-[11px] font-medium text-slate-500"
+              className="rounded-full border border-line bg-surface-2 px-4 py-1.5 text-[11px] font-medium text-ink-muted"
             >
               {badge}
             </span>

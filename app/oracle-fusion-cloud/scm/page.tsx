@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Oracle SCM Cloud Implementation Services | Soxira AI Solutions',
+  alternates: { canonical: `https://${siteConfig.domain}/oracle-fusion-cloud/scm` },
   description: 'Oracle SCM Cloud implementation for modern cloud-based supply chain management — procurement, inventory, order management and logistics on Oracle Fusion Cloud.',
   keywords: ['Oracle SCM Cloud India', 'Oracle Supply Chain Cloud', 'Oracle Fusion SCM implementation', 'Oracle Cloud procurement inventory', 'Oracle SCM Cloud Hyderabad'],
   openGraph: {

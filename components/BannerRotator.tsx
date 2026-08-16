@@ -13,7 +13,7 @@ const banners = [
     description: 'Stunning, high-performance websites built with Next.js, React, and modern cloud platforms.',
     cta: 'Explore Web Solutions',
     href: '/contact',
-    bg: 'from-violet-700 via-purple-500 to-sky-400',
+    bg: '',
     icon: '🌐',
   },
   {
@@ -21,7 +21,7 @@ const banners = [
     description: 'Cutting-edge SaaS and product engineering with embedded AI insights for a competitive edge.',
     cta: 'Start Your Product',
     href: '/product-development-company',
-    bg: 'from-sky-700 via-violet-500 to-pink-400',
+    bg: '',
     icon: '🤖',
   },
   {
@@ -29,7 +29,7 @@ const banners = [
     description: 'Cross-platform mobile apps for iOS and Android, designed for scale and user delight.',
     cta: 'Build My App',
     href: '/contact',
-    bg: 'from-fuchsia-600 via-violet-500 to-sky-400',
+    bg: '',
     icon: '📱',
   },
   {
@@ -37,7 +37,7 @@ const banners = [
     description: 'Professional SEO, digital marketing, and transformation services to grow your business online.',
     cta: 'Boost My Growth',
     href: '/contact',
-    bg: 'from-emerald-500 via-sky-400 to-violet-500',
+    bg: '',
     icon: '🚀',
   },
   {
@@ -45,7 +45,7 @@ const banners = [
     description: 'AI-powered distributor management: inventory, orders, analytics. Trusted by India’s top networks.',
     cta: 'See VitaranAI',
     href: 'https://VitaranAI.in',
-    bg: 'from-purple-700 via-sky-500 to-violet-400',
+    bg: '',
     icon: '🔗',
   },
 ];
@@ -59,7 +59,7 @@ export default function BannerRotator() {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl ring-1 ring-white/10">
+    <div className="relative w-full overflow-hidden rounded-[2rem] border border-line bg-surface-2 shadow-2xl ring-1 ring-line">
       <AnimatePresence mode="wait">
         <motion.div
           key={banners[index].title}
@@ -71,17 +71,17 @@ export default function BannerRotator() {
         >
           <div className="z-10 flex flex-col items-center justify-center text-center w-full px-8">
             <span className="mb-4 text-5xl md:text-6xl drop-shadow-lg animate-bounce-slow">{banners[index].icon}</span>
-            <h3 className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-xl mb-2 animate-fade-in-up">
+            <h3 className="text-3xl md:text-4xl font-extrabold text-ink drop-shadow-xl mb-2 animate-fade-in-up">
               {banners[index].title}
             </h3>
-            <p className="mb-6 text-lg md:text-xl text-white/90 font-medium animate-fade-in-up delay-150">
+            <p className="mb-6 text-lg md:text-xl text-ink-muted font-medium animate-fade-in-up delay-150">
               {banners[index].description}
             </p>
             <a
               href={banners[index].href}
               target={banners[index].href.startsWith('http') ? '_blank' : undefined}
               rel={banners[index].href.startsWith('http') ? 'noreferrer' : undefined}
-              className="inline-block rounded-full bg-white/90 px-8 py-3 text-lg font-bold text-violet-700 shadow-lg ring-2 ring-white/30 transition hover:bg-gradient-to-r hover:from-violet-500 hover:to-sky-400 hover:text-white hover:scale-105 animate-fade-in-up delay-300"
+              className="inline-block rounded-full bg-white/90 px-8 py-3 text-lg font-bold text-accent shadow-lg ring-2 ring-line transition hover:bg-accent hover:text-white hover:scale-105 animate-fade-in-up delay-300"
             >
               {banners[index].cta}
             </a>

@@ -21,7 +21,7 @@ function StarRating({ rating }: { rating: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
-          className={`h-4 w-4 ${i < rating ? 'text-yellow-400' : 'text-slate-700'}`}
+          className={`h-4 w-4 ${i < rating ? 'text-accent' : 'text-slate-700'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -53,12 +53,11 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-sky-300/80">Testimonials</p>
-          <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">What Our Clients Say</h2>
+          <p className="text-xs uppercase tracking-[0.3em] text-accent">Testimonials</p>
+          <h2 className="mt-2 text-2xl font-semibold text-ink sm:text-3xl">What Our Clients Say</h2>
         </motion.div>
 
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80 backdrop-blur-xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(124,58,237,0.12),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.1),transparent_40%)] pointer-events-none" />
+        <div className="relative overflow-hidden rounded-[2rem] border border-line bg-surface shadow-[0_16px_40px_rgba(20,25,50,0.06)]">
           <div className="relative p-8 md:p-12">
             <AnimatePresence mode="wait">
               <motion.div
@@ -69,29 +68,29 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
                 transition={{ duration: 0.5 }}
                 className="flex flex-col items-center text-center"
               >
-                <div className="mb-6 text-5xl text-violet-400/60 leading-none select-none">"</div>
-                <p className="max-w-3xl text-lg leading-8 text-slate-200 sm:text-xl">
+                <div className="mb-6 text-5xl text-accent leading-none select-none">&ldquo;</div>
+                <p className="max-w-3xl text-lg leading-8 text-ink sm:text-xl">
                   {current.review}
                 </p>
                 <div className="mt-8 flex flex-col items-center gap-3">
                   <StarRating rating={current.rating} />
                   <div className="flex items-center gap-4">
-                    <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/20">
+                    <div className="relative h-12 w-12 overflow-hidden rounded-full border border-line">
                       {current.photo ? (
                         <Image src={current.photo} alt={current.customerName} fill className="object-cover" />
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-violet-600 to-sky-500 text-sm font-bold text-white">
+                        <div className="flex h-full w-full items-center justify-center bg-accent text-sm font-bold text-white">
                           {current.customerName.charAt(0)}
                         </div>
                       )}
                     </div>
                     <div className="text-left">
-                      <p className="text-sm font-semibold text-white">{current.customerName}</p>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-sm font-semibold text-ink">{current.customerName}</p>
+                      <p className="text-xs text-ink-muted">
                         {[current.designation, current.company].filter(Boolean).join(', ')}
                       </p>
                       {current.industry && (
-                        <span className="mt-1 inline-block rounded-full bg-violet-500/15 px-2 py-0.5 text-[10px] text-violet-300">
+                        <span className="mt-1 inline-block rounded-full bg-accent-tint px-2 py-0.5 text-[10px] text-accent">
                           {current.industry}
                         </span>
                       )}
@@ -109,7 +108,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
                     type="button"
                     aria-label={`Testimonial ${i + 1}`}
                     onClick={() => setIndex(i)}
-                    className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-violet-400' : 'w-2 bg-white/20'}`}
+                    className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-accent' : 'w-2 bg-white/20'}`}
                   />
                 ))}
               </div>

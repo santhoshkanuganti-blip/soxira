@@ -7,83 +7,39 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { siteConfig } from '@/config/site';
 
-type SolutionItem  = { label: string; href: string };
-type SolutionGroup = { parent: SolutionItem; children: SolutionItem[] };
-type SolutionCol   = {
-  heading: string;
-  gradient: string;
-  items?: SolutionItem[];
-  groups?: SolutionGroup[];
-  whySoxira?: boolean;
-};
+type SolutionItem = { label: string; href: string };
+type SolutionCol  = { heading: string; items: SolutionItem[] };
 
-const WHY_SOXIRA_ITEMS = [
-  '20+ Years Enterprise Experience',
-  'Oracle ERP & Fusion Expertise',
-  'AI + Oracle Integrations',
-  'Cloud & Data Engineering',
-  'Distribution & Manufacturing Expertise',
-];
-
+// Kept deliberately flat and shallow — one level per column. Sub-pages (Oracle SCM/Finance/HCM,
+// the /solutions industry deep-dives, etc.) are reached by visiting the parent page, where they're
+// already cross-linked in context, not duplicated here.
 const SOLUTIONS: SolutionCol[] = [
   {
-    heading: 'AI & GenAI',
-    gradient: 'from-violet-400 to-purple-300',
+    heading: 'AI, Data & Analytics',
     items: [
       { label: 'AI Consulting', href: '/contact' },
       { label: 'Generative AI Solutions', href: '/contact' },
-      { label: 'AI Dashboards', href: '/ai-dashboard-consulting' },
+      { label: 'AI Dashboards & Reporting', href: '/ai-dashboard-consulting' },
       { label: 'AI Agents & Automation', href: '/contact' },
+      { label: 'Data Engineering & Analytics', href: '/data-engineering-snowflake-dbt' },
+      { label: 'Cloud Migration', href: '/cloud-migration-services' },
     ],
   },
   {
     heading: 'Enterprise Applications',
-    gradient: 'from-sky-400 to-blue-300',
-    groups: [
-      {
-        parent: { label: 'Oracle ERP', href: '/oracle-erp' },
-        children: [
-          { label: 'Oracle SCM', href: '/oracle-erp/scm' },
-          { label: 'Oracle Finance', href: '/oracle-erp/finance' },
-          { label: 'Oracle HCM', href: '/oracle-erp/hcm' },
-        ],
-      },
-      {
-        parent: { label: 'Oracle Fusion Cloud', href: '/oracle-fusion-cloud' },
-        children: [
-          { label: 'Oracle SCM Cloud', href: '/oracle-fusion-cloud/scm' },
-          { label: 'Oracle Financials Cloud', href: '/oracle-fusion-cloud/financials' },
-          { label: 'Oracle HCM Cloud', href: '/oracle-fusion-cloud/hcm' },
-        ],
-      },
-      {
-        parent: { label: 'Oracle Integration Cloud (OIC)', href: '/oracle-integration-cloud' },
-        children: [
-          { label: 'ERP Integrations', href: '/oracle-integration-cloud' },
-          { label: 'Fusion Integrations', href: '/oracle-integration-cloud' },
-          { label: 'API & Middleware', href: '/oracle-integration-cloud' },
-        ],
-      },
-    ],
-    whySoxira: true,
-  },
-  {
-    heading: 'Data & Cloud',
-    gradient: 'from-emerald-400 to-teal-300',
     items: [
-      { label: 'Snowflake & DBT', href: '/data-engineering-snowflake-dbt' },
-      { label: 'Data Engineering', href: '/data-engineering-snowflake-dbt' },
-      { label: 'Cloud Migration', href: '/cloud-migration-services' },
-      { label: 'AWS', href: '/cloud-migration-services' },
-      { label: 'Azure', href: '/cloud-migration-services' },
-      { label: 'GCP', href: '/cloud-migration-services' },
+      { label: 'VitaranAI (Our Business Operations Platform)', href: '/distributor-management-software' },
+      { label: 'SAOP — AI Orchestration Platform (In Development)', href: '/saop-platform' },
+      { label: 'Oracle ERP', href: '/oracle-erp' },
+      { label: 'Oracle Fusion Cloud', href: '/oracle-fusion-cloud' },
+      { label: 'Oracle Integration Cloud (OIC)', href: '/oracle-integration-cloud' },
+      { label: 'Oracle Implementation Services', href: '/oracle-implementation-services' },
     ],
   },
   {
     heading: 'Industry Solutions',
-    gradient: 'from-amber-400 to-orange-300',
     items: [
-      { label: 'MSMEs', href: '/industries/msmes' },
+      { label: 'Small & Medium Businesses', href: '/industries/msmes' },
       { label: 'Distributors', href: '/industries/distributors' },
       { label: 'Manufacturing', href: '/industries/manufacturing' },
       { label: 'Finance', href: '/industries/finance' },
@@ -105,7 +61,7 @@ function ChevronIcon({ className = '' }: { className?: string }) {
 function DLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <Link href={href}
-      className="whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/[0.06] hover:text-white xl:px-4">
+      className="whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink xl:px-4">
       {children}
     </Link>
   );
@@ -114,7 +70,7 @@ function DLink({ href, children }: { href: string; children: React.ReactNode }) 
 function MLink({ href, close, children }: { href: string; close: () => void; children: React.ReactNode }) {
   return (
     <Link href={href} onClick={close}
-      className="block rounded-xl px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/[0.05] hover:text-white">
+      className="block rounded-lg px-4 py-2.5 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink">
       {children}
     </Link>
   );
@@ -153,15 +109,14 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/[0.07] bg-[#0B0B1A]/95 backdrop-blur-2xl">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper/92 backdrop-blur-md">
       {/* ── Main nav bar ── */}
       <nav className="mx-auto flex max-w-[1440px] items-center px-4 py-1.5 sm:px-6 lg:px-8">
 
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center">
-          <div className="relative h-16 w-[180px] overflow-hidden rounded-[2.5rem] bg-[#05050d] p-3
-            shadow-[0_22px_90px_rgba(56,189,248,0.18)] ring-1 ring-white/10 sm:w-[220px]">
-            <Image src={siteConfig.logo} alt={siteConfig.name} fill sizes="220px" priority className="object-contain" />
+          <div className="relative h-14 w-[210px] sm:h-16 sm:w-[240px]">
+            <Image src="/logo-light.png" alt={siteConfig.name} fill sizes="240px" priority className="object-contain object-left" />
           </div>
         </Link>
 
@@ -178,11 +133,11 @@ export default function Navbar() {
           >
             <button
               type="button"
-              className="flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/[0.06] hover:text-white xl:px-4"
+              className="flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink xl:px-4"
             >
               Solutions
               <motion.span
-                className="inline-flex text-slate-500"
+                className="inline-flex text-ink-muted"
                 animate={{ rotate: solutionsOpen ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
               >
@@ -191,25 +146,25 @@ export default function Navbar() {
             </button>
           </div>
 
-          <a
+          <Link
             href="/#leadership"
             onClick={(e) => handleAnchorClick(e, 'leadership')}
-            className="whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/[0.06] hover:text-white xl:px-4"
+            className="whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink xl:px-4"
           >
             Leadership
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#case-studies"
             onClick={(e) => handleAnchorClick(e, 'case-studies')}
-            className="whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/[0.06] hover:text-white xl:px-4"
+            className="whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink xl:px-4"
           >
             Case Studies
-          </a>
+          </Link>
           <DLink href="/blog">Blog</DLink>
 
           <Link
             href="/contact"
-            className="ml-3 whitespace-nowrap rounded-full bg-gradient-to-r from-violet-600 to-sky-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110 hover:shadow-violet-500/35"
+            className="ml-3 whitespace-nowrap rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-bright"
           >
             Contact
           </Link>
@@ -220,7 +175,7 @@ export default function Navbar() {
           type="button"
           aria-label="Toggle menu"
           onClick={() => setMobileOpen((v) => !v)}
-          className="ml-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.05] text-slate-300 ring-1 ring-white/10 transition hover:bg-white/10 md:hidden"
+          className="ml-auto flex h-10 w-10 items-center justify-center rounded-lg bg-surface-2 text-ink-muted ring-1 ring-line transition hover:bg-line md:hidden"
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.span
@@ -247,88 +202,38 @@ export default function Navbar() {
             transition={{ duration: 0.15, ease: 'easeOut' }}
             onMouseEnter={openSolutions}
             onMouseLeave={startClose}
-            className="hidden border-t border-white/[0.06] bg-[#0D0D22]/97 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-2xl md:block"
+            className="hidden border-t border-line bg-surface shadow-[0_24px_60px_rgba(20,25,50,0.12)] md:block"
           >
-            {/* Accent line */}
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-violet-500/50 to-transparent" />
-
             <div className="mx-auto max-w-[1440px] px-8 py-7 lg:px-12">
-              <div className="grid grid-cols-4 gap-8">
+              <div className="grid grid-cols-3 gap-8">
                 {SOLUTIONS.map((col) => (
                   <div key={col.heading}>
-                    <p className={`mb-3.5 bg-gradient-to-r ${col.gradient} bg-clip-text text-[11px] font-bold uppercase tracking-widest text-transparent`}>
+                    <p className="mb-3.5 text-[11px] font-bold uppercase tracking-widest text-accent">
                       {col.heading}
                     </p>
-
-                    {col.groups ? (
-                      /* ── Hierarchical column (Enterprise Applications) ── */
-                      <div className="space-y-4">
-                        {col.groups.map((group) => (
-                          <div key={group.parent.label}>
-                            <Link
-                              href={group.parent.href}
-                              onClick={() => setSolutionsOpen(false)}
-                              className="block text-[13px] font-semibold text-white transition hover:text-violet-300"
-                            >
-                              {group.parent.label}
-                            </Link>
-                            <ul className="mt-1.5 space-y-1">
-                              {group.children.map((child) => (
-                                <li key={child.label}>
-                                  <Link
-                                    href={child.href}
-                                    onClick={() => setSolutionsOpen(false)}
-                                    className="flex items-center gap-1.5 rounded-lg pl-2 py-0.5 text-[12px] text-slate-400 transition hover:text-violet-300"
-                                  >
-                                    <span className="text-[10px] text-slate-600">↳</span>
-                                    {child.label}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-
-                        {col.whySoxira && (
-                          <div className="mt-5 border-t border-white/[0.06] pt-4">
-                            <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-slate-500">Why Soxira?</p>
-                            {WHY_SOXIRA_ITEMS.map((item) => (
-                              <div key={item} className="flex items-center gap-2 py-0.5">
-                                <svg className="h-3 w-3 shrink-0 text-emerald-400" viewBox="0 0 16 16" fill="none">
-                                  <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span className="text-[11px] text-slate-400">{item}</span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      /* ── Flat column ── */
-                      <ul className="space-y-0.5">
-                        {col.items?.map((item) => (
-                          <li key={item.label}>
-                            <Link
-                              href={item.href}
-                              onClick={() => setSolutionsOpen(false)}
-                              className="group flex items-center gap-2 rounded-lg px-2 py-1.5 text-[13px] leading-5 text-slate-400 transition hover:bg-white/[0.04] hover:text-white"
-                            >
-                              <span className="h-[3px] w-[3px] shrink-0 rounded-full bg-slate-600 transition-colors group-hover:bg-violet-400" />
-                              {item.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    <ul className="space-y-0.5">
+                      {col.items.map((item) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.href}
+                            onClick={() => setSolutionsOpen(false)}
+                            className="group flex items-center gap-2 rounded-lg px-2 py-1.5 text-[13px] leading-5 text-ink-muted transition hover:bg-surface-2 hover:text-ink"
+                          >
+                            <span className="h-[3px] w-[3px] shrink-0 rounded-full bg-line-strong transition-colors group-hover:bg-accent" />
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-6 border-t border-white/[0.06] pt-4">
+              <div className="mt-6 border-t border-line pt-4">
                 <Link
                   href="/contact"
                   onClick={() => setSolutionsOpen(false)}
-                  className="text-xs text-slate-500 transition hover:text-violet-400"
+                  className="text-xs text-ink-muted transition hover:text-accent"
                 >
                   Not sure which solution fits your business? Talk to our experts →
                 </Link>
@@ -346,7 +251,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: 'easeInOut' }}
-            className="overflow-hidden border-t border-white/[0.06] bg-[#0B0B1A] md:hidden"
+            className="overflow-hidden border-t border-line bg-paper md:hidden"
           >
             <div className="flex flex-col gap-0.5 p-4">
               <MLink href="/" close={() => setMobileOpen(false)}>Home</MLink>
@@ -357,11 +262,11 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setMobileSolutionsOpen((v) => !v)}
-                  className="flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/[0.05] hover:text-white"
+                  className="flex w-full items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink"
                 >
                   Solutions
                   <motion.span
-                    className="inline-flex text-slate-500"
+                    className="inline-flex text-ink-muted"
                     animate={{ rotate: mobileSolutionsOpen ? 180 : 0 }}
                     transition={{ duration: 0.18 }}
                   >
@@ -378,56 +283,26 @@ export default function Navbar() {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="mx-1 mb-2 mt-1 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
+                      <div className="mx-1 mb-2 mt-1 rounded-2xl border border-line bg-surface-2 p-4">
                         <div className="grid grid-cols-2 gap-5">
                           {SOLUTIONS.map((col) => (
                             <div key={col.heading}>
-                              <p className={`mb-2 bg-gradient-to-r ${col.gradient} bg-clip-text text-[10px] font-bold uppercase tracking-widest text-transparent`}>
+                              <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-accent">
                                 {col.heading}
                               </p>
-
-                              {col.groups ? (
-                                /* Hierarchical groups in mobile */
-                                <div className="space-y-2">
-                                  {col.groups.map((group) => (
-                                    <div key={group.parent.label}>
-                                      <Link
-                                        href={group.parent.href}
-                                        onClick={closeBoth}
-                                        className="block text-[11px] font-semibold text-slate-300"
-                                      >
-                                        {group.parent.label}
-                                      </Link>
-                                      {group.children.map((child) => (
-                                        <Link
-                                          key={child.label}
-                                          href={child.href}
-                                          onClick={closeBoth}
-                                          className="mt-0.5 flex items-center gap-1 pl-2 text-[10px] text-slate-500 transition hover:text-slate-300"
-                                        >
-                                          <span className="text-[9px]">↳</span>
-                                          {child.label}
-                                        </Link>
-                                      ))}
-                                    </div>
-                                  ))}
-                                </div>
-                              ) : (
-                                /* Flat items in mobile */
-                                <ul className="space-y-1.5">
-                                  {col.items?.map((item) => (
-                                    <li key={item.label}>
-                                      <Link
-                                        href={item.href}
-                                        onClick={closeBoth}
-                                        className="block text-[12px] text-slate-500 transition hover:text-slate-200"
-                                      >
-                                        {item.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
+                              <ul className="space-y-1.5">
+                                {col.items.map((item) => (
+                                  <li key={item.label}>
+                                    <Link
+                                      href={item.href}
+                                      onClick={closeBoth}
+                                      className="block text-[12px] text-ink-muted transition hover:text-ink"
+                                    >
+                                      {item.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
                             </div>
                           ))}
                         </div>
@@ -437,20 +312,20 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <a href="/#leadership" onClick={(e) => handleAnchorClick(e, 'leadership')}
-                className="block rounded-xl px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/[0.05] hover:text-white">
+              <Link href="/#leadership" onClick={(e) => handleAnchorClick(e, 'leadership')}
+                className="block rounded-lg px-4 py-2.5 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink">
                 Leadership
-              </a>
-              <a href="/#case-studies" onClick={(e) => handleAnchorClick(e, 'case-studies')}
-                className="block rounded-xl px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/[0.05] hover:text-white">
+              </Link>
+              <Link href="/#case-studies" onClick={(e) => handleAnchorClick(e, 'case-studies')}
+                className="block rounded-lg px-4 py-2.5 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink">
                 Case Studies
-              </a>
+              </Link>
               <MLink href="/blog" close={() => setMobileOpen(false)}>Blog</MLink>
 
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
-                className="mt-3 block rounded-2xl bg-gradient-to-r from-violet-600 to-sky-500 px-4 py-3 text-center text-sm font-semibold text-white"
+                className="mt-3 block rounded-xl bg-accent px-4 py-3 text-center text-sm font-semibold text-white"
               >
                 Contact Us
               </Link>

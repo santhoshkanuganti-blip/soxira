@@ -8,11 +8,26 @@ import { AboutProducts } from '@/components/about/AboutProducts';
 import { AboutFounder } from '@/components/about/AboutFounder';
 import { AboutMissionVision } from '@/components/about/AboutMissionVision';
 import { AboutCTA } from '@/components/about/AboutCTA';
+import { siteConfig } from '@/config/site';
 
 export const dynamic = 'force-static';
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Soxira AI Solutions',
+  url: `https://${siteConfig.domain}/about`,
+  mainEntity: {
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: `https://${siteConfig.domain}`,
+    description: siteConfig.description,
+  },
+};
+
 export const metadata: Metadata = {
   title: 'About Soxira AI Solutions | AI, Cloud & Data Engineering Company',
+  alternates: { canonical: `https://${siteConfig.domain}/about` },
   description:
     'Soxira AI Solutions is an AI, Cloud, and Data Engineering company with 20+ years of experience, delivering intelligent products and enterprise transformation.',
   keywords: [
@@ -27,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0B0B1A] text-slate-100">
+    <div className="min-h-screen bg-paper text-ink">
       <Navbar />
       <main>
         <AboutHero />
@@ -39,6 +54,7 @@ export default function AboutPage() {
         <AboutCTA />
       </main>
       <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Oracle HCM Implementation Services | Soxira AI Solutions',
+  alternates: { canonical: `https://${siteConfig.domain}/oracle-erp/hcm` },
   description: 'Oracle Human Capital Management implementation — Core HR, Payroll, Talent Management and Learning. Expert Oracle HCM consulting from Soxira.',
   keywords: ['Oracle HCM implementation India', 'Oracle Human Capital Management', 'Oracle Payroll India', 'Oracle Talent Management', 'Oracle HCM consulting Hyderabad'],
   openGraph: {

@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Oracle SCM Implementation Services | Soxira AI Solutions',
+  alternates: { canonical: `https://${siteConfig.domain}/oracle-erp/scm` },
   description: 'Oracle Supply Chain Management implementation — procurement, inventory, order management and logistics. Expert Oracle SCM consulting from Soxira.',
   keywords: ['Oracle SCM implementation India', 'Oracle Supply Chain Management', 'Oracle SCM consulting Hyderabad', 'Oracle ERP SCM', 'Oracle procurement inventory'],
   openGraph: {
@@ -61,6 +62,7 @@ export default function OracleSCMPage() {
           { label: 'Oracle Finance', href: '/oracle-erp/finance' },
           { label: 'Oracle HCM', href: '/oracle-erp/hcm' },
           { label: 'Oracle SCM Cloud', href: '/oracle-fusion-cloud/scm' },
+          { label: 'Oracle SCM for Manufacturing', href: '/solutions/oracle-scm-for-manufacturing' },
         ],
       }}
     />

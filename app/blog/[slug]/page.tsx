@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { db } from '@/lib/db';
+import { siteConfig } from '@/config/site';
 
 export const revalidate = 3600;
 
@@ -15,11 +16,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.seoTitle ?? `${post.title} | Soxira AI Solutions`,
     description: post.seoDesc ?? post.excerpt ?? undefined,
+    alternates: { canonical: `https://${siteConfig.domain}/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.seoDesc ?? post.excerpt ?? undefined,
+      url: `https://${siteConfig.domain}/blog/${slug}`,
       images: post.imageUrl ? [{ url: post.imageUrl }] : [],
       type: 'article',
+      publishedTime: post.publishedAt?.toISOString(),
     },
   };
 }
@@ -35,37 +39,55 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) notFound();
 
   const tags = post.tags as string[];
+  const postUrl = `https://${siteConfig.domain}/blog/${slug}`;
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.seoDesc ?? post.excerpt ?? undefined,
+    image: post.imageUrl ?? undefined,
+    author: post.author ? { '@type': 'Person', name: post.author } : { '@type': 'Organization', name: siteConfig.name },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      logo: { '@type': 'ImageObject', url: `https://${siteConfig.domain}${siteConfig.logo}` },
+    },
+    datePublished: post.publishedAt?.toISOString(),
+    dateModified: post.updatedAt.toISOString(),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+  };
 
   return (
-    <div className="min-h-screen bg-[#0B0B1A] text-slate-100">
+    <div className="min-h-screen bg-paper text-ink">
       <Navbar />
       <main className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
 
           {/* Breadcrumb */}
-          <nav className="mb-8 flex items-center gap-2 text-xs text-slate-500">
-            <Link href="/" className="hover:text-white">Home</Link>
+          <nav className="mb-8 flex items-center gap-2 text-xs text-ink-muted">
+            <Link href="/" className="hover:text-ink">Home</Link>
             <span>/</span>
-            <Link href="/blog" className="hover:text-white">Blog</Link>
+            <Link href="/blog" className="hover:text-ink">Blog</Link>
             <span>/</span>
-            <span className="text-slate-400 truncate max-w-xs">{post.title}</span>
+            <span className="text-ink-muted truncate max-w-xs">{post.title}</span>
           </nav>
 
           {/* Header */}
           <header className="mb-8">
             <div className="flex flex-wrap gap-2 mb-4">
               {post.category && (
-                <span className="rounded-full bg-violet-500/20 px-3 py-1 text-xs font-medium text-violet-300 ring-1 ring-violet-500/20">
+                <span className="rounded-full bg-accent-tint px-3 py-1 text-xs font-medium text-accent ring-1 ring-accent-tint">
                   {post.category}
                 </span>
               )}
               {post.featured && (
-                <span className="rounded-full bg-yellow-500/20 px-3 py-1 text-xs font-medium text-yellow-300">Featured</span>
+                <span className="rounded-full bg-accent-tint px-3 py-1 text-xs font-medium text-accent">Featured</span>
               )}
             </div>
-            <h1 className="text-2xl font-semibold text-white sm:text-3xl lg:text-4xl leading-tight">{post.title}</h1>
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500">
-              {post.author && <span>By <span className="text-slate-300">{post.author}</span></span>}
+            <h1 className="text-2xl font-semibold text-ink sm:text-3xl lg:text-4xl leading-tight">{post.title}</h1>
+            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-ink-muted">
+              {post.author && <span>By <span className="text-ink-muted">{post.author}</span></span>}
               {post.publishedAt && <span>{formatDate(post.publishedAt)}</span>}
             </div>
           </header>
@@ -79,16 +101,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {/* Content */}
           <article
-            className="prose prose-invert prose-sm sm:prose-base max-w-none
-              prose-headings:font-semibold prose-headings:text-white
-              prose-p:text-slate-300 prose-p:leading-7
-              prose-a:text-violet-400 prose-a:no-underline hover:prose-a:text-violet-300
-              prose-strong:text-white
-              prose-code:text-sky-300 prose-code:bg-slate-800/80 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-              prose-pre:bg-slate-900 prose-pre:border prose-pre:border-white/10
-              prose-blockquote:border-violet-500 prose-blockquote:bg-violet-500/10 prose-blockquote:text-slate-300
-              prose-ul:text-slate-300 prose-ol:text-slate-300
-              prose-li:marker:text-violet-400"
+            className="prose prose-invert prose-sm sm:prose-base max-w-none prose-headings:font-semibold prose-headings:text-ink prose-p:text-ink-muted prose-p:leading-7 prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent prose-strong:text-ink prose-code:text-accent prose-code:bg-slate-800/80 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-surface-2 prose-pre:border prose-pre:border-line prose-blockquote:border-line prose-blockquote:bg-accent-tint prose-blockquote:text-ink-muted prose-ul:text-ink-muted prose-ol:text-ink-muted prose-li:marker:text-accent"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
@@ -96,7 +109,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {tags.length > 0 && (
             <div className="mt-10 flex flex-wrap gap-2">
               {tags.map((tag) => (
-                <span key={tag} className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-400 ring-1 ring-white/10">
+                <span key={tag} className="rounded-full bg-surface-2 px-3 py-1 text-xs text-ink-muted ring-1 ring-line">
                   #{tag}
                 </span>
               ))}
@@ -104,17 +117,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           )}
 
           {/* Navigation */}
-          <div className="mt-12 flex items-center justify-between border-t border-white/10 pt-8">
-            <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-white">
+          <div className="mt-12 flex items-center justify-between border-t border-line pt-8">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-ink-muted transition hover:text-ink">
               ← Back to Blog
             </Link>
-            <Link href="/contact" className="inline-flex items-center rounded-full bg-gradient-to-r from-violet-500 to-sky-400 px-5 py-2.5 text-sm font-semibold text-white transition hover:scale-[1.02]">
+            <Link href="/contact" className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:scale-[1.02]">
               Talk to Our Experts
             </Link>
           </div>
         </div>
       </main>
       <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
     </div>
   );
 }

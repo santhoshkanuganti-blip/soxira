@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Oracle Finance Implementation Services | Soxira AI Solutions',
+  alternates: { canonical: `https://${siteConfig.domain}/oracle-erp/finance` },
   description: 'Oracle Financials implementation covering GL, AP, AR, Fixed Assets, Cash Management and Financial Reporting. Expert Oracle Finance consulting from Soxira.',
   keywords: ['Oracle Finance implementation India', 'Oracle Financials consulting', 'Oracle GL AP AR India', 'Oracle ERP Finance Hyderabad', 'Oracle Financial Reporting'],
   openGraph: {
