@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: 'Soxira AI Solutions',
-  domain: 'soxira.com',
+  domain: 'www.soxira.com',
   logo: '/logo.png',
   description:
     'Soxira AI Solutions delivers AI, Cloud, Data Engineering, and Product Development services for ambitious enterprises in India and beyond.',

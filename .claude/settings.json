@@ -28,7 +28,15 @@
       "Bash(python3)",
       "PowerShell(Stop-Process -Id 44332 -Force -ErrorAction SilentlyContinue)",
       "Bash(nohup npm run dev)",
-      "Bash(disown)"
+      "Bash(disown)",
+      "Bash(cd d:/soxira && find . -iname \"*.woff2\" -path \"*font*\" 2>/dev/null | grep -v node_modules/.cache | head -20 *)",
+      "Bash(curl -sf -o /dev/null -w \"status:%{http_code}\\\\n\" --max-time 5 \"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap\")",
+      "Bash(sed -i 's/align-items: center; padding: 0 88px;/align-items: flex-start; padding: 54px 88px 0;/' C:/Users/santh/AppData/Local/Temp/claude/d--soxira/16ddd285-e876-4e53-8c4f-31a06d1c0f12/scratchpad/banner_personal.html)",
+      "Bash(sed -i 's/align-items: center; padding: 0 56px;/align-items: flex-start; padding: 30px 56px 0;/' C:/Users/santh/AppData/Local/Temp/claude/d--soxira/16ddd285-e876-4e53-8c4f-31a06d1c0f12/scratchpad/banner_company.html)",
+      "Bash(mkdir -p branding/linkedin)",
+      "Bash(cp \"C:/Users/santh/AppData/Local/Temp/claude/d--soxira/16ddd285-e876-4e53-8c4f-31a06d1c0f12/scratchpad/banner_personal.png\" branding/linkedin/soxira-linkedin-personal-cover-1584x396.png)",
+      "Bash(cp \"C:/Users/santh/AppData/Local/Temp/claude/d--soxira/16ddd285-e876-4e53-8c4f-31a06d1c0f12/scratchpad/banner_company.png\" branding/linkedin/soxira-linkedin-company-cover-1128x191.png)",
+      "Bash(cd d:/soxira && cp \"C:/Users/santh/AppData/Local/Temp/claude/d--soxira/16ddd285-e876-4e53-8c4f-31a06d1c0f12/scratchpad/profile_photo.png\" branding/linkedin/soxira-linkedin-profile-photo-800x800.png *)"
     ]
   }
 }

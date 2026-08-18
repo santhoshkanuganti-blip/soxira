@@ -1,0 +1,43 @@
+SOXIRA AI SOLUTIONS — LINKEDIN COMPANY PAGE COPY
+==================================================
+
+TAGLINE (max 120 characters — shows under the company name)
+--------------------------------------------------------------
+AI-powered digital transformation, data engineering, and Oracle ERP for modern enterprises.
+
+(91 characters)
+
+
+ABOUT US (max 2000 characters — main Overview description)
+--------------------------------------------------------------
+Soxira AI Solutions helps enterprises modernize how they run — combining AI, data engineering, and Oracle ERP expertise with our own products.
+
+We work across four areas:
+
+— Digital Transformation & AI: AI strategy, GenAI solutions, and intelligent automation for procurement, inventory, sales, and operations.
+
+— Oracle ERP & Fusion Cloud: full-lifecycle implementations across Financials, SCM, and HCM, backed by 25+ years of combined Oracle expertise.
+
+— Data Engineering: Snowflake and DBT-based pipelines, governed analytics, and real-time dashboards.
+
+— Products: VitaranAI, our AI-powered business operations platform for distributors and manufacturers, and SAOP, our AI orchestration platform currently in development.
+
+Soxira is a newly established company backed by a team with 20+ years of hands-on enterprise experience across finance, healthcare, insurance, hospitality, and distribution. We're based in Hyderabad, India, and work with organizations building for scale.
+
+Learn more at soxira.com
+
+(1013 characters)
+
+
+SPECIALTIES (comma-separated, used for LinkedIn search matching)
+--------------------------------------------------------------
+AI & GenAI, Digital Transformation, Oracle ERP, Oracle Fusion Cloud, Oracle SCM, Oracle Financials, Data Engineering, Snowflake, DBT, Cloud Migration, Product Development, VitaranAI, Distributor Management Software, Enterprise Automation
+
+
+OTHER FIELDS TO FILL IN ON THE COMPANY PAGE
+--------------------------------------------------------------
+Website:    https://soxira.com
+Industry:   IT Services and IT Consulting
+HQ:         Hyderabad, Telangana, India
+Founded:    2025 (adjust to actual founding year)
+Company size: (set to your actual current headcount)

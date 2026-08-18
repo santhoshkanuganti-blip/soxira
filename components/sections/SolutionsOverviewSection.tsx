@@ -60,9 +60,11 @@ const PILLARS = [
   },
 ];
 
+const CAPABILITIES = PILLARS.flatMap((p) => p.items.map((it) => it.label));
+
 export default function SolutionsOverviewSection() {
   return (
-    <section className="relative px-4 py-16 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-teal-tint px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           className="mb-14 text-center"
@@ -71,7 +73,7 @@ export default function SolutionsOverviewSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">What We Do</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal">What We Do</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl">
             Three Pillars of Transformation
           </h2>
@@ -88,21 +90,21 @@ export default function SolutionsOverviewSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface p-7 shadow-[0_16px_40px_rgba(20,25,50,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_20px_48px_rgba(20,25,50,0.1)]"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface p-7 shadow-[0_16px_40px_rgba(11,110,122,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-teal/30 hover:shadow-[0_20px_48px_rgba(11,110,122,0.14)]"
             >
               <div className="relative">
                 {/* Icon */}
-                <div className="mb-5 w-fit rounded-xl border border-line bg-accent-tint p-3 text-accent">
+                <div className="mb-5 w-fit rounded-xl border border-line bg-teal-tint p-3 text-teal">
                   {pillar.icon}
                 </div>
 
                 <h3 className="text-lg font-semibold text-ink">{pillar.title}</h3>
-                <p className="mt-0.5 text-xs text-accent">{pillar.subtitle}</p>
+                <p className="mt-0.5 text-xs text-teal">{pillar.subtitle}</p>
 
                 <ul className="mt-5 space-y-3.5">
                   {pillar.items.map((it) => (
                     <li key={it.label} className="flex gap-3">
-                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent opacity-70" />
+                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-teal opacity-70" />
                       <div>
                         <p className="text-sm font-medium text-ink">{it.label}</p>
                         <p className="mt-0.5 text-xs leading-5 text-ink-muted">{it.desc}</p>
@@ -113,7 +115,7 @@ export default function SolutionsOverviewSection() {
 
                 <Link
                   href={pillar.cta.href}
-                  className="mt-7 inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-all group-hover:gap-2.5"
+                  className="mt-7 inline-flex items-center gap-1.5 text-xs font-semibold text-teal transition-all group-hover:gap-2.5"
                 >
                   {pillar.cta.label}
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -123,6 +125,20 @@ export default function SolutionsOverviewSection() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Continuous capability strip — every service across the three pillars, in motion */}
+        <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div className="marquee-track flex w-max items-center gap-3">
+            {[...CAPABILITIES, ...CAPABILITIES].map((label, i) => (
+              <span
+                key={`${label}-${i}`}
+                className="whitespace-nowrap rounded-full border border-teal/20 bg-surface px-4 py-2 text-xs font-medium text-teal shadow-[0_4px_14px_rgba(11,110,122,0.08)]"
+              >
+                {label}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

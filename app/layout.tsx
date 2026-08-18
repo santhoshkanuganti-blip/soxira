@@ -14,7 +14,7 @@ const poppinsFont = Poppins({ subsets: ['latin'], weight: ['400', '500', '700'],
 export const metadata: Metadata = {
   title: 'Soxira AI Solutions',
   description: 'AI, Cloud, Data Engineering and Product Development services for enterprises and distributors.',
-  metadataBase: new URL('https://soxira.com'),
+  metadataBase: new URL('https://www.soxira.com'),
 };
 
 async function getActivePromoBarPromotions() {

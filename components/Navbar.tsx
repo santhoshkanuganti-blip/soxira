@@ -21,12 +21,13 @@ const SOLUTIONS: SolutionCol[] = [
       { label: 'Generative AI Solutions', href: '/contact' },
       { label: 'AI Dashboards & Reporting', href: '/ai-dashboard-consulting' },
       { label: 'AI Agents & Automation', href: '/contact' },
+      { label: 'Sales & Marketing Automation', href: '/contact' },
       { label: 'Data Engineering & Analytics', href: '/data-engineering-snowflake-dbt' },
       { label: 'Cloud Migration', href: '/cloud-migration-services' },
     ],
   },
   {
-    heading: 'Enterprise Applications',
+    heading: 'Products',
     items: [
       { label: 'VitaranAI (Our Business Operations Platform)', href: '/distributor-management-software' },
       { label: 'SAOP — AI Orchestration Platform (In Development)', href: '/saop-platform' },
@@ -123,7 +124,6 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="ml-auto hidden items-center gap-0.5 md:flex">
           <DLink href="/">Home</DLink>
-          <DLink href="/distributor-management-software">VitaranAI</DLink>
 
           {/* Solutions trigger (desktop hover) */}
           <div
@@ -255,7 +255,6 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-0.5 p-4">
               <MLink href="/" close={() => setMobileOpen(false)}>Home</MLink>
-              <MLink href="/distributor-management-software" close={() => setMobileOpen(false)}>VitaranAI</MLink>
 
               {/* Solutions accordion */}
               <div>
