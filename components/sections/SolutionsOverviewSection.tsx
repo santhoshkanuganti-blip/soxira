@@ -90,24 +90,25 @@ export default function SolutionsOverviewSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface p-7 shadow-[0_16px_40px_rgba(11,110,122,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-teal/30 hover:shadow-[0_20px_48px_rgba(11,110,122,0.14)]"
+              className="group relative flex flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-accent to-[#0E1747] p-7 shadow-[0_16px_40px_rgba(14,23,71,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(14,23,71,0.5)]"
             >
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(255,255,255,0.14),transparent_60%)]" />
               <div className="relative">
                 {/* Icon */}
-                <div className="mb-5 w-fit rounded-xl border border-line bg-teal-tint p-3 text-teal">
+                <div className="mb-5 w-fit rounded-xl bg-teal-tint p-3 text-teal">
                   {pillar.icon}
                 </div>
 
-                <h3 className="text-lg font-semibold text-ink">{pillar.title}</h3>
-                <p className="mt-0.5 text-xs text-teal">{pillar.subtitle}</p>
+                <h3 className="text-lg font-semibold text-white">{pillar.title}</h3>
+                <p className="mt-0.5 text-xs text-teal-bright">{pillar.subtitle}</p>
 
                 <ul className="mt-5 space-y-3.5">
                   {pillar.items.map((it) => (
                     <li key={it.label} className="flex gap-3">
-                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-teal opacity-70" />
+                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-bright opacity-90" />
                       <div>
-                        <p className="text-sm font-medium text-ink">{it.label}</p>
-                        <p className="mt-0.5 text-xs leading-5 text-ink-muted">{it.desc}</p>
+                        <p className="text-sm font-medium text-white">{it.label}</p>
+                        <p className="mt-0.5 text-xs leading-5 text-white/60">{it.desc}</p>
                       </div>
                     </li>
                   ))}
@@ -115,7 +116,7 @@ export default function SolutionsOverviewSection() {
 
                 <Link
                   href={pillar.cta.href}
-                  className="mt-7 inline-flex items-center gap-1.5 text-xs font-semibold text-teal transition-all group-hover:gap-2.5"
+                  className="mt-7 inline-flex items-center gap-1.5 text-xs font-semibold text-teal-bright transition-all group-hover:gap-2.5"
                 >
                   {pillar.cta.label}
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
