@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
-import FooterField from './FooterField';
+import PromoWave from './PromoWave';
 
 const SOLUTIONS_LINKS = [
   { label: 'AI & GenAI Consulting', href: '/ai-dashboard-consulting' },
@@ -38,7 +38,7 @@ function FooterCol({ heading, links }: { heading: string; links: { label: string
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/45">{heading}</p>
-      <ul className="mt-4 space-y-2.5">
+      <ul className="mt-3 space-y-2">
         {links.map((l) => (
           <li key={l.label}>
             <Link href={l.href} className="text-sm text-white/70 transition hover:text-white">
@@ -54,12 +54,13 @@ function FooterCol({ heading, links }: { heading: string; links: { label: string
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[linear-gradient(160deg,#17204f_0%,#111a42_45%,#0c1436_100%)] text-white">
-      <FooterField />
+      <PromoWave side="left" className="absolute top-0 left-0 hidden h-full w-72 lg:block" />
+      <PromoWave side="right" className="absolute top-0 right-0 hidden h-full w-72 lg:block" />
 
       <div className="relative z-10">
         {/* ── CTA band ── */}
         <div className="border-b border-white/10">
-          <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-4 py-12 text-center sm:px-6 lg:flex-row lg:justify-between lg:px-8 lg:text-left">
+          <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-4 py-9 text-center sm:px-6 lg:flex-row lg:justify-between lg:px-8 lg:text-left">
             <div>
               <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Ready to transform your operations?</h2>
               <p className="mt-2 text-sm text-white/65">Talk to our team about AI, Oracle ERP, data engineering, or VitaranAI — no obligation, just a conversation.</p>
@@ -77,16 +78,16 @@ export default function Footer() {
         </div>
 
         {/* ── Sitemap ── */}
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
+        <div className="mx-auto max-w-7xl px-4 py-11 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
             <div>
               <div className="relative h-11 w-[165px]">
                 <Image src="/logo.png" alt={siteConfig.name} fill sizes="165px" className="object-contain object-left" />
               </div>
-              <p className="mt-4 max-w-xs text-sm leading-6 text-white/65">
+              <p className="mt-3 max-w-xs text-sm leading-6 text-white/65">
                 AI, Oracle ERP, and data engineering for modern enterprises — plus VitaranAI and SAOP, our own products.
               </p>
-              <div className="mt-6 flex items-center gap-3">
+              <div className="mt-5 flex items-center gap-3">
                 <a
                   href={siteConfig.contact.linkedin}
                   target="_blank"
@@ -107,7 +108,7 @@ export default function Footer() {
             <FooterCol heading="Company" links={COMPANY_LINKS} />
           </div>
 
-          <div className="mt-12 grid gap-6 border-t border-white/10 pt-8 sm:grid-cols-3">
+          <div className="mt-9 grid gap-6 border-t border-white/10 pt-6 sm:grid-cols-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/45">Email</p>
               <p className="mt-2 text-sm text-white/70">{siteConfig.contact.email}</p>
@@ -123,7 +124,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 py-6 text-center text-xs text-white/45">
+        <div className="border-t border-white/10 py-5 text-center text-xs text-white/45">
           © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
         </div>
       </div>

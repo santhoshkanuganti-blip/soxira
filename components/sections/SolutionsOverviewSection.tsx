@@ -64,7 +64,7 @@ const CAPABILITIES = PILLARS.flatMap((p) => p.items.map((it) => it.label));
 
 export default function SolutionsOverviewSection() {
   return (
-    <section className="relative overflow-hidden bg-teal-tint px-4 py-16 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           className="mb-14 text-center"
