@@ -33,6 +33,7 @@ const STATIC_ROUTES: { path: string; changeFrequency: MetadataRoute.Sitemap[numb
   { path: '/cloud-migration-services', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/data-engineering-snowflake-dbt', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/ai-dashboard-consulting', changeFrequency: 'weekly', priority: 0.9 },
+  { path: '/sales-marketing-automation', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/oracle-erp', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/oracle-erp/finance', changeFrequency: 'weekly', priority: 0.85 },
   { path: '/oracle-erp/scm', changeFrequency: 'weekly', priority: 0.85 },

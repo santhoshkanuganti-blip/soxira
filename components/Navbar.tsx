@@ -21,7 +21,6 @@ const SOLUTIONS: SolutionCol[] = [
       { label: 'Generative AI Solutions', href: '/contact' },
       { label: 'AI Dashboards & Reporting', href: '/ai-dashboard-consulting' },
       { label: 'AI Agents & Automation', href: '/contact' },
-      { label: 'Sales & Marketing Automation', href: '/contact' },
       { label: 'Data Engineering & Analytics', href: '/data-engineering-snowflake-dbt' },
       { label: 'Cloud Migration', href: '/cloud-migration-services' },
     ],
@@ -145,6 +144,8 @@ export default function Navbar() {
               </motion.span>
             </button>
           </div>
+
+          <DLink href="/sales-marketing-automation">Sales & Marketing</DLink>
 
           <Link
             href="/#leadership"
@@ -310,6 +311,8 @@ export default function Navbar() {
                   )}
                 </AnimatePresence>
               </div>
+
+              <MLink href="/sales-marketing-automation" close={() => setMobileOpen(false)}>Sales & Marketing</MLink>
 
               <Link href="/#leadership" onClick={(e) => handleAnchorClick(e, 'leadership')}
                 className="block rounded-lg px-4 py-2.5 text-sm font-medium text-ink-muted transition hover:bg-surface-2 hover:text-ink">
