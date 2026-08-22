@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { safeImageUrl } from '@/lib/safe-image';
 
 export type Testimonial = {
   id: string;
@@ -76,8 +77,8 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
                   <StarRating rating={current.rating} />
                   <div className="flex items-center gap-4">
                     <div className="relative h-12 w-12 overflow-hidden rounded-full border border-line">
-                      {current.photo ? (
-                        <Image src={current.photo} alt={current.customerName} fill className="object-cover" />
+                      {safeImageUrl(current.photo) ? (
+                        <Image src={safeImageUrl(current.photo)!} alt={current.customerName} fill className="object-cover" />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center bg-accent text-sm font-bold text-white">
                           {current.customerName.charAt(0)}

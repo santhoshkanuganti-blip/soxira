@@ -19,6 +19,7 @@ const PILLARS = [
       { label: 'Generative AI Solutions', desc: 'LLM integrations, RAG pipelines and AI copilots.' },
       { label: 'AI Dashboards & Analytics', desc: 'Real-time intelligence for operational decisions.' },
       { label: 'AI Agents & Automation', desc: 'Autonomous workflows that replace manual processes.' },
+      { label: 'Sales & Marketing Automation', desc: 'AI-driven lead scoring, campaign analytics and CRM automation.' },
     ],
     cta: { label: 'Explore AI Solutions', href: '/ai-dashboard-consulting' },
   },

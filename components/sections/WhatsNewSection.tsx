@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { safeImageUrl } from '@/lib/safe-image';
 
 export type Promotion = {
   id: string;
@@ -59,9 +60,9 @@ export default function WhatsNewSection({ promotions }: { promotions: Promotion[
               transition={{ duration: 0.6, ease: 'easeInOut' }}
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(255,255,255,0.15),transparent_70%)] pointer-events-none" />
-              {current.bannerUrl && (
+              {safeImageUrl(current.bannerUrl) && (
                 <div className="absolute inset-0 opacity-20">
-                  <Image src={current.bannerUrl} alt={current.title} fill className="object-cover" />
+                  <Image src={safeImageUrl(current.bannerUrl)!} alt={current.title} fill className="object-cover" />
                 </div>
               )}
               <div className="relative z-10 max-w-2xl">

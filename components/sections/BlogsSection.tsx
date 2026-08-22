@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import BlogAccent from '@/components/blog/BlogAccent';
+import { safeImageUrl } from '@/lib/safe-image';
 
 export type BlogPost = {
   id: string;
@@ -72,10 +73,10 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              {featured.imageUrl ? (
+              {safeImageUrl(featured.imageUrl) ? (
                 <div className="relative h-52 overflow-hidden">
                   <Image
-                    src={featured.imageUrl}
+                    src={safeImageUrl(featured.imageUrl)!}
                     alt={featured.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 66vw"
@@ -134,10 +135,10 @@ export default function BlogsSection({ posts }: { posts: BlogPost[] }) {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.4 }}
               >
-                {post.imageUrl ? (
+                {safeImageUrl(post.imageUrl) ? (
                   <div className="relative h-32 overflow-hidden">
                     <Image
-                      src={post.imageUrl}
+                      src={safeImageUrl(post.imageUrl)!}
                       alt={post.title}
                       fill
                       sizes="(max-width: 1024px) 100vw, 33vw"

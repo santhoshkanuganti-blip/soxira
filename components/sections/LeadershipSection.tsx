@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+import { safeImageUrl } from '@/lib/safe-image';
 
 export type Leader = {
   id: string;
@@ -37,8 +38,8 @@ function LeaderCard({ leader, onOpen }: { leader: Leader; onOpen: (l: Leader) =>
     >
       <div className="relative flex flex-col items-center text-center">
         <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border-2 border-accent-tint transition-all group-hover:border-accent/40">
-          {leader.imageUrl ? (
-            <Image src={leader.imageUrl} alt={leader.name} fill className="object-cover" />
+          {safeImageUrl(leader.imageUrl) ? (
+            <Image src={safeImageUrl(leader.imageUrl)!} alt={leader.name} fill className="object-cover" />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-accent text-2xl font-bold text-white">
               {leader.name.charAt(0)}
@@ -105,8 +106,8 @@ function BioModal({ leader, onClose }: { leader: Leader; onClose: () => void }) 
           </button>
           <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-6">
             <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-accent-tint">
-              {leader.imageUrl ? (
-                <Image src={leader.imageUrl} alt={leader.name} fill className="object-cover" />
+              {safeImageUrl(leader.imageUrl) ? (
+                <Image src={safeImageUrl(leader.imageUrl)!} alt={leader.name} fill className="object-cover" />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-accent text-2xl font-bold text-white">
                   {leader.name.charAt(0)}

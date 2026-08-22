@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { safeImageUrl } from '@/lib/safe-image';
 
 export type Product = {
   id: string;
@@ -48,8 +49,8 @@ export default function ProductsSection({ products }: { products: Product[] }) {
               whileHover={{ y: -4 }}
             >
               <div className="relative h-48 overflow-hidden bg-accent">
-                {product.imageUrl ? (
-                  <Image src={product.imageUrl} alt={product.name} fill className="object-cover opacity-70" />
+                {safeImageUrl(product.imageUrl) ? (
+                  <Image src={safeImageUrl(product.imageUrl)!} alt={product.name} fill className="object-cover opacity-70" />
                 ) : (
                   <div className="flex h-full items-center justify-center">
                     <span className="text-6xl opacity-30">🤖</span>

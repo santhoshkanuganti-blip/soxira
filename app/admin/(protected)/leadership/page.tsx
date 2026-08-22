@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import { safeImageUrl } from '@/lib/safe-image';
 
 type Leader = {
   id: string;
@@ -176,8 +177,8 @@ export default function LeadershipAdmin() {
             <div key={leader.id} className="rounded-2xl border border-white/10 bg-slate-950/80 p-5">
               <div className="flex items-start gap-4">
                 <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-violet-500/30">
-                  {leader.imageUrl ? (
-                    <Image src={leader.imageUrl} alt={leader.name} fill className="object-cover" />
+                  {safeImageUrl(leader.imageUrl) ? (
+                    <Image src={safeImageUrl(leader.imageUrl)!} alt={leader.name} fill className="object-cover" />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-violet-600 to-sky-500 text-lg font-bold text-white">
                       {leader.name.charAt(0)}
