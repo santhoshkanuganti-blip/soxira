@@ -1,15 +1,48 @@
 import type { Metadata } from 'next';
-import { Inter, Orbitron, Poppins, Space_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
 import ChatBot from '@/components/ChatBot';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import PromoBar from '@/components/PromoBar';
 import { db } from '@/lib/db';
 import './globals.css';
 
-const headingFont = Space_Grotesk({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-heading' });
-const orbitronFont = Orbitron({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-orbitron' });
-const bodyFont = Inter({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-body' });
-const poppinsFont = Poppins({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-poppins' });
+// Fonts are self-hosted from the @fontsource packages so the build never
+// depends on fetching from Google Fonts (which intermittently fails on Vercel).
+const headingFont = localFont({
+  src: [
+    { path: '../node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-heading',
+  display: 'swap',
+});
+const orbitronFont = localFont({
+  src: [
+    { path: '../node_modules/@fontsource/orbitron/files/orbitron-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../node_modules/@fontsource/orbitron/files/orbitron-latin-700-normal.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-orbitron',
+  display: 'swap',
+});
+const bodyFont = localFont({
+  src: [
+    { path: '../node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-body',
+  display: 'swap',
+});
+const poppinsFont = localFont({
+  src: [
+    { path: '../node_modules/@fontsource/poppins/files/poppins-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../node_modules/@fontsource/poppins/files/poppins-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../node_modules/@fontsource/poppins/files/poppins-latin-700-normal.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-poppins',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Soxira AI Solutions',
