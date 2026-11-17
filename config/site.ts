@@ -9,12 +9,16 @@ export const siteConfig = {
     email: 'info@soxira.com',
     leadRecipients: ['info@soxira.com', 'info@soxirasolutions.com'],
     phone: '+91 99495 18844',
-    address: 'Hyderabad, Telangana 500019, India',
+    address: 'House/Plot No 119, Ground Floor, Gulmohar Park, Gachibowli, Hyderabad, Telangana 500019, India',
+    streetAddress: 'House/Plot No 119, Ground Floor, Gulmohar Park, Gachibowli',
     addressLocality: 'Hyderabad',
     addressRegion: 'Telangana',
     postalCode: '500019',
     addressCountry: 'IN',
     linkedin: 'https://www.linkedin.com/in/soxira-ai-solutions-673769408/',
+    instagram: 'https://www.instagram.com/soxira_ai_solutions/',
+    instagramHandle: '@soxira_ai_solutions',
+    instagramQr: '/instagram-qr.png',
   },
   services: [
     {

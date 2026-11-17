@@ -18,7 +18,7 @@ We work across four areas:
 
 — Oracle ERP & Fusion Cloud: full-lifecycle implementations across Financials, SCM, and HCM, backed by 25+ years of combined Oracle expertise.
 
-— Data Engineering: Snowflake and DBT-based pipelines, governed analytics, and real-time dashboards.
+— Data Engineering: Big Query, Snowflake and DBT-based pipelines, governed analytics, and real-time dashboards.
 
 — Products: VitaranAI, our AI-powered business operations platform for distributors and manufacturers, and SAOP, our AI orchestration platform currently in development.
 
@@ -38,6 +38,6 @@ OTHER FIELDS TO FILL IN ON THE COMPANY PAGE
 --------------------------------------------------------------
 Website:    https://soxira.com
 Industry:   IT Services and IT Consulting
-HQ:         Hyderabad, Telangana, India
+HQ:         House/Plot No 119, Ground Floor, Gulmohar Park, Gachibowli, Hyderabad, Telangana 500019, India
 Founded:    2025 (adjust to actual founding year)
 Company size: (set to your actual current headcount)

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
@@ -24,11 +25,13 @@ const structuredData = {
   email: siteConfig.contact.email,
   address: {
     '@type': 'PostalAddress',
+    streetAddress: siteConfig.contact.streetAddress,
     addressLocality: siteConfig.contact.addressLocality,
     addressRegion: siteConfig.contact.addressRegion,
     postalCode: siteConfig.contact.postalCode,
     addressCountry: siteConfig.contact.addressCountry,
   },
+  sameAs: [siteConfig.contact.linkedin, siteConfig.contact.instagram],
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: siteConfig.contact.phone,
@@ -63,6 +66,29 @@ export default function ContactPage() {
               <div>
                 <p className="text-sm uppercase tracking-[0.28em] text-ink-muted">Headquarters</p>
                 <p className="mt-2 text-ink">{siteConfig.contact.address}</p>
+              </div>
+              <div className="flex items-center gap-5 border-t border-line pt-4">
+                <a
+                  href={siteConfig.contact.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="relative h-28 w-24 shrink-0 overflow-hidden rounded-xl bg-white"
+                  aria-label="Scan or open Soxira AI Solutions on Instagram"
+                >
+                  <Image src={siteConfig.contact.instagramQr} alt="Instagram QR code for @soxira_ai_solutions" fill sizes="96px" className="object-contain" />
+                </a>
+                <div>
+                  <p className="text-sm uppercase tracking-[0.28em] text-ink-muted">Instagram</p>
+                  <a
+                    href={siteConfig.contact.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 inline-block text-ink hover:text-accent"
+                  >
+                    {siteConfig.contact.instagramHandle}
+                  </a>
+                  <p className="mt-1 text-xs text-ink-muted">Scan the code to follow us.</p>
+                </div>
               </div>
             </div>
           </div>
